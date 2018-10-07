@@ -21,6 +21,7 @@ import landingPageStyle from "assets/jss/material-kit-react/views/landingPage.js
 import ProductSection from "./Sections/ProductSection.jsx";
 import TeamSection from "./Sections/TeamSection.jsx";
 import WorkSection from "./Sections/WorkSection.jsx";
+import GallerySection from "./Sections/GallerySection.jsx";
 
 const dashboardRoutes = [];
 
@@ -59,7 +60,7 @@ class LandingPage extends React.Component {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className="fas fa-calendar-check" />
+                  <i className="fas fa-calendar" />
                   Book Appointment
                 </Button>
               </GridItem>
@@ -68,7 +69,7 @@ class LandingPage extends React.Component {
         </Parallax>
         <div className={classNames(classes.main, classes.mainRaised)}>
           <div className={classes.container}>
-            <ProductSection />
+            <GallerySection />
             <TeamSection />
             <WorkSection />
           </div>

@@ -10,7 +10,7 @@ import ListItem from "@material-ui/core/ListItem";
 import Tooltip from "@material-ui/core/Tooltip";
 
 // @material-ui/icons
-import { Apps, Book, SupervisedUserCircle } from "@material-ui/icons";
+import { Apps, CalendarToday, SupervisedUserCircle } from "@material-ui/icons";
 
 // core components
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.jsx";
@@ -29,7 +29,7 @@ function HeaderLinks({ ...props }) {
           target="_blank"
           className={classes.navLink}
         >
-          <Book className={classes.icons} /> Book Appointment
+          <CalendarToday className={classes.icons} /> Book Appointment
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
