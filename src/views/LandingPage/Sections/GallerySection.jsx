@@ -1,9 +1,6 @@
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-// @material-ui/icons
-import Camera from "@material-ui/icons/Camera";
 import Favorite from "@material-ui/icons/Favorite";
-import Palette from "@material-ui/icons/Palette";
 import men1 from "assets/img/men/men1.jpg";
 import men2 from "assets/img/men/men2.jpg";
 import men4 from "assets/img/men/men4.jpg";
@@ -28,6 +25,7 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import NavPills from "components/NavPills/NavPills.jsx";
 import React from "react";
+import { FaFemale, FaMale } from "react-icons/fa";
 
 class GallerySection extends React.Component {
   render() {
@@ -40,11 +38,11 @@ class GallerySection extends React.Component {
             <GridItem xs={12} sm={12} md={12} className={classes.navWrapper}>
               <NavPills
                 alignCenter
-                color="primary"
+                color="success"
                 tabs={[
                   {
                     tabButton: "Ladies",
-                    tabIcon: Camera,
+                    tabIcon: FaFemale,
                     tabContent: (
                       <GridContainer justify="center">
                         <GridItem xs={12} sm={12} md={4}>
@@ -88,7 +86,7 @@ class GallerySection extends React.Component {
                   },
                   {
                     tabButton: "Men",
-                    tabIcon: Palette,
+                    tabIcon: FaMale,
                     tabContent: (
                       <GridContainer justify="center">
                         <GridItem xs={12} sm={12} md={4}>
