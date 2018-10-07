@@ -1,22 +1,13 @@
 /*eslint-disable*/
-import React from "react";
-// react components for routing our app without refresh
-import { Link } from "react-router-dom";
-
-// @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+// @material-ui/core components
+import withStyles from "@material-ui/core/styles/withStyles";
 import Tooltip from "@material-ui/core/Tooltip";
-
-// @material-ui/icons
-import { Apps, CalendarToday, SupervisedUserCircle } from "@material-ui/icons";
-
-// core components
-import CustomDropdown from "components/CustomDropdown/CustomDropdown.jsx";
-import Button from "components/CustomButtons/Button.jsx";
-
 import headerLinksStyle from "assets/jss/material-kit-react/components/headerLinksStyle.jsx";
+import Button from "components/CustomButtons/Button.jsx";
+import React from "react";
+import { FaCalendarCheck, FaHandHoldingUsd } from "react-icons/fa";
 
 function HeaderLinks({ ...props }) {
   const { classes } = props;
@@ -29,9 +20,20 @@ function HeaderLinks({ ...props }) {
           target="_blank"
           className={classes.navLink}
         >
-          <CalendarToday className={classes.icons} /> Book Appointment
+          <FaCalendarCheck className={classes.icons} /> Book Appointment
         </Button>
       </ListItem>
+      <ListItem className={classes.listItem}>
+        <Button
+          href="https://my.setmore.com/bookingpage/7aa980b7-c4f3-42ff-8e63-4c686ebbcfbc/services"
+          color="transparent"
+          target="_blank"
+          className={classes.navLink}
+        >
+          <FaHandHoldingUsd className={classes.icons} /> Service & Pricing
+        </Button>
+      </ListItem>
+
       <ListItem className={classes.listItem}>
         <Tooltip
           id="instagram-facebook"
