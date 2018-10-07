@@ -24,7 +24,7 @@ function HeaderLinks({ ...props }) {
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
         <Button
-          href="https://www.creative-tim.com/product/material-kit-react"
+          href="https://my.setmore.com/bookingpage/7aa980b7-c4f3-42ff-8e63-4c686ebbcfbc"
           color="transparent"
           target="_blank"
           className={classes.navLink}

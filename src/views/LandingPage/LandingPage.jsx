@@ -56,7 +56,7 @@ class LandingPage extends React.Component {
                 <Button
                   color="success"
                   size="lg"
-                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                  href="https://my.setmore.com/bookingpage/7aa980b7-c4f3-42ff-8e63-4c686ebbcfbc"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
