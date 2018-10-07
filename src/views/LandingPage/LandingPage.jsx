@@ -45,22 +45,22 @@ class LandingPage extends React.Component {
           <div className={classes.container}>
             <GridContainer>
               <GridItem xs={12} sm={12} md={6}>
-                <h1 className={classes.title}>Your Story Starts With Us.</h1>
+                <h1 className={classes.title}>Live Your Style!</h1>
                 <h4>
-                  Every landing page needs a small description after the big
-                  bold title, that's why we added this text here. Add here all
-                  the information that can make you or your product create the
-                  first impression.
+                  Thank you for considering us to serve you! We aim to bring out
+                  your best self through balanced haircut. If you have a style
+                  preference, please feel free to bring photos!
                 </h4>
                 <br />
                 <Button
-                  color="danger"
+                  color="success"
                   size="lg"
                   href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className="fas fa-play" />Watch video
+                  <i className="fas fa-calendar-check" />
+                  Book Appointment
                 </Button>
               </GridItem>
             </GridContainer>
