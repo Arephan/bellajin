@@ -23,7 +23,8 @@ import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
 import image from "assets/img/bg7.jpg";
 import { Link } from "react-router-dom";
-import { saveUser } from "../../firebase/auth";
+
+import { auth, login } from "../../firebase/auth";
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -32,10 +33,14 @@ class LoginPage extends React.Component {
     this.state = {
       cardAnimaton: "cardHidden",
       email: null,
-      password: null
+      password: null,
+      currentUser: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.history = this.props.history;
+    this.auth = auth;
+    this.login = login;
   }
   componentDidMount() {
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
@@ -55,6 +60,10 @@ class LoginPage extends React.Component {
 
   handleSubmit(event) {
     alert("A name was submitted: " + this.state.email + this.state.password);
+    this.auth(this.state.email, this.state.password);
+    this.login(this.state.email, this.state.password);
+    this.history.push("/profile-page");
+
     event.preventDefault();
   }
   render() {
