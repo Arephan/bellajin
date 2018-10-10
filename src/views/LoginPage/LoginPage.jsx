@@ -22,14 +22,20 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
 import image from "assets/img/bg7.jpg";
+import { Link } from "react-router-dom";
+import { saveUser } from "../../firebase/auth";
 
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
     // we use this to make the card to appear after the page has been rendered
     this.state = {
-      cardAnimaton: "cardHidden"
+      cardAnimaton: "cardHidden",
+      email: null,
+      password: null
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentDidMount() {
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
@@ -40,6 +46,17 @@ class LoginPage extends React.Component {
       700
     );
   }
+  handleChange(event) {
+    let rJSON = {};
+    let id = event.target.id;
+    rJSON[id] = event.target.value;
+    this.setState(rJSON);
+  }
+
+  handleSubmit(event) {
+    alert("A name was submitted: " + this.state.email + this.state.password);
+    event.preventDefault();
+  }
   render() {
     const { classes, ...rest } = this.props;
     return (
@@ -47,7 +64,7 @@ class LoginPage extends React.Component {
         <Header
           absolute
           color="transparent"
-          brand="Material Kit React"
+          brand={<Link to="/">"Bella Jin"</Link>}
           rightLinks={<HeaderLinks />}
           {...rest}
         />
@@ -72,7 +89,6 @@ class LoginPage extends React.Component {
                           href="#pablo"
                           target="_blank"
                           color="transparent"
-                          onClick={e => e.preventDefault()}
                         >
                           <i className={"fab fa-twitter"} />
                         </Button>
@@ -99,43 +115,33 @@ class LoginPage extends React.Component {
                     <p className={classes.divider}>Or Be Classical</p>
                     <CardBody>
                       <CustomInput
-                        labelText="First Name..."
-                        id="first"
-                        formControlProps={{
-                          fullWidth: true
-                        }}
-                        inputProps={{
-                          type: "text",
-                          endAdornment: (
-                            <InputAdornment position="end">
-                              <People className={classes.inputIconsColor} />
-                            </InputAdornment>
-                          )
-                        }}
-                      />
-                      <CustomInput
-                        labelText="Email..."
+                        labelText="Email"
                         id="email"
                         formControlProps={{
                           fullWidth: true
                         }}
                         inputProps={{
                           type: "email",
+
+                          onChange: this.handleChange,
                           endAdornment: (
                             <InputAdornment position="end">
-                              <Email className={classes.inputIconsColor} />
+                              <Icon className={classes.inputIconsColor}>
+                                email
+                              </Icon>
                             </InputAdornment>
                           )
                         }}
                       />
                       <CustomInput
                         labelText="Password"
-                        id="pass"
+                        id="password"
                         formControlProps={{
                           fullWidth: true
                         }}
                         inputProps={{
                           type: "password",
+                          onChange: this.handleChange,
                           endAdornment: (
                             <InputAdornment position="end">
                               <Icon className={classes.inputIconsColor}>
@@ -147,7 +153,12 @@ class LoginPage extends React.Component {
                       />
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                      <Button simple color="primary" size="lg">
+                      <Button
+                        simple
+                        color="primary"
+                        size="lg"
+                        onClick={this.handleSubmit}
+                      >
                         Get started
                       </Button>
                     </CardFooter>

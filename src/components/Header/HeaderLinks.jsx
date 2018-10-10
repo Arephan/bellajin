@@ -7,7 +7,10 @@ import Tooltip from "@material-ui/core/Tooltip";
 import headerLinksStyle from "assets/jss/material-kit-react/components/headerLinksStyle.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import React from "react";
-import { FaCalendarCheck, FaHandHoldingUsd } from "react-icons/fa";
+import { FaCalendarCheck } from "react-icons/fa";
+import { FaSignInAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { getUser } from "../../firebase/auth";
 
 function HeaderLinks({ ...props }) {
   const { classes } = props;
@@ -24,14 +27,15 @@ function HeaderLinks({ ...props }) {
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Button
-          href="https://my.setmore.com/bookingpage/7aa980b7-c4f3-42ff-8e63-4c686ebbcfbc/services"
-          color="transparent"
-          target="_blank"
-          className={classes.navLink}
-        >
-          <FaHandHoldingUsd className={classes.icons} /> Service & Pricing
-        </Button>
+        <Link to="/login-page">
+          <Button
+            color="transparent"
+            target="_blank"
+            className={classes.navLink}
+          >
+            <FaSignInAlt className={classes.icons} /> Login
+          </Button>
+        </Link>
       </ListItem>
 
       <ListItem className={classes.listItem}>
