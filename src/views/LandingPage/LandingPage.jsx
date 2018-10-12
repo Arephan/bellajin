@@ -13,8 +13,9 @@ import Header from "components/Header/Header.jsx";
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";
 import React from "react";
-import GallerySection from "./Sections/GallerySection.jsx";
 import Logo from "../../assets/img/logo.jpg";
+import GallerySection from "./Sections/GallerySection.jsx";
+import SectionJavascript from "./Sections/SectionJavascript.jsx";
 const dashboardRoutes = [];
 
 class LandingPage extends React.Component {
@@ -62,6 +63,7 @@ class LandingPage extends React.Component {
         <div className={classNames(classes.main, classes.mainRaised)}>
           <div className={classes.container}>
             <GallerySection />
+            <SectionJavascript />
           </div>
         </div>
         <Footer />
