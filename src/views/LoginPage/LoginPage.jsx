@@ -24,7 +24,7 @@ import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 import image from "assets/img/bg7.jpg";
 import { Link } from "react-router-dom";
 
-import { auth, login } from "../../firebase/auth";
+import { auth, login, logout } from "../../firebase/auth";
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -39,8 +39,10 @@ class LoginPage extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.history = this.props.history;
+    this.state.currentUser = this.props.currentUser;
     this.auth = auth;
     this.login = login;
+    this.logout = logout;
   }
   componentDidMount() {
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
@@ -60,8 +62,10 @@ class LoginPage extends React.Component {
 
   handleSubmit(event) {
     alert("A name was submitted: " + this.state.email + this.state.password);
+
     this.auth(this.state.email, this.state.password);
     this.login(this.state.email, this.state.password);
+
     this.history.push("/profile-page");
 
     event.preventDefault();
@@ -73,7 +77,7 @@ class LoginPage extends React.Component {
         <Header
           absolute
           color="transparent"
-          brand={<Link to="/">"Bella Jin"</Link>}
+          brand={<Link to="/">Bella Jin</Link>}
           rightLinks={<HeaderLinks />}
           {...rest}
         />
@@ -91,37 +95,9 @@ class LoginPage extends React.Component {
                 <Card className={classes[this.state.cardAnimaton]}>
                   <form className={classes.form}>
                     <CardHeader color="primary" className={classes.cardHeader}>
-                      <h4>Login</h4>
-                      <div className={classes.socialLine}>
-                        <Button
-                          justIcon
-                          href="#pablo"
-                          target="_blank"
-                          color="transparent"
-                        >
-                          <i className={"fab fa-twitter"} />
-                        </Button>
-                        <Button
-                          justIcon
-                          href="#pablo"
-                          target="_blank"
-                          color="transparent"
-                          onClick={e => e.preventDefault()}
-                        >
-                          <i className={"fab fa-facebook"} />
-                        </Button>
-                        <Button
-                          justIcon
-                          href="#pablo"
-                          target="_blank"
-                          color="transparent"
-                          onClick={e => e.preventDefault()}
-                        >
-                          <i className={"fab fa-google-plus-g"} />
-                        </Button>
-                      </div>
+                      <h4>Login / Sign Up</h4>
                     </CardHeader>
-                    <p className={classes.divider}>Or Be Classical</p>
+
                     <CardBody>
                       <CustomInput
                         labelText="Email"
@@ -168,7 +144,7 @@ class LoginPage extends React.Component {
                         size="lg"
                         onClick={this.handleSubmit}
                       >
-                        Get started
+                        Submit
                       </Button>
                     </CardFooter>
                   </form>

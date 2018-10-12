@@ -38,7 +38,7 @@ class GallerySection extends React.Component {
             <GridItem xs={12} sm={12} md={12} className={classes.navWrapper}>
               <NavPills
                 alignCenter
-                color="success"
+                color="rose"
                 tabs={[
                   {
                     tabButton: "Ladies",

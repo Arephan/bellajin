@@ -14,9 +14,7 @@ import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";
 import React from "react";
 import GallerySection from "./Sections/GallerySection.jsx";
-import TeamSection from "./Sections/TeamSection.jsx";
-import WorkSection from "./Sections/WorkSection.jsx";
-
+import Logo from "../../assets/img/logo.jpg";
 const dashboardRoutes = [];
 
 class LandingPage extends React.Component {
@@ -27,12 +25,12 @@ class LandingPage extends React.Component {
         <Header
           color="transparent"
           routes={dashboardRoutes}
-          brand="BellaJin"
+          brand={<img src={Logo} height="50" width="100" />}
           rightLinks={<HeaderLinks />}
           fixed
           changeColorOnScroll={{
             height: 400,
-            color: "white"
+            color: "rose"
           }}
           {...rest}
         />
@@ -48,7 +46,7 @@ class LandingPage extends React.Component {
                 </h4>
                 <br />
                 <Button
-                  color="success"
+                  color="rose"
                   size="lg"
                   href="https://my.setmore.com/bookingpage/7aa980b7-c4f3-42ff-8e63-4c686ebbcfbc"
                   target="_blank"
@@ -64,8 +62,6 @@ class LandingPage extends React.Component {
         <div className={classNames(classes.main, classes.mainRaised)}>
           <div className={classes.container}>
             <GallerySection />
-            <TeamSection />
-            <WorkSection />
           </div>
         </div>
         <Footer />

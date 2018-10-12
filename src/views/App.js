@@ -10,11 +10,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { currentUser: null };
-    this.handleCurrentUserChange = this.handleCurrentUserChange.bind(this);
-  }
-
-  handleCurrentUserChange(user) {
-    this.setState({ currentUser: user });
   }
 
   componentDidMount() {
@@ -38,7 +33,7 @@ class App extends React.Component {
                 path={prop.path}
                 key={key}
                 component={prop.component}
-                handleCurrentUserChange={this.handleCurrentUserChange}
+                currentUser={this.state.currentUser}
               />
             );
           })}
