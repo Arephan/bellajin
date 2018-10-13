@@ -1,0 +1,1 @@
+../node_modules/reactTemplate/material-dashboard-react/src/components/Table/Table.jsx
