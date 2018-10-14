@@ -3,7 +3,6 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import landingPageStyle from "assets/jss/material-kit-react/views/landingPage.jsx";
 // nodejs library that concatenates classes
 import classNames from "classnames";
-import Button from "components/CustomButtons/Button.jsx";
 import Footer from "components/Footer/Footer.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
@@ -14,7 +13,7 @@ import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";
 import React from "react";
 import Logo from "../../assets/img/logo.jpg";
-import FullScreenDialog from "./Sections/FullScreenDialog";
+import FullScreenDialog from "../../components/Header/FullScreenDialog";
 import GallerySection from "./Sections/GallerySection.jsx";
 const dashboardRoutes = [];
 
@@ -46,16 +45,7 @@ class LandingPage extends React.Component {
                   preference, please feel free to bring photos!
                 </h4>
                 <br />
-                <Button
-                  color="rose"
-                  size="lg"
-                  href="https://my.setmore.com/bookingpage/7aa980b7-c4f3-42ff-8e63-4c686ebbcfbc"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i className="fas fa-calendar-check" />
-                  Book Appointment
-                </Button>
+                <FullScreenDialog />
               </GridItem>
             </GridContainer>
           </div>
@@ -63,8 +53,6 @@ class LandingPage extends React.Component {
         <div className={classNames(classes.main, classes.mainRaised)}>
           <div className={classes.container}>
             <GallerySection />
-  
-            <FullScreenDialog />
           </div>
         </div>
         <Footer />

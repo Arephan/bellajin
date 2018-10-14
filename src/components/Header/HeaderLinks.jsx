@@ -11,23 +11,17 @@ import { FaCalendarCheck } from "react-icons/fa";
 import { FaSignInAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { getUser } from "../../firebase/auth";
+import FullscreenDialog from "./FullScreenDialog";
 
 function HeaderLinks({ ...props }) {
   const { classes } = props;
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
-        <Button
-          href="https://my.setmore.com/bookingpage/7aa980b7-c4f3-42ff-8e63-4c686ebbcfbc"
-          color="transparent"
-          target="_blank"
-          className={classes.navLink}
-        >
-          <FaCalendarCheck className={classes.icons} /> Book Appointment
-        </Button>
+        <FullscreenDialog />
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Link to="/login-page">
+        <Link to="/login-page" className={classes.listItem}>
           <Button
             color="transparent"
             target="_blank"

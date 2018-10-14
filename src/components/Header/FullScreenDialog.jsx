@@ -1,5 +1,5 @@
 import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
+import RegularButton from "../CustomButtons/Button";
 import Dialog from "@material-ui/core/Dialog";
 import IconButton from "@material-ui/core/IconButton";
 import Slide from "@material-ui/core/Slide";
@@ -10,6 +10,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import PropTypes from "prop-types";
 import React from "react";
 import VerticalLinearStepper from "./VerticalLinearStepper";
+
 const styles = {
   appBar: {
     position: "relative"
@@ -40,7 +41,17 @@ class FullScreenDialog extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <Button onClick={this.handleClickOpen}>Open full-screen dialog</Button>
+        <RegularButton
+          color="transparent"
+          target="_blank"
+          className={classes.navLink}
+          onClick={this.handleClickOpen}
+          rel="noopener noreferrer"
+        >
+          <i className="fas fa-calendar-check" />
+          Book Appointment
+        </RegularButton>
+
         <Dialog
           fullScreen
           open={this.state.open}
@@ -59,9 +70,9 @@ class FullScreenDialog extends React.Component {
               <Typography variant="h6" color="inherit" className={classes.flex}>
                 Sound
               </Typography>
-              <Button color="inherit" onClick={this.handleClose}>
+              <RegularButton color="inherit" onClick={this.handleClose}>
                 save
-              </Button>
+              </RegularButton>
             </Toolbar>
           </AppBar>
           {/* <SingleLineGridList/>
