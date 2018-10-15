@@ -74,12 +74,13 @@ class CheckboxList extends React.Component {
                     tabIndex={-1}
                     disableRipple
                   />
-                  <ListItemText primary={`${value.serviceTitle}`} />
-                  {/* <ListItemSecondaryAction>
-                    <IconButton aria-label="Comments">
-                      <CommentIcon />
-                    </IconButton>
-                  </ListItemSecondaryAction> */}
+                  <ListItemText
+                    primary={`${value.serviceTitle}`}
+                    secondary={`${value.duration}`}
+                  />
+                  <ListItemSecondaryAction>
+                    <IconButton aria-label="Comments">{value.cost}</IconButton>
+                  </ListItemSecondaryAction>
                 </ListItem>
               </ul>
             </li>
