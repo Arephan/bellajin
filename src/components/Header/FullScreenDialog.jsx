@@ -75,16 +75,6 @@ class FullScreenDialog extends React.Component {
               </RegularButton>
             </Toolbar>
           </AppBar>
-          {/* <SingleLineGridList/>
-          <ReactTimeslotCalendar
-            initialDate={moment().format()}
-            let
-            timeslots={[
-              ["1", "2"], // 1:00 AM - 2:00 AM
-              ["2", "3"], // 2:00 AM - 3:00 AM
-              ["4", "6"] // 4:00 AM - 6:00 AM
-            ]}
-          /> */}
           <VerticalLinearStepper />
         </Dialog>
       </div>

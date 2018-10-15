@@ -9,6 +9,8 @@ import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import CommentIcon from "@material-ui/icons/Comment";
 import ListSubheader from "@material-ui/core/ListSubheader";
+
+const ServiceMenu = require("../../assets/constants/ServiceMenu").ServiceMenu;
 const styles = theme => ({
   root: {
     width: "100%",
@@ -31,7 +33,6 @@ class CheckboxList extends React.Component {
   state = {
     checked: [0]
   };
-
   handleToggle = value => () => {
     const { checked } = this.state;
     const currentIndex = checked.indexOf(value);
@@ -54,10 +55,12 @@ class CheckboxList extends React.Component {
     return (
       <div className={classes.root} subheader={<li />}>
         <List>
-          {[0, 1, 2, 3].map(value => (
-            <li key={`section-${value}`} className={classes.listSection}>
+          {ServiceMenu.map(value => (
+            <li
+              key={`${value.serviceCategory}`}
+              className={classes.listSection}
+            >
               <ul className={classes.ul}>
-                <ListSubheader>{`I'm sticky ${value}`}</ListSubheader>
                 <ListItem
                   key={value}
                   role={undefined}
@@ -71,12 +74,12 @@ class CheckboxList extends React.Component {
                     tabIndex={-1}
                     disableRipple
                   />
-                  <ListItemText primary={`Line item ${value + 1}`} />
-                  <ListItemSecondaryAction>
+                  <ListItemText primary={`${value.serviceTitle}`} />
+                  {/* <ListItemSecondaryAction>
                     <IconButton aria-label="Comments">
                       <CommentIcon />
                     </IconButton>
-                  </ListItemSecondaryAction>
+                  </ListItemSecondaryAction> */}
                 </ListItem>
               </ul>
             </li>
