@@ -7,31 +7,25 @@ import Tooltip from "@material-ui/core/Tooltip";
 import headerLinksStyle from "assets/jss/material-kit-react/components/headerLinksStyle.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import React from "react";
-import { FaCalendarCheck } from "react-icons/fa";
 import { FaSignInAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { getUser } from "../../firebase/auth";
-import FullscreenDialog from "./FullScreenDialog";
-
+import { CalendarToday } from "@material-ui/icons";
 function HeaderLinks({ ...props }) {
   const { classes } = props;
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
-        <FullscreenDialog />
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <Link to="/login-page" className={classes.listItem}>
+        <Link to="/new-appointment" className={classes.ListItem}>
           <Button
             color="transparent"
             target="_blank"
             className={classes.navLink}
           >
-            <FaSignInAlt className={classes.icons} /> Login
+            <i className={classes.socialIcons + " fas fa-calendar"} />
+            Book Appointment
           </Button>
         </Link>
       </ListItem>
-
       <ListItem className={classes.listItem}>
         <Tooltip
           id="instagram-facebook"

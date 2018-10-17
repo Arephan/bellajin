@@ -13,8 +13,9 @@ import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";
 import React from "react";
 import Logo from "../../assets/img/logo.jpg";
-import FullScreenDialog from "../../components/Header/FullScreenDialog";
 import GallerySection from "./Sections/GallerySection.jsx";
+import { Link } from "react-router-dom";
+import Button from "components/CustomButtons/Button.jsx";
 const dashboardRoutes = [];
 
 class LandingPage extends React.Component {
@@ -45,11 +46,22 @@ class LandingPage extends React.Component {
                   preference, please feel free to bring photos!
                 </h4>
                 <br />
-                <FullScreenDialog />
+                <Link to="/new-appointment">
+                  <Button
+                    color="rose"
+                    size="lg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i className="fas fa-calendar" />
+                    Book Appointment
+                  </Button>
+                </Link>
               </GridItem>
             </GridContainer>
           </div>
         </Parallax>
+
         <div className={classNames(classes.main, classes.mainRaised)}>
           <div className={classes.container}>
             <GallerySection />

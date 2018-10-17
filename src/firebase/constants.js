@@ -1,5 +1,6 @@
 import firebase from "firebase";
-
+var database = require("firebase/database");
+var Rebase = require("re-base");
 const config = {
   apiKey: "AIzaSyB8FQ40Fc14Af618qaKApJDJo0dkWNhWbo",
   authDomain: "bellajin-c8de8.firebaseapp.com",
@@ -9,7 +10,9 @@ const config = {
   messagingSenderId: "114630698438"
 };
 
-firebase.initializeApp(config);
+var app = firebase.initializeApp(config);
+var db = firebase.database(app);
 
+export var base = Rebase.createClass(db);
 export const ref = firebase.database().ref();
 export const firebaseAuth = firebase.auth;

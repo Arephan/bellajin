@@ -1,133 +1,133 @@
 module.exports = {
   ServiceMenu: [
     {
-      serviceCategory: "Basic Cut",
-      serviceTitle: "Men's Cut",
-      duration: "30 mins",
-      cost: "$19"
+      category: "Basic Cut",
+      primary: "Men's Cut",
+      secondary: "30 mins",
+      tertiary: "$19"
     },
     {
-      serviceCategory: "Basic Cut",
-      serviceTitle: "Women's cut",
-      duration: "40 mins",
-      cost: "$27"
+      category: "Basic Cut",
+      primary: "Women's cut",
+      secondary: "40 mins",
+      tertiary: "$27"
     },
     {
-      serviceCategory: "Retouch",
-      serviceTitle: "Blow Dry",
-      duration: "40 mins",
-      cost: "$30"
+      category: "Retouch",
+      primary: "Blow Dry",
+      secondary: "40 mins",
+      tertiary: "$30"
     },
     {
-      serviceCategory: "Retouch",
-      serviceTitle: "Up Do",
-      duration: "60 mins",
-      cost: "$60"
+      category: "Retouch",
+      primary: "Up Do",
+      secondary: "60 mins",
+      tertiary: "$60"
     },
     {
-      serviceCategory: "Hair Mod",
-      serviceTitle: "Perm",
-      duration: "75 mins",
-      cost: "$60"
+      category: "Hair Mod",
+      primary: "Perm",
+      secondary: "75 mins",
+      tertiary: "$60"
     },
     {
-      serviceCategory: "Hair Mod",
-      serviceTitle: "Digital Perm",
-      duration: "120 mins",
-      cost: "$130"
+      category: "Hair Mod",
+      primary: "Digital Perm",
+      secondary: "120 mins",
+      tertiary: "$130"
     },
     {
-      serviceCategory: "Hair Mod",
-      serviceTitle: "Japanese Straightening",
-      duration: "120 mins",
-      cost: "$120"
+      category: "Hair Mod",
+      primary: "Japanese Straightening",
+      secondary: "120 mins",
+      tertiary: "$120"
     },
     {
-      serviceTitle: "Color",
-      serviceCategory: "Hair Mod",
-      duration: "40 mins",
-      cost: "$60"
+      primary: "Color",
+      category: "Hair Mod",
+      secondary: "40 mins",
+      tertiary: "$60"
     },
     {
-      serviceCategory: "Hair Mod",
-      serviceTitle: "Balayage ombre",
-      duration: "90 mins",
-      cost: "$120"
+      category: "Hair Mod",
+      primary: "Balayage ombre",
+      secondary: "90 mins",
+      tertiary: "$120"
     },
     {
-      serviceCategory: "Hair Mod",
-      serviceTitle: "Highlight",
-      duration: "60 mins",
-      cost: "$90"
+      category: "Hair Mod",
+      primary: "Highlight",
+      secondary: "60 mins",
+      tertiary: "$90"
     },
     {
-      serviceCategory: "Hair Mod",
-      serviceTitle: "Keratin treatment",
-      duration: "90 mins",
-      cost: "$100"
+      category: "Hair Mod",
+      primary: "Keratin treatment",
+      secondary: "90 mins",
+      tertiary: "$100"
     },
     {
-      serviceCategory: "Hair Mod",
-      serviceTitle: "Japanese Keratin",
-      duration: "90 mins",
-      cost: "$100"
+      category: "Hair Mod",
+      primary: "Japanese Keratin",
+      secondary: "90 mins",
+      tertiary: "$100"
     },
     {
-      serviceCategory: "Nails",
-      serviceTitle: "Pedicure",
-      duration: "40 mins",
-      cost: "$30"
+      category: "Nails",
+      primary: "Pedicure",
+      secondary: "40 mins",
+      tertiary: "$30"
     },
     {
-      serviceCategory: "Nails",
-      serviceTitle: "Manicure",
-      duration: "30 mins",
-      cost: "$15"
+      category: "Nails",
+      primary: "Manicure",
+      secondary: "30 mins",
+      tertiary: "$15"
     },
     {
-      serviceCategory: "Nails",
-      serviceTitle: "Acrylic/UV powder/Solar Gel/ Bio Gel",
-      duration: "60 mins",
-      cost: "$30"
+      category: "Nails",
+      primary: "Acrylic/UV powder/Solar Gel/ Bio Gel",
+      secondary: "60 mins",
+      tertiary: "$30"
     },
     {
-      serviceCategory: "Skin",
-      serviceTitle: "Full face waxing",
-      duration: "20 mins",
-      cost: "$25"
+      category: "Skin",
+      primary: "Full face waxing",
+      secondary: "20 mins",
+      tertiary: "$25"
     },
     {
-      serviceCategory: "Skin",
+      category: "Skin",
 
-      serviceTitle: "Brazillian waxing",
-      duration: "30 mins",
-      cost: "$35"
+      primary: "Brazillian waxing",
+      secondary: "30 mins",
+      tertiary: "$35"
     },
     {
-      serviceCategory: "Skin",
-      serviceTitle: "Full arm waxing",
-      duration: "15 mins",
-      cost: "$25"
+      category: "Skin",
+      primary: "Full arm waxing",
+      secondary: "15 mins",
+      tertiary: "$25"
     },
     {
-      serviceCategory: "Skin",
+      category: "Skin",
 
-      serviceTitle: "Full leg waxing",
-      duration: "20 mins",
-      cost: "$45"
+      primary: "Full leg waxing",
+      secondary: "20 mins",
+      tertiary: "$45"
     },
     {
-      serviceCategory: "Skin",
+      category: "Skin",
 
-      serviceTitle: "Full body waxing",
-      duration: "90 mins",
-      cost: "$135"
+      primary: "Full body waxing",
+      secondary: "90 mins",
+      tertiary: "$135"
     },
     {
-      serviceCategory: "Skin",
-      serviceTitle: "Men's back waxing",
-      duration: "20 mins",
-      cost: "$30"
+      category: "Skin",
+      primary: "Men's back waxing",
+      secondary: "20 mins",
+      tertiary: "$30"
     }
   ]
 };

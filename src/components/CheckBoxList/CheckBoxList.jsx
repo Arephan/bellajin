@@ -1,16 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
+import Checkbox from "@material-ui/core/Checkbox";
+import IconButton from "@material-ui/core/IconButton";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
-import Checkbox from "@material-ui/core/Checkbox";
-import IconButton from "@material-ui/core/IconButton";
-import CommentIcon from "@material-ui/icons/Comment";
-import ListSubheader from "@material-ui/core/ListSubheader";
+import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React from "react";
 
-const ServiceMenu = require("../../assets/constants/ServiceMenu").ServiceMenu;
 const styles = theme => ({
   root: {
     width: "100%",
@@ -30,9 +27,17 @@ const styles = theme => ({
 });
 
 class CheckboxList extends React.Component {
-  state = {
-    checked: [0]
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      checked: [0],
+      data: props.data
+    };
+    this.handleStepperContentValueChange = props.handleStepperContentValueChange.bind(
+      this
+    );
+  }
+
   handleToggle = value => () => {
     const { checked } = this.state;
     const currentIndex = checked.indexOf(value);
@@ -47,6 +52,11 @@ class CheckboxList extends React.Component {
     this.setState({
       checked: newChecked
     });
+
+    let menuChoice = this.state.checked.map(i => {
+      return this.state.data[i];
+    });
+    this.props.handleStepperContentValueChange("menuChoice", menuChoice);
   };
 
   render() {
@@ -55,7 +65,7 @@ class CheckboxList extends React.Component {
     return (
       <div className={classes.root} subheader={<li />}>
         <List>
-          {ServiceMenu.map(value => (
+          {this.state.data.map(value => (
             <li
               key={`${value.serviceCategory}`}
               className={classes.listSection}
@@ -75,11 +85,13 @@ class CheckboxList extends React.Component {
                     disableRipple
                   />
                   <ListItemText
-                    primary={`${value.serviceTitle}`}
-                    secondary={`${value.duration}`}
+                    primary={`${value.primary}`}
+                    secondary={`${value.secondary}`}
                   />
                   <ListItemSecondaryAction>
-                    <IconButton aria-label="Comments">{value.cost}</IconButton>
+                    <IconButton aria-label="Comments">
+                      {value.tertiary}
+                    </IconButton>
                   </ListItemSecondaryAction>
                 </ListItem>
               </ul>

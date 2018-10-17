@@ -1,4 +1,5 @@
 import React from "react";
+import { base } from "firebase/constants";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
@@ -11,6 +12,13 @@ import Typography from "@material-ui/core/Typography";
 import moment from "moment";
 import ReactTimeslotCalendar from "react-timeslot-calendar";
 import CheckBoxList from "./CheckBoxList";
+
+import Datetime from "react-datetime";
+import { GridContainer } from "components/Grid/GridContainer.jsx";
+import { GridItem } from "components/Grid/GridItem.jsx";
+import { InputLabel } from "@material-ui/core/InputLabel";
+import { FormControl } from "@material-ui/core/FormControl";
+const ServiceMenu = require("../../assets/constants/ServiceMenu").ServiceMenu;
 const styles = theme => ({
   root: {
     width: "90%"
@@ -31,20 +39,20 @@ function getSteps() {
   return ["Select campaign settings", "Create an ad group", "Create an ad"];
 }
 
-function getStepContent(step) {
+function getStepContent(step, handleStepperContentValueChange) {
   switch (step) {
     case 0:
-      return <CheckBoxList />;
+      return (
+        <CheckBoxList
+          handleStepperContentValueChange={handleStepperContentValueChange}
+          data={ServiceMenu}
+        />
+      );
     case 1:
       return (
-        <ReactTimeslotCalendar
-          initialDate={moment().format()}
-          timeslots={[
-            ["1", "2"], // 1:00 AM - 2:00 AM
-            ["2", "3"], // 2:00 AM - 3:00 AM
-            ["4", "6"] // 4:00 AM - 6:00 AM
-          ]}
-        />
+        <Paper>
+          <Datetime inputProps={{ placeholder: "Datetime Picker Here" }} />;
+        </Paper>
       );
     case 2:
       return `Try out different ad text to see what brings in the most customers,
@@ -58,8 +66,28 @@ function getStepContent(step) {
 
 class VerticalLinearStepper extends React.Component {
   state = {
-    activeStep: 0
+    activeStep: 0,
+    appointments: [],
+    newAppointment: {}
   };
+  componentDidMount() {
+    base.syncState(`appointments`, {
+      context: this,
+      state: "appointments",
+      asArray: true
+    });
+  }
+  addItem(newAppointment) {
+    this.setState({
+      appointments: this.state.appointments.concat([newAppointment]) //updates Firebase and the local state
+    });
+  }
+
+  handleStepperContentValueChange(key, value) {
+    this.setState(state => {
+      state.newAppointment[key] = value;
+    });
+  }
 
   handleNext = () => {
     this.setState(state => ({
@@ -83,6 +111,9 @@ class VerticalLinearStepper extends React.Component {
     const { classes } = this.props;
     const steps = getSteps();
     const { activeStep } = this.state;
+    this.handleStepperContentValueChange = this.handleStepperContentValueChange.bind(
+      this
+    );
 
     return (
       <div className={classes.root}>
@@ -92,7 +123,12 @@ class VerticalLinearStepper extends React.Component {
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
                 <StepContent>
-                  <Typography>{getStepContent(index)}</Typography>
+                  <Typography>
+                    {getStepContent(
+                      index,
+                      this.handleStepperContentValueChange
+                    )}
+                  </Typography>
                   <div className={classes.actionsContainer}>
                     <div>
                       <Button
