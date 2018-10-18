@@ -54,7 +54,7 @@ function Review(props) {
               primary={product.primary}
               secondary={product.secondary}
             />
-            <Typography variant="body2">${product.tertiary}</Typography>
+            <Typography variant="body2">{product.tertiary}</Typography>
           </ListItem>
         ))}
         <ListItem className={classes.listItem}>
@@ -62,9 +62,12 @@ function Review(props) {
           <Typography variant="subtitle1" className={classes.total}>
             $
             {props.newAppointment.serviceMenu.length === 1
-              ? props.newAppointment.serviceMenu[0].tertiary
+              ? props.newAppointment.serviceMenu[0].tertiary.slice(1) // cannot calculate total with dollar symbol
               : props.newAppointment.serviceMenu.reduce(function(a, b) {
-                  return parseInt(a.tertiary) + parseInt(b.tertiary);
+                  return (
+                    parseInt(a.tertiary.slice(1)) +
+                    parseInt(b.tertiary.slice(1))
+                  );
                 })}
           </Typography>
         </ListItem>

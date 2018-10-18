@@ -15,6 +15,8 @@ import Typography from "@material-ui/core/Typography";
 import AddressForm from "./AddressForm";
 import PaymentForm from "./PaymentForm";
 import Review from "./Review";
+
+import Logo from "../../assets/img/logo.jpg";
 import base from "firebase/constants";
 import { Link } from "react-router-dom";
 
@@ -124,10 +126,10 @@ class Checkout extends React.Component {
     return (
       <React.Fragment>
         <CssBaseline />
-        <AppBar position="absolute" color="default" className={classes.appBar}>
+        <AppBar position="absolute" color="primary" className={classes.appBar}>
           <Toolbar>
             <Typography variant="h6" color="inherit" noWrap>
-              Company name
+              <img src={Logo} height="50" width="100" />
             </Typography>
           </Toolbar>
         </AppBar>
