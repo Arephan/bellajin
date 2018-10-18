@@ -1,4 +1,6 @@
 import React from "react";
+
+import { addAppointment } from "../../firebase/db";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,6 +15,8 @@ import Typography from "@material-ui/core/Typography";
 import AddressForm from "./AddressForm";
 import PaymentForm from "./PaymentForm";
 import Review from "./Review";
+import base from "firebase/constants";
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
   appBar: {
@@ -109,6 +113,10 @@ class Checkout extends React.Component {
     });
   };
 
+  handleExit = () => {
+    this.props.history.push("/");
+  };
+
   render() {
     const { classes } = this.props;
     const { activeStep } = this.state;
@@ -137,16 +145,25 @@ class Checkout extends React.Component {
             </Stepper>
             <React.Fragment>
               {activeStep === steps.length ? (
-                <React.Fragment>
-                  <Typography variant="h5" gutterBottom>
-                    Thank you for your order.
-                  </Typography>
-                  <Typography variant="subtitle1">
-                    Your order number is #2001539. We have emailed your order
-                    confirmation, and will send you an update when your order
-                    has shipped.
-                  </Typography>
-                </React.Fragment>
+                (addAppointment(this.state.newAppointment),
+                (
+                  <React.Fragment>
+                    <Typography variant="h5" gutterBottom>
+                      Thank you for your order.
+                    </Typography>
+                    <Typography variant="subtitle1">
+                      Your order number is #2001539. We have emailed your order
+                      confirmation, and will send you an update when your order
+                      has shipped.
+                    </Typography>
+                    <Button
+                      onClick={this.handleExit}
+                      className={classes.button}
+                    >
+                      Exit
+                    </Button>
+                  </React.Fragment>
+                ))
               ) : (
                 <React.Fragment>
                   {getStepContent(
