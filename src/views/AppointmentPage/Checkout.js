@@ -19,6 +19,7 @@ import Review from "./Review";
 import Logo from "../../assets/img/logo.jpg";
 import base from "firebase/constants";
 import { Link } from "react-router-dom";
+import { ServiceMenu } from "assets/constants/ServiceMenu";
 
 const styles = theme => ({
   appBar: {
@@ -98,9 +99,34 @@ class Checkout extends React.Component {
     });
   }
   handleNext = () => {
-    this.setState(state => ({
-      activeStep: state.activeStep + 1
-    }));
+    //TODO: Check if step info has been received
+    if (this.handleFormCheck()) {
+      this.setState(state => ({
+        activeStep: state.activeStep + 1
+      }));
+    }
+  };
+
+  handleFormCheck = () => {
+    switch (this.state.activeStep) {
+      case 0:
+        if (!this.state.newAppointment.serviceMenu) {
+          alert("Please select service!");
+          return false;
+        }
+        break;
+      case 1:
+        if (
+          !this.state.newAppointment.date ||
+          !this.state.newAppointment.name ||
+          !this.state.newAppointment.email ||
+          !this.state.newAppointment.timeslot
+        ) {
+          alert("Please Complete All Fields!");
+          return false;
+        }
+    }
+    return true;
   };
 
   handleBack = () => {
