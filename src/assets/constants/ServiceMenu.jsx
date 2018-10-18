@@ -1,133 +1,129 @@
 module.exports = {
   ServiceMenu: [
     {
-      category: "Basic Cut",
+      category: "serviceMenu",
       primary: "Men's Cut",
       secondary: "30 mins",
-      tertiary: "$19"
+      tertiary: "19"
     },
     {
-      category: "Basic Cut",
+      category: "serviceMenu",
       primary: "Women's cut",
       secondary: "40 mins",
-      tertiary: "$27"
+      tertiary: "27"
     },
     {
-      category: "Retouch",
+      category: "serviceMenu",
       primary: "Blow Dry",
       secondary: "40 mins",
-      tertiary: "$30"
+      tertiary: "30"
     },
     {
-      category: "Retouch",
+      category: "serviceMenu",
       primary: "Up Do",
       secondary: "60 mins",
-      tertiary: "$60"
+      tertiary: "60"
     },
     {
-      category: "Hair Mod",
+      category: "serviceMenu",
       primary: "Perm",
       secondary: "75 mins",
-      tertiary: "$60"
+      tertiary: "60"
     },
     {
-      category: "Hair Mod",
+      category: "serviceMenu",
       primary: "Digital Perm",
       secondary: "120 mins",
-      tertiary: "$130"
+      tertiary: "130"
     },
     {
-      category: "Hair Mod",
+      category: "serviceMenu",
       primary: "Japanese Straightening",
       secondary: "120 mins",
-      tertiary: "$120"
+      tertiary: "120"
     },
     {
       primary: "Color",
-      category: "Hair Mod",
+      category: "serviceMenu",
       secondary: "40 mins",
-      tertiary: "$60"
+      tertiary: "60"
     },
     {
-      category: "Hair Mod",
+      category: "serviceMenu",
       primary: "Balayage ombre",
       secondary: "90 mins",
-      tertiary: "$120"
+      tertiary: "120"
     },
     {
-      category: "Hair Mod",
+      category: "serviceMenu",
       primary: "Highlight",
       secondary: "60 mins",
-      tertiary: "$90"
+      tertiary: "90"
     },
     {
-      category: "Hair Mod",
       primary: "Keratin treatment",
+      category: "serviceMenu",
       secondary: "90 mins",
-      tertiary: "$100"
+      tertiary: "100"
     },
     {
-      category: "Hair Mod",
       primary: "Japanese Keratin",
+      category: "serviceMenu",
       secondary: "90 mins",
-      tertiary: "$100"
+      tertiary: "100"
     },
     {
-      category: "Nails",
       primary: "Pedicure",
+      category: "serviceMenu",
       secondary: "40 mins",
-      tertiary: "$30"
+      tertiary: "30"
     },
     {
-      category: "Nails",
       primary: "Manicure",
       secondary: "30 mins",
-      tertiary: "$15"
+      tertiary: "15"
     },
     {
-      category: "Nails",
+      category: "serviceMenu",
       primary: "Acrylic/UV powder/Solar Gel/ Bio Gel",
       secondary: "60 mins",
-      tertiary: "$30"
+      tertiary: "30"
     },
     {
-      category: "Skin",
+      category: "serviceMenu",
       primary: "Full face waxing",
       secondary: "20 mins",
-      tertiary: "$25"
+      tertiary: "25"
     },
     {
-      category: "Skin",
-
+      category: "serviceMenu",
       primary: "Brazillian waxing",
       secondary: "30 mins",
-      tertiary: "$35"
+      tertiary: "35"
     },
     {
-      category: "Skin",
       primary: "Full arm waxing",
+      category: "serviceMenu",
       secondary: "15 mins",
-      tertiary: "$25"
+      tertiary: "25"
     },
     {
-      category: "Skin",
-
+      category: "serviceMenu",
       primary: "Full leg waxing",
       secondary: "20 mins",
-      tertiary: "$45"
+      tertiary: "45"
     },
     {
-      category: "Skin",
-
+      category: "serviceMenu",
       primary: "Full body waxing",
       secondary: "90 mins",
-      tertiary: "$135"
+      tertiary: "135"
     },
     {
-      category: "Skin",
       primary: "Men's back waxing",
       secondary: "20 mins",
-      tertiary: "$30"
+      tertiary: "30",
+      category: "serviceMenu"
     }
   ]
 };

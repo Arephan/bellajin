@@ -51,9 +51,9 @@ const styles = theme => ({
   }
 });
 
-const steps = ["Shipping address", "Payment details", "Review your order"];
+const steps = ["Pick Service", "When & Who", "Confirm Appointment"];
 
-function getStepContent(step, handleStepperContentValueChange) {
+function getStepContent(step, handleStepperContentValueChange, newAppointment) {
   switch (step) {
     case 0:
       return (
@@ -68,7 +68,7 @@ function getStepContent(step, handleStepperContentValueChange) {
         />
       );
     case 2:
-      return <Review />;
+      return <Review newAppointment={newAppointment} />;
     default:
       throw new Error("Unknown step");
   }
@@ -125,8 +125,8 @@ class Checkout extends React.Component {
         </AppBar>
         <main className={classes.layout}>
           <Paper className={classes.paper}>
-            <Typography component="h1" variant="h4" align="center">
-              Checkout
+            <Typography component="h2" variant="h4" align="center">
+              New Appointment
             </Typography>
             <Stepper activeStep={activeStep} className={classes.stepper}>
               {steps.map(label => (
@@ -151,7 +151,8 @@ class Checkout extends React.Component {
                 <React.Fragment>
                   {getStepContent(
                     activeStep,
-                    this.handleStepperContentValueChange
+                    this.handleStepperContentValueChange,
+                    this.state.newAppointment
                   )}
                   <div className={classes.buttons}>
                     {activeStep !== 0 && (

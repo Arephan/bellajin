@@ -30,16 +30,17 @@ class CheckboxList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: [0],
+      checked: [],
       data: props.data
     };
     this.handleStepperContentValueChange = props.handleStepperContentValueChange.bind(
       this
     );
+    this.handleToggle = this.handleToggle.bind(this)
   }
 
   handleToggle = value => () => {
-    const { checked } = this.state;
+    const { checked, data } = this.state;
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
@@ -53,10 +54,7 @@ class CheckboxList extends React.Component {
       checked: newChecked
     });
 
-    let menuChoice = this.state.checked.map(i => {
-      return this.state.data[i];
-    });
-    this.props.handleStepperContentValueChange("menuChoice", menuChoice);
+    this.handleStepperContentValueChange(newChecked[0].category, newChecked);
   };
 
   render() {
