@@ -13,6 +13,7 @@
     "classnames": "2.2.6",
     "firebase": "^5.5.4",
     "history": "4.7.2",
+    "image-size": "^0.6.3",
     "material-ui": "^0.20.2",
     "material-ui-fullscreen-dialog": "^1.0.0",
     "moment": "^2.22.2",
@@ -26,14 +27,17 @@
     "react-datetime": "2.15.0",
     "react-dom": "16.4.2",
     "react-icons": "^3.1.0",
+    "react-image-gallery": "^0.8.12",
     "react-kronos": "^1.7.1",
     "react-nouislider": "2.0.1",
+    "react-photo-gallery": "^6.2.1",
     "react-router-dom": "4.3.1",
     "react-scripts": "1.1.4",
     "react-slick": "0.23.1",
     "react-swipeable-views": "0.12.16",
     "react-timeslot-calendar": "^0.2.0",
-    "reactstrap": "^6.5.0"
+    "reactstrap": "^6.5.0",
+    "smartcrop": "^2.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

@@ -31,7 +31,7 @@ class LandingPage extends React.Component {
           fixed
           changeColorOnScroll={{
             height: 400,
-            color: "rose"
+            color: "danger"
           }}
           {...rest}
         />
@@ -48,7 +48,7 @@ class LandingPage extends React.Component {
                 <br />
                 <Link to="/new-appointment">
                   <Button
-                    color="rose"
+                    color="danger"
                     size="lg"
                     target="_blank"
                     rel="noopener noreferrer"
