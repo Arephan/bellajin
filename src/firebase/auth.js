@@ -26,3 +26,21 @@ export function saveUser(user) {
     })
     .then(() => user);
 }
+
+export function signInAnonymously() {
+  firebaseAuth()
+    .signInAnonymously()
+    .catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // [START_EXCLUDE]
+      if (errorCode === "auth/operation-not-allowed") {
+        alert("You must enable Anonymous auth in the Firebase Console.");
+      } else {
+        console.error(error);
+      }
+      // [END_EXCLUDE]
+    });
+  // [END authanon]
+}

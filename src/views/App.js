@@ -5,6 +5,7 @@ import "assets/scss/material-kit-react.css?v=1.2.0";
 import { createBrowserHistory } from "history";
 import indexRoutes from "routes/index.jsx";
 import firebase from "firebase";
+
 var hist = createBrowserHistory();
 class App extends React.Component {
   constructor(props) {
@@ -14,13 +15,9 @@ class App extends React.Component {
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in.
-        this.setState({ currentUser: user });
-      } else {
-        // No user is signed in.
-        this.setState({ currentUser: null });
-      }
+      user
+        ? this.setState({ currentUser: user })
+        : this.setState({ currentUser: null });
     });
   }
   render() {

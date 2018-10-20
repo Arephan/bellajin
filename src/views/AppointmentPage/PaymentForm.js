@@ -13,6 +13,7 @@ function PaymentForm(props) {
         <Grid item xs={6} md={6}>
           <TextField
             id="name"
+            value={props.newAppointment.name}
             required
             fullWidth
             onChange={handleChange}
@@ -26,6 +27,7 @@ function PaymentForm(props) {
         <Grid item xs={6} md={6}>
           <TextField
             id="email"
+            value={props.newAppointment.email}
             required
             fullWidth
             onChange={handleChange}
@@ -39,6 +41,7 @@ function PaymentForm(props) {
         <Grid item xs={12} md={12}>
           <TextField
             id="date"
+            value={props.newAppointment.date}
             required
             fullWidth
             onChange={handleChange}
@@ -52,6 +55,7 @@ function PaymentForm(props) {
         <Grid item>
           <CheckBoxList
             data={TimeSlot.TimeSlot}
+            userData={props.newAppointment.timeslot}
             handleStepperContentValueChange={
               props.handleStepperContentValueChange
             }

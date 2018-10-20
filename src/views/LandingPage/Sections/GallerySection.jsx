@@ -93,10 +93,12 @@ class GallerySection extends React.Component {
     const { classes } = this.props;
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
     return (
-      <div>
+      <div className={classes.section}>
         <div className={classes.container}>
+        <div id="nav-tabs">
+            <h3>Our Works</h3>
           <GridContainer justify="center">
-            <GridItem xs={24} sm={24} md={24} className={classes.navWrapper}>
+            <GridItem xs={12} sm={12} md={6} className={classes.container}>
               <CustomTabs
                 headerColor="danger"
                 tabs={[
@@ -116,6 +118,7 @@ class GallerySection extends React.Component {
               />
             </GridItem>
           </GridContainer>
+        </div>
         </div>
       </div>
     );

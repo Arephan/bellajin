@@ -10,6 +10,7 @@ function AddressForm(props) {
         <Grid item>
           <CheckBoxList
             data={ServiceMenu.ServiceMenu}
+            userData={props.newAppointment.serviceMenu}
             handleStepperContentValueChange={
               props.handleStepperContentValueChange
             }

@@ -40,11 +40,7 @@ class LandingPage extends React.Component {
             <GridContainer>
               <GridItem xs={12} sm={12} md={6}>
                 <h1 className={classes.title}>Live Your Style!</h1>
-                <h4>
-                  Thank you for considering us to serve you! We aim to bring out
-                  your best self through balanced haircut. If you have a style
-                  preference, please feel free to bring photos!
-                </h4>
+                <h4>5941 Yonge St North York, M2N 2J2. Since 2005.</h4>
                 <br />
                 <Link to="/new-appointment">
                   <Button

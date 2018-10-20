@@ -30,13 +30,13 @@ class CheckboxList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: [],
+      checked: props.userData,
       data: props.data
     };
     this.handleStepperContentValueChange = props.handleStepperContentValueChange.bind(
       this
     );
-    this.handleToggle = this.handleToggle.bind(this)
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
   handleToggle = value => () => {
@@ -54,7 +54,10 @@ class CheckboxList extends React.Component {
       checked: newChecked
     });
 
-    this.handleStepperContentValueChange(newChecked[0].category, newChecked);
+    this.handleStepperContentValueChange(
+      this.state.data[0].category, // Hacky solution to get sub key of newAppointment
+      newChecked
+    );
   };
 
   render() {
@@ -87,9 +90,7 @@ class CheckboxList extends React.Component {
                     secondary={`${value.secondary}`}
                   />
                   <ListItemSecondaryAction>
-                    <IconButton aria-label="Comments">
-                      {value.tertiary}
-                    </IconButton>
+                    {value.tertiary}
                   </ListItemSecondaryAction>
                 </ListItem>
               </ul>

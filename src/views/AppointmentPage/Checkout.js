@@ -1,6 +1,7 @@
 import React from "react";
 
-import { addAppointment } from "../../firebase/db";
+import { addAppointment } from "firebase/db";
+import { firebaseAuth } from "firebase/constants";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -58,7 +59,7 @@ const styles = theme => ({
   }
 });
 
-const steps = ["Pick Service", "When & Who", "Confirm Appointment"];
+const steps = ["Service", "Details", "Confirm"];
 
 function getStepContent(step, handleStepperContentValueChange, newAppointment) {
   switch (step) {
@@ -66,12 +67,14 @@ function getStepContent(step, handleStepperContentValueChange, newAppointment) {
       return (
         <AddressForm
           handleStepperContentValueChange={handleStepperContentValueChange}
+          newAppointment={newAppointment}
         />
       );
     case 1:
       return (
         <PaymentForm
           handleStepperContentValueChange={handleStepperContentValueChange}
+          newAppointment={newAppointment}
         />
       );
     case 2:
@@ -86,7 +89,14 @@ class Checkout extends React.Component {
     super(props);
     this.state = {
       activeStep: 0,
-      newAppointment: {}
+      newAppointment: {
+        serviceMenu: [],
+        timeslot: [],
+        date: null,
+        name: null,
+        email: null
+      },
+      currentUser: props.currentUser
     };
     this.handleStepperContentValueChange = this.handleStepperContentValueChange.bind(
       this
@@ -98,6 +108,7 @@ class Checkout extends React.Component {
       state.newAppointment[key] = value;
     });
   }
+
   handleNext = () => {
     //TODO: Check if step info has been received
     if (this.handleFormCheck()) {
@@ -110,7 +121,10 @@ class Checkout extends React.Component {
   handleFormCheck = () => {
     switch (this.state.activeStep) {
       case 0:
-        if (!this.state.newAppointment.serviceMenu) {
+        if (
+          !this.state.newAppointment.serviceMenu ||
+          !this.state.newAppointment.serviceMenu[0]
+        ) {
           alert("Please select service!");
           return false;
         }
