@@ -15,16 +15,16 @@ function HeaderLinks({ ...props }) {
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
-        <Link to="/new-appointment" className={classes.ListItem}>
-          <Button
-            color="transparent"
-            target="_blank"
-            className={classes.navLink}
-          >
-            <i className={classes.socialIcons + " fas fa-calendar"} />
-            Book Appointment
-          </Button>
-        </Link>
+        <Tooltip
+          id="instagram-tooltip"
+          title="Book Appointment"
+          placement={window.innerWidth > 959 ? "top" : "left"}
+          classes={{ tooltip: classes.tooltip }}
+        >
+          <Link to="/new-appointment" className={classes.navLink}>
+            <i className={classes.socialIcons + " far fa-calendar"} /> Book Appointment
+          </Link>
+        </Tooltip>
       </ListItem>
       <ListItem className={classes.listItem}>
         <Tooltip
