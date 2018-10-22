@@ -24,7 +24,8 @@ import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 import image from "assets/img/bg7.jpg";
 import { Link } from "react-router-dom";
 
-import { auth, login, logout } from "../../firebase/auth";
+import { handleSignUp, login, logout } from "firebase/auth.js";
+import { firebaseAuth } from "firebase/constants";
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -34,15 +35,10 @@ class LoginPage extends React.Component {
       cardAnimaton: "cardHidden",
       email: null,
       password: null,
-      currentUser: null
+      newAppointment: this.props.history.location.state.newAppointment // incase user was directed while creating new appointment
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.history = this.props.history;
-    this.state.currentUser = this.props.currentUser;
-    this.auth = auth;
-    this.login = login;
-    this.logout = logout;
   }
   componentDidMount() {
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
@@ -61,12 +57,13 @@ class LoginPage extends React.Component {
   }
 
   handleSubmit(event) {
-    alert("A name was submitted: " + this.state.email + this.state.password);
-
-    this.auth(this.state.email, this.state.password);
-    this.login(this.state.email, this.state.password);
-
-    this.history.push("/profile-page");
+    handleSignUp(this.state.email, this.state.password);
+    if (firebaseAuth().currentUser) {
+      if (this.state.newAppointment) {
+        this.setState({ newAppointment: { email: this.state.email } });
+      }
+      this.props.history.push("/profile-page");
+    }
 
     event.preventDefault();
   }

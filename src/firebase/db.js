@@ -1,6 +1,4 @@
-import { base } from "./constants";
-import { Link } from "react-router-dom";
-import { React } from "react";
+import { base, ref } from "./constants";
 
 export function addAppointment(newAppointment) {
   var immediatelyAvailableReference = base.push("Appointments", {
@@ -12,4 +10,9 @@ export function addAppointment(newAppointment) {
   });
   //available immediately, you don't have to wait for the callback to be called
   var generatedKey = immediatelyAvailableReference.key;
+  return generatedKey;
+}
+
+export function addAppointmentToUser(newAppointment, uid) {
+  return ref.child(`users/${uid}/appointments`).push({ newAppointment });
 }

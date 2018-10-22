@@ -26,20 +26,6 @@ function PaymentForm(props) {
         </Grid>
         <Grid item xs={6} md={6}>
           <TextField
-            id="email"
-            value={props.newAppointment.email}
-            required
-            fullWidth
-            onChange={handleChange}
-            label="Email"
-            type="email"
-            InputLabelProps={{
-              shrink: true
-            }}
-          />
-        </Grid>
-        <Grid item xs={12} md={12}>
-          <TextField
             id="date"
             value={props.newAppointment.date}
             required

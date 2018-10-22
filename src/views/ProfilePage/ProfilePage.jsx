@@ -31,7 +31,7 @@ import work4 from "assets/img/examples/mariya-georgieva.jpg";
 import work5 from "assets/img/examples/clem-onojegaw.jpg";
 
 import profilePageStyle from "assets/jss/material-kit-react/views/profilePage.jsx";
-
+import { firebaseAuth } from "firebase/constants.js";
 class ProfilePage extends React.Component {
   render() {
     const { classes, ...rest } = this.props;
@@ -65,7 +65,9 @@ class ProfilePage extends React.Component {
                       <img src={profile} alt="..." className={imageClasses} />
                     </div>
                     <div className={classes.name}>
-                      <h3 className={classes.title}>Christian Louboutin</h3>
+                      <h3 className={classes.title}>
+                        {firebaseAuth().currentUser.uid}
+                      </h3>
                       <h6>DESIGNER</h6>
                       <Button justIcon link className={classes.margin5}>
                         <i className={"fab fa-twitter"} />

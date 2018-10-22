@@ -1,6 +1,6 @@
 import React from "react";
 
-import { addAppointment } from "firebase/db";
+import { addAppointment, addAppointmentToUser } from "firebase/db";
 import { firebaseAuth } from "firebase/constants";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -21,6 +21,7 @@ import Logo from "../../assets/img/logo.jpg";
 import base from "firebase/constants";
 import { Link } from "react-router-dom";
 import { ServiceMenu } from "assets/constants/ServiceMenu";
+import { handleSignUp, login } from "../../firebase/auth";
 
 const styles = theme => ({
   appBar: {
@@ -93,8 +94,7 @@ class Checkout extends React.Component {
         serviceMenu: [],
         timeslot: [],
         date: null,
-        name: null,
-        email: null
+        name: null
       },
       currentUser: props.currentUser
     };
@@ -133,7 +133,6 @@ class Checkout extends React.Component {
         if (
           !this.state.newAppointment.date ||
           !this.state.newAppointment.name ||
-          !this.state.newAppointment.email ||
           !this.state.newAppointment.timeslot
         ) {
           alert("Please Complete All Fields!");
@@ -187,25 +186,14 @@ class Checkout extends React.Component {
             </Stepper>
             <React.Fragment>
               {activeStep === steps.length ? (
-                (addAppointment(this.state.newAppointment),
-                (
-                  <React.Fragment>
-                    <Typography variant="h5" gutterBottom>
-                      Thank you for your order.
-                    </Typography>
-                    <Typography variant="subtitle1">
-                      Your order number is #2001539. We have emailed your order
-                      confirmation, and will send you an update when your order
-                      has shipped.
-                    </Typography>
-                    <Button
-                      onClick={this.handleExit}
-                      className={classes.button}
-                    >
-                      Exit
-                    </Button>
-                  </React.Fragment>
-                ))
+                this.state.currentUser ? (
+                  // TOOD: add newAppointment to main appointment list and user appointment list
+                  this.props.history.push("/profile-page")
+                ) : (
+                  this.props.history.push("/login-page", {
+                    newAppointment: this.state.newAppointment
+                  })
+                )
               ) : (
                 <React.Fragment>
                   {getStepContent(
