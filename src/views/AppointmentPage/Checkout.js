@@ -1,28 +1,21 @@
-import React from "react";
-
-import { addAppointment, addAppointmentToUser } from "firebase/db";
-import { firebaseAuth } from "firebase/constants";
-import PropTypes from "prop-types";
-import withStyles from "@material-ui/core/styles/withStyles";
+import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import Paper from "@material-ui/core/Paper";
-import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
-import Button from "@material-ui/core/Button";
+import Stepper from "@material-ui/core/Stepper";
+import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
-import AddressForm from "./AddressForm";
-import PaymentForm from "./PaymentForm";
-import Review from "./Review";
-
+import PropTypes from "prop-types";
+import React from "react";
+import AddressForm from "./Sections/AddressForm";
+import PaymentForm from "./Sections/PaymentForm";
+import Review from "./Sections/Review";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
 import Logo from "../../assets/img/logo.jpg";
-import base from "firebase/constants";
 import { Link } from "react-router-dom";
-import { ServiceMenu } from "assets/constants/ServiceMenu";
-import { handleSignUp, login } from "../../firebase/auth";
-
+//TODO: Fix header overlap with stepper content
 const styles = theme => ({
   appBar: {
     position: "relative"
@@ -95,8 +88,7 @@ class Checkout extends React.Component {
         timeslot: [],
         date: null,
         name: null
-      },
-      currentUser: props.currentUser
+      }
     };
     this.handleStepperContentValueChange = this.handleStepperContentValueChange.bind(
       this
@@ -168,7 +160,9 @@ class Checkout extends React.Component {
         <AppBar position="absolute" color="primary" className={classes.appBar}>
           <Toolbar>
             <Typography variant="h6" color="inherit" noWrap>
-              <img src={Logo} height="50" width="100" />
+              <Link to="/">
+                <img src={Logo} height="50" width="100" />
+              </Link>
             </Typography>
           </Toolbar>
         </AppBar>

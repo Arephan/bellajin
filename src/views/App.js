@@ -7,6 +7,7 @@ import Checkout from "views/AppointmentPage/Checkout.js";
 import LandingPage from "views/LandingPage/LandingPage.jsx";
 import LoginPage from "views/LoginPage/LoginPage.jsx";
 import ProfilePage from "views/ProfilePage/ProfilePage.jsx";
+import Layout from "../components/Layout/Layout";
 const PrivateRoute = ({ component: ProfilePage, ...rest }) => (
   <Route
     {...rest}
@@ -21,15 +22,18 @@ const PrivateRoute = ({ component: ProfilePage, ...rest }) => (
 );
 var hist = createBrowserHistory();
 class App extends React.Component {
+  //TODO: Implement header and footer layout
   render() {
     return (
       <Router history={hist}>
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/login-page" component={LoginPage} />
-          <Route exact path="/new-appointment" component={Checkout} />
-          <PrivateRoute exact path="/profile-page" component={ProfilePage} />
-        </Switch>
+        <Layout history={hist}>
+          <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/login-page" component={LoginPage} />
+            <Route exact path="/new-appointment" component={Checkout} />
+            <PrivateRoute exact path="/profile-page" component={ProfilePage} />
+          </Switch>
+        </Layout>
       </Router>
     );
   }

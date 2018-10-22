@@ -65,13 +65,15 @@ class Header extends React.Component {
       leftLinks,
       brand,
       fixed,
-      absolute
+      absolute,
+      relative
     } = this.props;
     const appBarClasses = classNames({
       [classes.appBar]: true,
       [classes[color]]: color,
       [classes.absolute]: absolute,
-      [classes.fixed]: fixed
+      [classes.fixed]: fixed,
+      [classes.relative]: relative
     });
     const brandComponent = <Button className={classes.title}>{brand}</Button>;
     return (
@@ -143,6 +145,7 @@ Header.propTypes = {
   brand: PropTypes.string,
   fixed: PropTypes.bool,
   absolute: PropTypes.bool,
+  relative: PropTypes.bool,
   // this will cause the sidebar to change the color from
   // this.props.color (see above) to changeColorOnScroll.color
   // when the window.pageYOffset is heigher or equal to

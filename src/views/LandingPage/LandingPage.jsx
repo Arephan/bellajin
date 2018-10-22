@@ -23,18 +23,6 @@ class LandingPage extends React.Component {
     const { classes, ...rest } = this.props;
     return (
       <div>
-        <Header
-          color="transparent"
-          routes={dashboardRoutes}
-          brand={<img src={Logo} height="50" width="100" />}
-          rightLinks={<HeaderLinks />}
-          fixed
-          changeColorOnScroll={{
-            height: 400,
-            color: "danger"
-          }}
-          {...rest}
-        />
         <Parallax filter image={require("assets/img/landing-bg.jpg")}>
           <div className={classes.container}>
             <GridContainer>
@@ -63,7 +51,6 @@ class LandingPage extends React.Component {
             <GallerySection />
           </div>
         </div>
-        <Footer />
       </div>
     );
   }

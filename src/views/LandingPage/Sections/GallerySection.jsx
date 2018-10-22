@@ -95,30 +95,30 @@ class GallerySection extends React.Component {
     return (
       <div className={classes.section}>
         <div className={classes.container}>
-        <div id="nav-tabs">
+          <div id="nav-tabs">
             <h3>Our Works</h3>
-          <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={6} className={classes.container}>
-              <CustomTabs
-                headerColor="danger"
-                tabs={[
-                  {
-                    tabName: "Women",
-                    tabContent: <SectionCarousel images={womenCarouselData} />
-                  },
-                  {
-                    tabName: "Men",
-                    tabContent: <SectionCarousel images={menCarouselData} />
-                  },
-                  {
-                    tabName: "Perm",
-                    tabContent: <SectionCarousel images={permCarouselData} />
-                  }
-                ]}
-              />
-            </GridItem>
-          </GridContainer>
-        </div>
+            <GridContainer justify="center">
+              <GridItem xs={12} sm={12} md={6} className={classes.container}>
+                <CustomTabs
+                  headerColor="danger"
+                  tabs={[
+                    {
+                      tabName: "Women",
+                      tabContent: <SectionCarousel images={womenCarouselData} />
+                    },
+                    {
+                      tabName: "Men",
+                      tabContent: <SectionCarousel images={menCarouselData} />
+                    },
+                    {
+                      tabName: "Perm",
+                      tabContent: <SectionCarousel images={permCarouselData} />
+                    }
+                  ]}
+                />
+              </GridItem>
+            </GridContainer>
+          </div>
         </div>
       </div>
     );
