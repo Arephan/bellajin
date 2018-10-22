@@ -75,7 +75,14 @@ class LoginPage extends React.Component {
   render() {
     const { classes, ...rest } = this.props;
     return (
-      <div>
+      <div
+        className={classes.pageHeader}
+        style={{
+          backgroundImage: "url(" + image + ")",
+          backgroundSize: "cover",
+          backgroundPosition: "top center"
+        }}
+      >
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={4}>
