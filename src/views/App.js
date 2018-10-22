@@ -1,39 +1,34 @@
-import React from "react";
-import { Router, Route, Switch } from "react-router-dom";
-
 import "assets/scss/material-kit-react.css?v=1.2.0";
+import { firebaseAuth } from "firebase/constants.js";
 import { createBrowserHistory } from "history";
-import indexRoutes from "routes/index.jsx";
-import firebase from "firebase";
-
+import React from "react";
+import { Redirect, Route, Router, Switch } from "react-router-dom";
+import Checkout from "views/AppointmentPage/Checkout.js";
+import LandingPage from "views/LandingPage/LandingPage.jsx";
+import LoginPage from "views/LoginPage/LoginPage.jsx";
+import ProfilePage from "views/ProfilePage/ProfilePage.jsx";
+const PrivateRoute = ({ component: ProfilePage, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      firebaseAuth().currentUser ? (
+        <ProfilePage {...props} />
+      ) : (
+        <Redirect to="/login-page" />
+      )
+    }
+  />
+);
 var hist = createBrowserHistory();
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { currentUser: null };
-  }
-
-  componentDidMount() {
-    firebase.auth().onAuthStateChanged(function(user) {
-      user
-        ? this.setState({ currentUser: user })
-        : this.setState({ currentUser: null });
-    });
-  }
   render() {
     return (
       <Router history={hist}>
         <Switch>
-          {indexRoutes.map((prop, key) => {
-            return (
-              <Route
-                path={prop.path}
-                key={key}
-                component={prop.component}
-                currentUser={this.state.currentUser}
-              />
-            );
-          })}
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/login-page" component={LoginPage} />
+          <Route exact path="/new-appointment" component={Checkout} />
+          <PrivateRoute exact path="/profile-page" component={ProfilePage} />
         </Switch>
       </Router>
     );

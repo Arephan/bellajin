@@ -29,7 +29,7 @@ import work2 from "assets/img/examples/clem-onojeghuo.jpg";
 import work3 from "assets/img/examples/cynthia-del-rio.jpg";
 import work4 from "assets/img/examples/mariya-georgieva.jpg";
 import work5 from "assets/img/examples/clem-onojegaw.jpg";
-
+import Logo from "../../assets/img/logo.jpg";
 import profilePageStyle from "assets/jss/material-kit-react/views/profilePage.jsx";
 import { firebaseAuth } from "firebase/constants.js";
 class ProfilePage extends React.Component {
@@ -45,12 +45,12 @@ class ProfilePage extends React.Component {
       <div>
         <Header
           color="transparent"
-          brand="Material Kit React"
+          brand={<img src={Logo} height="50" width="100" />}
           rightLinks={<HeaderLinks />}
           fixed
           changeColorOnScroll={{
             height: 200,
-            color: "white"
+            color: "danger"
           }}
           {...rest}
         />

@@ -18,7 +18,7 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
-
+import Logo from "../../assets/img/logo.jpg";
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
 import image from "assets/img/bg7.jpg";
@@ -34,9 +34,14 @@ class LoginPage extends React.Component {
     this.state = {
       cardAnimaton: "cardHidden",
       email: null,
-      password: null,
-      newAppointment: this.props.history.location.state.newAppointment // incase user was directed while creating new appointment
+      password: null
     };
+
+    if (this.props.history.location.state) {
+      this.setState({
+        newAppointment: this.props.history.location.state.newAppointment
+      });
+    } // incase user was directed while creating new appointment. There is no way to know email before hand.
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -73,8 +78,8 @@ class LoginPage extends React.Component {
       <div>
         <Header
           absolute
+          brand={<img src={Logo} height="50" width="100" />}
           color="transparent"
-          brand={<Link to="/">Bella Jin</Link>}
           rightLinks={<HeaderLinks />}
           {...rest}
         />
