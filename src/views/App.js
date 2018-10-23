@@ -106,27 +106,37 @@ class App extends React.Component {
               exact
               path="/profile-page"
               render={props =>
-                this.state.user ? (
-                  <ProfilePage {...props} user={this.state.user} />
-                ) : (
-                  <LoginPage {...props} />
-                )
+                this.state.user
+                  ? (this.headerFooterVisibilityOn(),
+                    <ProfilePage {...props} user={this.state.user} />)
+                  : (this.headerFooterVisibilityOff(), <LoginPage {...props} />)
               }
             />
-            <Route exact path="/login-page" component={LoginPage} />
+            <Route
+              exact
+              path="/login-page"
+              component={LoginPage}
+              render={props => (
+                this.headerFooterVisibilityOff(),
+                <LoginPage {...props} user={this.state.user} />
+              )}
+            />
             <Route
               exact
               path="/new-appointment"
               render={props => (
-                <Checkout
-                  {...props}
-                  user={this.state.user}
-                  headerFooterVisibilityOff={this.headerFooterVisibilityOff}
-                  headerFooterVisibilityOn={this.headerFooterVisibilityOn}
-                />
+                this.headerFooterVisibilityOff(),
+                <Checkout {...props} user={this.state.user} />
               )}
             />
-            <Route exact path="/" component={LandingPage} />
+            <Route
+              exact
+              path="/"
+              render={props => (
+                this.headerFooterVisibilityOn(),
+                <LandingPage {...props} user={this.state.user} />
+              )}
+            />
           </Switch>
           {this.state.headerFooterVisible ? <Footer /> : null}
         </div>
