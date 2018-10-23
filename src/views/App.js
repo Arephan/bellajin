@@ -51,30 +51,6 @@ class App extends React.Component {
       //when data is loaded, set loading to false
       this.setState({ loading: false });
     });
-
-    firebase
-      .auth()
-      .getRedirectResult()
-      .then(function(result) {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const token = result.credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-
-        //Set the state user variable
-        this.setState({ user });
-        // ...
-      })
-      .catch(function(error) {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        const credential = error.credential;
-        // ...
-      });
   }
 
   render() {
@@ -106,10 +82,14 @@ class App extends React.Component {
               exact
               path="/profile-page"
               render={props =>
-                this.state.user
-                  ? (this.headerFooterVisibilityOn(),
-                    <ProfilePage {...props} user={this.state.user} />)
-                  : (this.headerFooterVisibilityOff(), <LoginPage {...props} />)
+                this.state.user ? (
+                  <ProfilePage {...props} user={this.state.user} />
+                ) : (
+                  <LoginPage
+                    {...props}
+                    headerFooterVisibilityOff={this.headerFooterVisibilityOff}
+                  />
+                )
               }
             />
             <Route
@@ -117,23 +97,29 @@ class App extends React.Component {
               path="/login-page"
               component={LoginPage}
               render={props => (
-                this.headerFooterVisibilityOff(),
-                <LoginPage {...props} user={this.state.user} />
+                <LoginPage
+                  {...props}
+                  user={this.state.user}
+                  headerFooterVisibilityOff={this.headerFooterVisibilityOff}
+                />
               )}
             />
             <Route
               exact
               path="/new-appointment"
               render={props => (
-                this.headerFooterVisibilityOff(),
-                <Checkout {...props} user={this.state.user} />
+                <Checkout
+                  {...props}
+                  user={this.state.user}
+                  headerFooterVisibilityOff={this.headerFooterVisibilityOff}
+                  headerFooterVisibilityOn={this.headerFooterVisibilityOn}
+                />
               )}
             />
             <Route
               exact
               path="/"
               render={props => (
-                this.headerFooterVisibilityOn(),
                 <LandingPage {...props} user={this.state.user} />
               )}
             />
