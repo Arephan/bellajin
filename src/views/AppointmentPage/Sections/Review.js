@@ -75,19 +75,15 @@ function Review(props) {
       <Grid container spacing={16}>
         <Grid item xs={12} sm={6}>
           <Typography variant="h6" gutterBottom className={classes.title}>
-            Customer Info
+            Date
           </Typography>
-          <Typography gutterBottom>{props.newAppointment.name}</Typography>
-          <Typography gutterBottom>{props.newAppointment.email}</Typography>
+          <Typography gutterBottom>{props.newAppointment.date}</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom className={classes.title}>
-            Date & Time
+            Time
           </Typography>
           <Grid container>
-            <Grid item xs={6}>
-              <Typography gutterBottom>{props.newAppointment.date}</Typography>
-            </Grid>
             <Grid item xs={6}>
               <Typography gutterBottom>
                 {props.newAppointment.timeslot[0].primary}

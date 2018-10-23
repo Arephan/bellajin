@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { CalendarToday } from "@material-ui/icons";
 import { firebaseAuth } from "firebase/constants.js";
 import { logout } from "firebase/auth.js";
+import firebase from "firebase";
 function HeaderLinks({ ...props }) {
   const { classes } = props;
   return (
@@ -29,24 +30,40 @@ function HeaderLinks({ ...props }) {
           </Link>
         </Tooltip>
       </ListItem>
-      {firebaseAuth().currentUser ? (
-        <ListItem className={classes.listItem}>
-          <Tooltip
-            id="logout-tooltip"
-            title="logout"
-            placement={window.innerWidth > 959 ? "top" : "left"}
-            classes={{ tooltip: classes.tooltip }}
-          >
-            <Button
-              color="transparent"
-              onClick={logout()}
-              target="_blank"
-              className={classes.navLink}
+      {props.user ? (
+        <div className={classes.listItem}>
+          <ListItem className={classes.listItem}>
+            <Tooltip
+              id="myProfile-tooltip"
+              title="My Profile"
+              placement={window.innerWidth > 959 ? "top" : "left"}
+              classes={{ tooltip: classes.tooltip }}
             >
-              <i className={classes.socialIcons + " fas fa-sign-out"} /> Logout
-            </Button>
-          </Tooltip>
-        </ListItem>
+              <Link to="/profile-page" className={classes.navLink}>
+                <i className={classes.socialIcons + " fas fa-user"} /> My
+                Profile
+              </Link>
+            </Tooltip>
+          </ListItem>
+          <ListItem className={classes.listItem}>
+            <Tooltip
+              id="logout-tooltip"
+              title="logout"
+              placement={window.innerWidth > 959 ? "top" : "left"}
+              classes={{ tooltip: classes.tooltip }}
+            >
+              <Button
+                color="transparent"
+                onClick={props.handleLogout}
+                target="_blank"
+                className={classes.navLink}
+              >
+                <i className={classes.socialIcons + " fas fa-sign-out-alt"} />{" "}
+                Logout
+              </Button>
+            </Tooltip>
+          </ListItem>
+        </div>
       ) : (
         <ListItem className={classes.listItem}>
           <Tooltip
@@ -56,45 +73,12 @@ function HeaderLinks({ ...props }) {
             classes={{ tooltip: classes.tooltip }}
           >
             <Link to="/login-page" className={classes.navLink}>
-              <i className={classes.socialIcons + " fas fa-sign-in-alt"} /> Login
+              <i className={classes.socialIcons + " fas fa-sign-in-alt"} />{" "}
+              Login
             </Link>
           </Tooltip>
         </ListItem>
       )}
-      <ListItem className={classes.listItem}>
-        <Tooltip
-          id="instagram-facebook"
-          title="Follow us on facebook"
-          placement={window.innerWidth > 959 ? "top" : "left"}
-          classes={{ tooltip: classes.tooltip }}
-        >
-          <Button
-            color="transparent"
-            href="https://www.facebook.com/bellajinhair"
-            target="_blank"
-            className={classes.navLink}
-          >
-            <i className={classes.socialIcons + " fab fa-facebook"} />
-          </Button>
-        </Tooltip>
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <Tooltip
-          id="instagram-tooltip"
-          title="Follow us on instagram"
-          placement={window.innerWidth > 959 ? "top" : "left"}
-          classes={{ tooltip: classes.tooltip }}
-        >
-          <Button
-            color="transparent"
-            href="https://www.instagram.com/bellajinhair"
-            target="_blank"
-            className={classes.navLink}
-          >
-            <i className={classes.socialIcons + " fab fa-instagram"} />
-          </Button>
-        </Tooltip>
-      </ListItem>
     </List>
   );
 }

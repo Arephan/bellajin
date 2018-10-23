@@ -21,7 +21,7 @@ class Layout extends React.Component {
                 <img src={Logo} height="50" width="100" />
               </Link>
             }
-            rightLinks={<HeaderLinks />}
+            rightLinks={<HeaderLinks currentUser={this.props.authed} />}
             {...rest}
           />
           {this.props.children}

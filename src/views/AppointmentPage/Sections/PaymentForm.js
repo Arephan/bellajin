@@ -10,21 +10,7 @@ function PaymentForm(props) {
   return (
     <React.Fragment>
       <Grid container spacing={24}>
-        <Grid item xs={6} md={6}>
-          <TextField
-            id="name"
-            value={props.newAppointment.name}
-            required
-            fullWidth
-            onChange={handleChange}
-            label="Name"
-            type="fname"
-            InputLabelProps={{
-              shrink: true
-            }}
-          />
-        </Grid>
-        <Grid item xs={6} md={6}>
+        <Grid item xs={12} md={12}>
           <TextField
             id="date"
             value={props.newAppointment.date}
@@ -38,7 +24,7 @@ function PaymentForm(props) {
             }}
           />
         </Grid>
-        <Grid item>
+        <Grid item xs={12} md={12}>
           <CheckBoxList
             data={TimeSlot.TimeSlot}
             userData={props.newAppointment.timeslot}

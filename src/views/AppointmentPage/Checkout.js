@@ -53,7 +53,7 @@ const styles = theme => ({
   }
 });
 
-const steps = ["Service", "Details", "Confirm"];
+const steps = ["Service", "When", "Confirm"];
 
 function getStepContent(step, handleStepperContentValueChange, newAppointment) {
   switch (step) {
@@ -86,13 +86,13 @@ class Checkout extends React.Component {
       newAppointment: {
         serviceMenu: [],
         timeslot: [],
-        date: null,
-        name: null
+        date: null
       }
     };
     this.handleStepperContentValueChange = this.handleStepperContentValueChange.bind(
       this
     );
+    props.headerFooterVisibilityOff();
   }
 
   handleStepperContentValueChange(key, value) {
@@ -124,7 +124,6 @@ class Checkout extends React.Component {
       case 1:
         if (
           !this.state.newAppointment.date ||
-          !this.state.newAppointment.name ||
           !this.state.newAppointment.timeslot
         ) {
           alert("Please Complete All Fields!");
@@ -160,9 +159,7 @@ class Checkout extends React.Component {
         <AppBar position="absolute" color="primary" className={classes.appBar}>
           <Toolbar>
             <Typography variant="h6" color="inherit" noWrap>
-              <Link to="/">
-                <img src={Logo} height="50" width="100" />
-              </Link>
+              <img src={Logo} height="50" width="100" />
             </Typography>
           </Toolbar>
         </AppBar>
@@ -180,14 +177,13 @@ class Checkout extends React.Component {
             </Stepper>
             <React.Fragment>
               {activeStep === steps.length ? (
-                this.state.currentUser ? (
-                  // TOOD: add newAppointment to main appointment list and user appointment list
-                  this.props.history.push("/profile-page")
-                ) : (
-                  this.props.history.push("/login-page", {
-                    newAppointment: this.state.newAppointment
-                  })
-                )
+                (this.props.headerFooterVisibilityOn(),
+                this.props.user
+                  ? // TOOD: add newAppointment to main appointment list and user appointment list
+                    this.props.history.push("/profile-page")
+                  : this.props.history.push("/login-page", {
+                      newAppointment: this.state.newAppointment
+                    }))
               ) : (
                 <React.Fragment>
                   {getStepContent(

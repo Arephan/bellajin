@@ -44,6 +44,7 @@ class LoginPage extends React.Component {
     } // incase user was directed while creating new appointment. There is no way to know email before hand.
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.login = login.bind(this);
   }
   componentDidMount() {
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
@@ -62,13 +63,15 @@ class LoginPage extends React.Component {
   }
 
   handleSubmit(event) {
-    handleSignUp(this.state.email, this.state.password);
-    if (firebaseAuth().currentUser) {
-      if (this.state.newAppointment) {
-        this.setState({ newAppointment: { email: this.state.email } });
-      }
-      this.props.history.push("/profile-page");
+    this.login(this.state.email, this.state.password);
+
+    if (this.state.newAppointment) {
+      // This user was redirected from new-appointment page because of no account
+      this.setState({ newAppointment: { email: this.state.email } });
+      // TODO: add appointment to both user tree and and appointments tree
     }
+
+    this.props.history.push("/profile-page");
 
     event.preventDefault();
   }
@@ -88,8 +91,8 @@ class LoginPage extends React.Component {
             <GridItem xs={12} sm={12} md={4}>
               <Card className={classes[this.state.cardAnimaton]}>
                 <form className={classes.form}>
-                  <CardHeader color="primary" className={classes.cardHeader}>
-                    <h4>Login / Sign Up</h4>
+                  <CardHeader color="danger" className={classes.cardHeader}>
+                    <h4>Login</h4>
                   </CardHeader>
 
                   <CardBody>

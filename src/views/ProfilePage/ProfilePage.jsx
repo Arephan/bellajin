@@ -1,3 +1,4 @@
+import React from "react";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
@@ -23,8 +24,6 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import NavPills from "components/NavPills/NavPills.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";
-import { firebaseAuth } from "firebase/constants.js";
-import React from "react";
 
 class ProfilePage extends React.Component {
   render() {
@@ -48,9 +47,7 @@ class ProfilePage extends React.Component {
                       <img src={profile} alt="..." className={imageClasses} />
                     </div>
                     <div className={classes.name}>
-                      <h3 className={classes.title}>
-                        {firebaseAuth().currentUser.uid}
-                      </h3>
+                      <h3 className={classes.title}>{"user name goes here"}</h3>
                       <h6>DESIGNER</h6>
                       <Button justIcon link className={classes.margin5}>
                         <i className={"fab fa-twitter"} />

@@ -7,6 +7,9 @@ export function logout() {
 export function login(email, pw) {
   return firebaseAuth()
     .signInWithEmailAndPassword(email, pw)
+    .then(userCredential => {
+      return userCredential;
+    })
     .catch(function(error) {
       alert(error.message);
     });

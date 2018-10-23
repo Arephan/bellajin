@@ -7,7 +7,7 @@ function AddressForm(props) {
   return (
     <React.Fragment>
       <Grid container spacing={24}>
-        <Grid item>
+        <Grid item xs={12} md={12}>
           <CheckBoxList
             data={ServiceMenu.ServiceMenu}
             userData={props.newAppointment.serviceMenu}
