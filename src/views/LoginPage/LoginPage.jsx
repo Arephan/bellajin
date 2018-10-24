@@ -20,6 +20,7 @@ import {
 } from "firebase/auth.js";
 import { firebaseAuth } from "firebase/constants";
 import React from "react";
+import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearProgress.jsx";
 
 // TODO: Implement SignUp option
 
@@ -32,6 +33,7 @@ class LoginPage extends React.Component {
       email: null,
       password: null,
       isSignUp: false,
+      loading: false,
       newAppointment: null
     };
 
@@ -71,6 +73,7 @@ class LoginPage extends React.Component {
 
   async handleSignUp() {
     let resp = await signUpWithEmailAndPass();
+    this.setState({ loading: true });
 
     if (resp) {
       this.props.history.push("/profile-page");
@@ -96,7 +99,12 @@ class LoginPage extends React.Component {
                   <CardHeader color="danger" className={classes.cardHeader}>
                     <h4>{this.state.isSignUp ? "Sign Up" : "Login"}</h4>
                   </CardHeader>
-
+                  {this.state.loading ? (
+                    <CustomLinearProgress
+                      variant="indeterminate"
+                      color="info"
+                    />
+                  ) : null}
                   <CardBody>
                     {this.state.isSignUp ? (
                       <CustomInput
