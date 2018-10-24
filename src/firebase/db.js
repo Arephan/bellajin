@@ -16,3 +16,18 @@ export function addAppointment(newAppointment) {
 export function addAppointmentToUser(newAppointment, uid) {
   return ref.child(`users/${uid}/appointments`).push({ newAppointment });
 }
+
+export function getUserAppointments(uid) {
+  return ref
+    .child(`users/${uid}/appointments`)
+    .once("value")
+    .then(snapshot => {
+      var returnArr = [];
+
+      snapshot.forEach(function(childSnapshot) {
+        let item = childSnapshot.val();
+        returnArr.push(item.newAppointment);
+      });
+      return returnArr;
+    });
+}

@@ -24,8 +24,32 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import NavPills from "components/NavPills/NavPills.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";
+import { firebaseAuth, base } from "firebase/constants";
+import SimpleTable from "components/SimpleTable/SimpleTable";
+import { getUserAppointments } from "firebase/db";
+import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearProgress.jsx";
 
 class ProfilePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUser: firebaseAuth().currentUser,
+      userAppointments: [],
+      loading: true
+    };
+  }
+
+  async getAppointments() {
+    let resp = await getUserAppointments(this.state.currentUser.uid);
+    if (resp) {
+      this.setState({ userAppointments: resp, loading: false });
+    }
+  }
+
+  componentDidMount() {
+    this.getAppointments();
+  }
+
   render() {
     const { classes, ...rest } = this.props;
     const imageClasses = classNames(
@@ -47,143 +71,20 @@ class ProfilePage extends React.Component {
                       <img src={profile} alt="..." className={imageClasses} />
                     </div>
                     <div className={classes.name}>
-                      <h3 className={classes.title}>{"user name goes here"}</h3>
-                      <h6>DESIGNER</h6>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-twitter"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-instagram"} />
-                      </Button>
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-facebook"} />
-                      </Button>
+                      <h3 className={classes.title}>
+                        {this.state.currentUser.displayName}
+                      </h3>
+                      <h6>My Appointments</h6>
                     </div>
+                    {this.state.loading ? (
+                      <CustomLinearProgress
+                        variant="indeterminate"
+                        color="info"
+                      />
+                    ) : (
+                      <SimpleTable data={this.state.userAppointments} />
+                    )}
                   </div>
-                </GridItem>
-              </GridContainer>
-              <div className={classes.description}>
-                <p>
-                  An artist of considerable range, Chet Faker — the name taken
-                  by Melbourne-raised, Brooklyn-based Nick Murphy — writes,
-                  performs and records all of his own music, giving it a warm,
-                  intimate feel with a solid groove structure.{" "}
-                </p>
-              </div>
-              <GridContainer justify="center">
-                <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
-                  <NavPills
-                    alignCenter
-                    color="primary"
-                    tabs={[
-                      {
-                        tabButton: "Studio",
-                        tabIcon: Camera,
-                        tabContent: (
-                          <GridContainer justify="center">
-                            <GridItem xs={12} sm={12} md={4}>
-                              <img
-                                alt="..."
-                                src={studio1}
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src={studio2}
-                                className={navImageClasses}
-                              />
-                            </GridItem>
-                            <GridItem xs={12} sm={12} md={4}>
-                              <img
-                                alt="..."
-                                src={studio5}
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src={studio4}
-                                className={navImageClasses}
-                              />
-                            </GridItem>
-                          </GridContainer>
-                        )
-                      },
-                      {
-                        tabButton: "Work",
-                        tabIcon: Palette,
-                        tabContent: (
-                          <GridContainer justify="center">
-                            <GridItem xs={12} sm={12} md={4}>
-                              <img
-                                alt="..."
-                                src={work1}
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src={work2}
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src={work3}
-                                className={navImageClasses}
-                              />
-                            </GridItem>
-                            <GridItem xs={12} sm={12} md={4}>
-                              <img
-                                alt="..."
-                                src={work4}
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src={work5}
-                                className={navImageClasses}
-                              />
-                            </GridItem>
-                          </GridContainer>
-                        )
-                      },
-                      {
-                        tabButton: "Favorite",
-                        tabIcon: Favorite,
-                        tabContent: (
-                          <GridContainer justify="center">
-                            <GridItem xs={12} sm={12} md={4}>
-                              <img
-                                alt="..."
-                                src={work4}
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src={studio3}
-                                className={navImageClasses}
-                              />
-                            </GridItem>
-                            <GridItem xs={12} sm={12} md={4}>
-                              <img
-                                alt="..."
-                                src={work2}
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src={work1}
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src={studio1}
-                                className={navImageClasses}
-                              />
-                            </GridItem>
-                          </GridContainer>
-                        )
-                      }
-                    ]}
-                  />
                 </GridItem>
               </GridContainer>
             </div>

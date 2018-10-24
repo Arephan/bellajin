@@ -21,6 +21,7 @@ import {
 import { firebaseAuth } from "firebase/constants";
 import React from "react";
 import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearProgress.jsx";
+import { addAppointmentToUser, addAppointment } from "firebase/db";
 
 // TODO: Implement SignUp option
 
@@ -76,6 +77,13 @@ class LoginPage extends React.Component {
     this.setState({ loading: true });
 
     if (resp) {
+      if (this.state.newAppointment) {
+        addAppointment(this.state.newAppointment);
+        addAppointmentToUser(
+          this.state.newAppointment,
+          firebaseAuth().currentUser.uid
+        );
+      }
       this.props.history.push("/profile-page");
     }
   }

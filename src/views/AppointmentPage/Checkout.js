@@ -14,6 +14,8 @@ import Logo from "../../assets/img/logo.jpg";
 import AddressForm from "./Sections/AddressForm";
 import PaymentForm from "./Sections/PaymentForm";
 import Review from "./Sections/Review";
+import { addAppointment } from "firebase/db";
+import { addAppointmentToUser } from "firebase/db";
 const styles = theme => ({
   appBar: {
     position: "relative"
@@ -174,8 +176,13 @@ class Checkout extends React.Component {
             <React.Fragment>
               {activeStep === steps.length ? (
                 this.props.user ? (
-                  // TOOD: add newAppointment to main appointment list and user appointment list
-                  this.props.history.push("/profile-page")
+                  // TODO: add newAppointment to main appointment list and user appointment list
+                  (addAppointment(this.state.newAppointment),
+                  addAppointmentToUser(
+                    this.state.newAppointment,
+                    this.props.user.uid
+                  ),
+                  this.props.history.push("/profile-page"))
                 ) : (
                   this.props.history.push("/login-page", {
                     from: "/new-appointment",
