@@ -70,9 +70,13 @@ class App extends React.Component {
                 exact
                 path="/login-page"
                 component={LoginPage}
-                render={props => (
-                  <LoginPage {...props} user={this.state.user} />
-                )}
+                render={props =>
+                  this.state.user ? (
+                    <ProfilePage {...props} user={this.state.user} />
+                  ) : (
+                    <LoginPage {...props} user={this.state.user} />
+                  )
+                }
               />
               <Route
                 exact

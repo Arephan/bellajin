@@ -1,3 +1,4 @@
+import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
@@ -5,17 +6,14 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Stepper from "@material-ui/core/Stepper";
 import withStyles from "@material-ui/core/styles/withStyles";
+import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 import React from "react";
+import Logo from "../../assets/img/logo.jpg";
 import AddressForm from "./Sections/AddressForm";
 import PaymentForm from "./Sections/PaymentForm";
 import Review from "./Sections/Review";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Logo from "../../assets/img/logo.jpg";
-import { Link } from "react-router-dom";
-//TODO: Fix header overlap with stepper content
 const styles = theme => ({
   appBar: {
     position: "relative"
@@ -96,11 +94,11 @@ class Checkout extends React.Component {
   handleStepperContentValueChange(key, value) {
     this.setState(state => {
       state.newAppointment[key] = value;
+      // TODO: Set state "from: " so login page can confirm it's from checkout
     });
   }
 
   handleNext = () => {
-    //TODO: Check if step info has been received
     if (this.handleFormCheck()) {
       this.setState(state => ({
         activeStep: state.activeStep + 1
@@ -180,6 +178,7 @@ class Checkout extends React.Component {
                   this.props.history.push("/profile-page")
                 ) : (
                   this.props.history.push("/login-page", {
+                    from: "/new-appointment",
                     newAppointment: this.state.newAppointment
                   })
                 )

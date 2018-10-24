@@ -1,31 +1,27 @@
-import React from "react";
+import Icon from "@material-ui/core/Icon";
+import InputAdornment from "@material-ui/core/InputAdornment";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Icon from "@material-ui/core/Icon";
-// @material-ui/icons
-import Email from "@material-ui/icons/Email";
-import People from "@material-ui/icons/People";
-// core components
-import Header from "components/Header/Header.jsx";
-import HeaderLinks from "components/Header/HeaderLinks.jsx";
-import Footer from "components/Footer/Footer.jsx";
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-import Button from "components/CustomButtons/Button.jsx";
+import image from "assets/img/bg7.jpg";
+import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
-import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
+import CardHeader from "components/Card/CardHeader.jsx";
+import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
-import Logo from "../../assets/img/logo.jpg";
-import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
-
-import image from "assets/img/bg7.jpg";
-import { Link } from "react-router-dom";
-
-import { handleSignUp, login, logout } from "firebase/auth.js";
+import GridContainer from "components/Grid/GridContainer.jsx";
+import GridItem from "components/Grid/GridItem.jsx";
+import {
+  login,
+  saveUser,
+  sendEmailVerification,
+  signUpWithEmailAndPass
+} from "firebase/auth.js";
 import { firebaseAuth } from "firebase/constants";
+import React from "react";
+
+// TODO: Implement SignUp option
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -34,17 +30,14 @@ class LoginPage extends React.Component {
     this.state = {
       cardAnimaton: "cardHidden",
       email: null,
-      password: null
+      password: null,
+      isSignUp: false,
+      newAppointment: null
     };
 
-    if (this.props.history.location.state) {
-      this.setState({
-        newAppointment: this.props.history.location.state.newAppointment
-      });
-    } // incase user was directed while creating new appointment. There is no way to know email before hand.
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.login = login.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
   componentDidMount() {
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
@@ -54,6 +47,15 @@ class LoginPage extends React.Component {
       }.bind(this),
       700
     );
+    let locationState = this.props.history.location.state;
+    if (locationState) {
+      if (locationState.from === "/new-appointment") {
+        this.setState({
+          isSignUp: true,
+          newAppointment: locationState.newAppointment
+        });
+      }
+    }
   }
   handleChange(event) {
     let rJSON = {};
@@ -62,19 +64,19 @@ class LoginPage extends React.Component {
     this.setState(rJSON);
   }
 
-  handleSubmit(event) {
-    this.login(this.state.email, this.state.password);
-
-    if (this.state.newAppointment) {
-      // This user was redirected from new-appointment page because of no account
-      this.setState({ newAppointment: { email: this.state.email } });
-      // TODO: add appointment to both user tree and and appointments tree
-    }
-
+  handleLogin() {
+    login(this.state.email, this.state.password);
     this.props.history.push("/profile-page");
-
-    event.preventDefault();
   }
+
+  async handleSignUp() {
+    let resp = await signUpWithEmailAndPass();
+
+    if (resp) {
+      this.props.history.push("/profile-page");
+    }
+  }
+
   render() {
     const { classes, ...rest } = this.props;
     return (
@@ -92,10 +94,30 @@ class LoginPage extends React.Component {
               <Card className={classes[this.state.cardAnimaton]}>
                 <form className={classes.form}>
                   <CardHeader color="danger" className={classes.cardHeader}>
-                    <h4>Login</h4>
+                    <h4>{this.state.isSignUp ? "Sign Up" : "Login"}</h4>
                   </CardHeader>
 
                   <CardBody>
+                    {this.state.isSignUp ? (
+                      <CustomInput
+                        labelText="Name"
+                        id="name"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                        inputProps={{
+                          type: "name",
+                          onChange: this.handleChange,
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <Icon className={classes.inputIconsColor}>
+                                person
+                              </Icon>
+                            </InputAdornment>
+                          )
+                        }}
+                      />
+                    ) : null}
                     <CustomInput
                       labelText="Email"
                       id="email"
@@ -135,11 +157,34 @@ class LoginPage extends React.Component {
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
+                    {this.state.isSignUp ? (
+                      <Button
+                        simple
+                        color="danger"
+                        size="lg"
+                        onClick={() => this.setState({ isSignUp: false })}
+                      >
+                        Login
+                      </Button>
+                    ) : (
+                      <Button
+                        simple
+                        color="danger"
+                        size="lg"
+                        onClick={() => this.setState({ isSignUp: true })}
+                      >
+                        Sign Up
+                      </Button>
+                    )}
                     <Button
                       simple
-                      color="primary"
+                      color="info"
                       size="lg"
-                      onClick={this.handleSubmit}
+                      onClick={
+                        this.state.isSignUp
+                          ? this.handleSignUp
+                          : this.handleLogin
+                      }
                     >
                       Submit
                     </Button>
