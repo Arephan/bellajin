@@ -92,15 +92,7 @@ class Checkout extends React.Component {
     this.handleStepperContentValueChange = this.handleStepperContentValueChange.bind(
       this
     );
-    props.headerFooterVisibilityOff();
   }
-
-  componentDidUpdate() {
-    window.onpopstate = e => {
-      this.props.headerFooterVisibilityOn();
-    };
-  }
-
   handleStepperContentValueChange(key, value) {
     this.setState(state => {
       state.newAppointment[key] = value;
@@ -185,8 +177,7 @@ class Checkout extends React.Component {
               {activeStep === steps.length ? (
                 this.props.user ? (
                   // TOOD: add newAppointment to main appointment list and user appointment list
-                  (this.props.headerFooterVisibilityOn(),
-                  this.props.history.push("/profile-page"))
+                  this.props.history.push("/profile-page")
                 ) : (
                   this.props.history.push("/login-page", {
                     newAppointment: this.state.newAppointment

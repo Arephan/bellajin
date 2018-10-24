@@ -14,27 +14,17 @@ import ProfilePage from "views/ProfilePage/ProfilePage.jsx";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Logo from "assets/img/logo.jpg";
 import { logout } from "firebase/auth.js";
+import Layout from "components/Layout/Layout.jsx";
 
-var hist = createBrowserHistory();
+var history = createBrowserHistory();
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
-      user: null,
-      headerFooterVisible: true
+      user: null
     };
     this.handleLogout = this.handleLogout.bind(this);
-    this.headerFooterVisibilityOff = this.headerFooterVisibilityOff.bind(this);
-    this.headerFooterVisibilityOn = this.headerFooterVisibilityOn.bind(this);
-  }
-
-  headerFooterVisibilityOff() {
-    this.setState({ headerFooterVisible: false });
-  }
-
-  headerFooterVisibilityOn() {
-    this.setState({ headerFooterVisible: true });
   }
 
   handleLogout() {
@@ -43,7 +33,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ loading: true, headerFooterVisible: true });
+    this.setState({ loading: true });
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({ user });
@@ -57,74 +47,46 @@ class App extends React.Component {
     return this.state.loading === true ? (
       <LinearProgress />
     ) : (
-      <Router history={hist}>
+      <Router history={history}>
         <div>
-          {this.state.headerFooterVisible ? (
-            <Header
-              fixed
-              color="danger"
-              brand={
-                <Link to="/">
-                  <img src={Logo} height="50" width="100" />
-                </Link>
-              }
-              rightLinks={
-                <HeaderLinks
-                  user={this.state.user}
-                  history={hist}
-                  handleLogout={this.handleLogout}
-                />
-              }
-            />
-          ) : null}
-          <Switch>
-            <Route
-              exact
-              path="/profile-page"
-              render={props =>
-                this.state.user ? (
-                  <ProfilePage {...props} user={this.state.user} />
-                ) : (
-                  <LoginPage
-                    {...props}
-                    headerFooterVisibilityOff={this.headerFooterVisibilityOff}
-                  />
-                )
-              }
-            />
-            <Route
-              exact
-              path="/login-page"
-              component={LoginPage}
-              render={props => (
-                <LoginPage
-                  {...props}
-                  user={this.state.user}
-                  headerFooterVisibilityOff={this.headerFooterVisibilityOff}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/new-appointment"
-              render={props => (
-                <Checkout
-                  {...props}
-                  user={this.state.user}
-                  headerFooterVisibilityOff={this.headerFooterVisibilityOff}
-                  headerFooterVisibilityOn={this.headerFooterVisibilityOn}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/"
-              render={props => (
-                <LandingPage {...props} user={this.state.user} />
-              )}
-            />
-          </Switch>
-          {this.state.headerFooterVisible ? <Footer /> : null}
+          <Layout
+            user={this.state.user}
+            handleLogout={this.handleLogout}
+            history={history}
+          >
+            <Switch>
+              <Route
+                exact
+                path="/profile-page"
+                render={props =>
+                  this.state.user ? (
+                    <ProfilePage {...props} user={this.state.user} />
+                  ) : (
+                    <LoginPage {...props} />
+                  )
+                }
+              />
+              <Route
+                exact
+                path="/login-page"
+                component={LoginPage}
+                render={props => (
+                  <LoginPage {...props} user={this.state.user} />
+                )}
+              />
+              <Route
+                exact
+                path="/new-appointment"
+                render={props => <Checkout {...props} user={this.state.user} />}
+              />
+              <Route
+                path="/"
+                render={props => (
+                  <LandingPage {...props} user={this.state.user} />
+                )}
+              />
+            </Switch>
+          </Layout>
         </div>
       </Router>
     );

@@ -8,7 +8,10 @@ import Logo from "../../assets/img/logo.jpg";
 class Layout extends React.Component {
   render() {
     const { classes, ...rest } = this.props;
-    if (this.props.history.location.pathname == "/new-appointment") {
+    if (
+      this.props.history.location.pathname === "/new-appointment" ||
+      this.props.history.location.pathname === "/login-page"
+    ) {
       return <div>{this.props.children}</div>; // For cleaner checkout process
     } else {
       return (
@@ -21,8 +24,12 @@ class Layout extends React.Component {
                 <img src={Logo} height="50" width="100" />
               </Link>
             }
-            rightLinks={<HeaderLinks currentUser={this.props.authed} />}
-            {...rest}
+            rightLinks={
+              <HeaderLinks
+                user={this.props.user}
+                handleLogout={this.props.handleLogout}
+              />
+            }
           />
           {this.props.children}
           <Footer />
