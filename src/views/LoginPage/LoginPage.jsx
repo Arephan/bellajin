@@ -14,9 +14,8 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import {
   login,
-  saveUser,
-  sendEmailVerification,
-  signUpWithEmailAndPass
+  signUpWithEmailAndPass,
+  sendPasswordReset
 } from "firebase/auth.js";
 import { firebaseAuth } from "firebase/constants";
 import React from "react";
@@ -111,6 +110,7 @@ class LoginPage extends React.Component {
                       color="info"
                     />
                   ) : null}
+
                   <CardBody>
                     {this.state.isSignUp ? (
                       <CustomInput
@@ -202,6 +202,18 @@ class LoginPage extends React.Component {
                     >
                       Submit
                     </Button>
+                  </CardFooter>
+                  <CardFooter className={classes.cardFooter}>
+                    {this.state.isSignUp ? null : (
+                      <Button
+                        simple
+                        color="danger"
+                        size="sm"
+                        onClick={sendPasswordReset}
+                      >
+                        Change Password
+                      </Button>
+                    )}
                   </CardFooter>
                 </form>
               </Card>

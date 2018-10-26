@@ -78,13 +78,16 @@ export function sendEmailVerification() {
 
 export function sendPasswordReset() {
   var email = document.getElementById("email").value;
+  if (!email) {
+    alert("Enter Email");
+  }
   // [START sendpasswordemail]
   firebaseAuth()
     .sendPasswordResetEmail(email)
     .then(function() {
       // Password Reset Email Sent!
       // [START_EXCLUDE]
-      // alert("Password Reset Email Sent!");
+      alert("Password Reset Email Sent!");
       // [END_EXCLUDE]
     })
     .catch(function(error) {
