@@ -13,7 +13,8 @@ import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";
 import React from "react";
 import Logo from "../../assets/img/logo.jpg";
-import GallerySection from "./Sections/GallerySection.jsx";
+import ProductSection from "./Sections/ProductSection.jsx";
+import TeamSection from "./Sections/TeamSection.jsx";
 import { Link } from "react-router-dom";
 import Button from "components/CustomButtons/Button.jsx";
 const dashboardRoutes = [];
@@ -48,7 +49,8 @@ class LandingPage extends React.Component {
 
         <div className={classNames(classes.main, classes.mainRaised)}>
           <div className={classes.container}>
-            <GallerySection />
+            <ProductSection />
+            <TeamSection />
           </div>
         </div>
       </div>

@@ -96,7 +96,6 @@ class Checkout extends React.Component {
   handleStepperContentValueChange(key, value) {
     this.setState(state => {
       state.newAppointment[key] = value;
-      // TODO: Set state "from: " so login page can confirm it's from checkout
     });
   }
 
@@ -176,7 +175,6 @@ class Checkout extends React.Component {
             <React.Fragment>
               {activeStep === steps.length ? (
                 this.props.user ? (
-                  // TODO: add newAppointment to main appointment list and user appointment list
                   (addAppointment(this.state.newAppointment),
                   addAppointmentToUser(
                     this.state.newAppointment,

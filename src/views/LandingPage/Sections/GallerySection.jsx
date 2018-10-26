@@ -98,7 +98,14 @@ class GallerySection extends React.Component {
           <div id="nav-tabs">
             <h3>Our Works</h3>
             <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={6} className={classes.container}>
+              <GridItem
+                xs={6}
+                sm={6}
+                md={6}
+                lg={6}
+                xl={6}
+                className={classes.container}
+              >
                 <CustomTabs
                   headerColor="danger"
                   tabs={[

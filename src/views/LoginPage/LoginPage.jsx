@@ -23,8 +23,6 @@ import React from "react";
 import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearProgress.jsx";
 import { addAppointmentToUser, addAppointment } from "firebase/db";
 
-// TODO: Implement SignUp option
-
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
