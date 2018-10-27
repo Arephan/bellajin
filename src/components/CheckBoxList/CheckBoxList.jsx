@@ -41,7 +41,7 @@ class CheckboxList extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(props) {
-    this.setState({ data: props.data });
+    this.setState({ data: props.data, checked: new Array() });
   }
 
   handleToggle = value => () => {

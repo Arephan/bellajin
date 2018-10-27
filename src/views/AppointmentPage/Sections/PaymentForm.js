@@ -8,6 +8,7 @@ class PaymentForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      newAppointment: props.newAppointment,
       data: TimeSlot()
     };
     this.handleChange = this.handleChange.bind(this);
@@ -16,10 +17,18 @@ class PaymentForm extends React.Component {
     );
   }
 
+  componentDidMount() {
+    if (this.state.newAppointment.date) {
+      this.handleOccupiedTimeSlotChange(this.state.newAppointment.date);
+    }
+  }
+
   handleChange(e) {
     this.props.handleStepperContentValueChange(e.target.id, e.target.value);
 
     if (e.target.id === "date") {
+      // Reset user's selected timeslot
+      this.props.handleStepperContentValueChange("timeslot", new Array());
       this.handleOccupiedTimeSlotChange(e.target.value);
     }
   }
@@ -44,7 +53,7 @@ class PaymentForm extends React.Component {
           <Grid item xs={12} md={12}>
             <TextField
               id="date"
-              value={this.props.newAppointment.date}
+              value={this.state.newAppointment.date}
               required
               fullWidth
               onChange={this.handleChange}
@@ -58,7 +67,6 @@ class PaymentForm extends React.Component {
           <Grid item xs={12} md={12}>
             <CheckBoxList
               data={this.state.data}
-              occupiedTimeslot={this.state.occupiedTimeslot}
               userData={this.props.newAppointment.timeslot}
               handleStepperContentValueChange={
                 this.props.handleStepperContentValueChange

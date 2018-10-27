@@ -111,10 +111,7 @@ class Checkout extends React.Component {
   handleFormCheck = () => {
     switch (this.state.activeStep) {
       case 0:
-        if (
-          !this.state.newAppointment.serviceMenu ||
-          !this.state.newAppointment.serviceMenu[0]
-        ) {
+        if (!this.state.newAppointment.serviceMenu[0]) {
           alert("Please select service!");
           return false;
         }
@@ -122,7 +119,7 @@ class Checkout extends React.Component {
       case 1:
         if (
           !this.state.newAppointment.date ||
-          !this.state.newAppointment.timeslot
+          !this.state.newAppointment.timeslot[0]
         ) {
           alert("Please Complete All Fields!");
           return false;
