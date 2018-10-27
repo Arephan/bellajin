@@ -129,6 +129,11 @@ class Checkout extends React.Component {
   };
 
   handleBack = () => {
+    if (this.state.activeStep === 1) {
+      this.setState(state => {
+        state.newAppointment["timeslot"] = new Array();
+      });
+    }
     this.setState(state => ({
       activeStep: state.activeStep - 1
     }));

@@ -1,6 +1,5 @@
 # Features
 - [ ] Ability to add profile photos
-- [ ] Map view in homepage
 - [ ] Team Section should reflect actual bellajin team
 - [ ] Carousel should have basic menu underneath
 
