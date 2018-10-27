@@ -16,6 +16,7 @@ import PaymentForm from "./Sections/PaymentForm";
 import Review from "./Sections/Review";
 import { addAppointment } from "firebase/db";
 import { addAppointmentToUser } from "firebase/db";
+import { Link } from "react-router-dom";
 const styles = theme => ({
   appBar: {
     position: "relative"
@@ -155,9 +156,9 @@ class Checkout extends React.Component {
         <CssBaseline />
         <AppBar position="absolute" color="primary" className={classes.appBar}>
           <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap>
+            <Link to="/">
               <img src={Logo} height="50" width="100" />
-            </Typography>
+            </Link>
           </Toolbar>
         </AppBar>
         <main className={classes.layout}>
