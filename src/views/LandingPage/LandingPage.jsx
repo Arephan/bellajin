@@ -3,21 +3,15 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import landingPageStyle from "assets/jss/material-kit-react/views/landingPage.jsx";
 // nodejs library that concatenates classes
 import classNames from "classnames";
-import Footer from "components/Footer/Footer.jsx";
+import Button from "components/CustomButtons/Button.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-// @material-ui/icons
-// core components
-import Header from "components/Header/Header.jsx";
-import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";
 import React from "react";
-import Logo from "../../assets/img/logo.jpg";
+import { Link } from "react-router-dom";
 import ProductSection from "./Sections/ProductSection.jsx";
 import TeamSection from "./Sections/TeamSection.jsx";
-import { Link } from "react-router-dom";
-import Button from "components/CustomButtons/Button.jsx";
-const dashboardRoutes = [];
+import WorkSection from "./Sections/WorkSection.jsx";
 
 class LandingPage extends React.Component {
   render() {
@@ -51,6 +45,7 @@ class LandingPage extends React.Component {
           <div className={classes.container}>
             <ProductSection />
             <TeamSection />
+            <WorkSection />
           </div>
         </div>
       </div>
