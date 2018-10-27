@@ -1,5 +1,5 @@
-module.exports = {
-  TimeSlot: [
+export default function TimeSlot() {
+  return [
     {
       category: "timeslot",
       primary: "10AM - 10:30AM",
@@ -120,5 +120,5 @@ module.exports = {
       secondary: "",
       tertiary: ""
     }
-  ]
-};
+  ];
+}

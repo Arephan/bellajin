@@ -7,6 +7,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import React from "react";
+import TimeSlot from "assets/constants/TimeSlot";
 
 const styles = theme => ({
   root: {
@@ -39,6 +40,10 @@ class CheckboxList extends React.Component {
     this.handleToggle = this.handleToggle.bind(this);
   }
 
+  UNSAFE_componentWillReceiveProps(props) {
+    this.setState({ data: props.data });
+  }
+
   handleToggle = value => () => {
     const { checked, data } = this.state;
     const currentIndex = checked.indexOf(value);
@@ -62,7 +67,6 @@ class CheckboxList extends React.Component {
 
   render() {
     const { classes } = this.props;
-
     return (
       <div className={classes.root} subheader={<li />}>
         <List>

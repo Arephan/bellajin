@@ -31,3 +31,20 @@ export function getUserAppointments(uid) {
       return returnArr;
     });
 }
+
+export function getAppointmentsOnDate(date) {
+  return ref
+    .child(`Appointments`)
+    .once("value")
+    .then(snapshot => {
+      var returnArr = [];
+
+      snapshot.forEach(function(childSnapshot) {
+        let item = childSnapshot.val();
+        if (item.date === date) {
+          returnArr.push(item.timeslot[0].primary);
+        }
+      });
+      return returnArr;
+    });
+}

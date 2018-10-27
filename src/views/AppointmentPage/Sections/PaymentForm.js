@@ -3,39 +3,72 @@ import TextField from "@material-ui/core/TextField";
 import TimeSlot from "assets/constants/TimeSlot";
 import CheckBoxList from "components/CheckBoxList/CheckBoxList";
 import React from "react";
-function PaymentForm(props) {
-  function handleChange(e) {
-    props.handleStepperContentValueChange(e.target.id, e.target.value);
+import { getAppointmentsOnDate } from "firebase/db";
+class PaymentForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: TimeSlot()
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleOccupiedTimeSlotChange = this.handleOccupiedTimeSlotChange.bind(
+      this
+    );
   }
-  return (
-    <React.Fragment>
-      <Grid container spacing={24}>
-        <Grid item xs={12} md={12}>
-          <TextField
-            id="date"
-            value={props.newAppointment.date}
-            required
-            fullWidth
-            onChange={handleChange}
-            label="Appointment Date"
-            type="date"
-            InputLabelProps={{
-              shrink: true
-            }}
-          />
+
+  handleChange(e) {
+    this.props.handleStepperContentValueChange(e.target.id, e.target.value);
+
+    if (e.target.id === "date") {
+      this.handleOccupiedTimeSlotChange(e.target.value);
+    }
+  }
+
+  handleOccupiedTimeSlotChange(date) {
+    getAppointmentsOnDate(date).then(x => {
+      let timeslot = new TimeSlot();
+      x.forEach(x => {
+        let i = timeslot.findIndex(function(element) {
+          return element.primary === x;
+        });
+        timeslot.splice(i, 1);
+      });
+      this.setState({ data: timeslot });
+    });
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Grid container spacing={24}>
+          <Grid item xs={12} md={12}>
+            <TextField
+              id="date"
+              value={this.props.newAppointment.date}
+              required
+              fullWidth
+              onChange={this.handleChange}
+              label="Appointment Date"
+              type="date"
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <CheckBoxList
+              data={this.state.data}
+              occupiedTimeslot={this.state.occupiedTimeslot}
+              userData={this.props.newAppointment.timeslot}
+              handleStepperContentValueChange={
+                this.props.handleStepperContentValueChange
+              }
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={12}>
-          <CheckBoxList
-            data={TimeSlot.TimeSlot}
-            userData={props.newAppointment.timeslot}
-            handleStepperContentValueChange={
-              props.handleStepperContentValueChange
-            }
-          />
-        </Grid>
-      </Grid>
-    </React.Fragment>
-  );
+      </React.Fragment>
+    );
+  }
 }
 
 export default PaymentForm;
