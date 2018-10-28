@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
-
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+import { FaMapMarkerAlt } from "react-icons/fa";
+const AnyReactComponent = () => <FaMapMarkerAlt color="red" size={20} />;
 
 class SimpleMap extends Component {
   static defaultProps = {
@@ -21,7 +21,7 @@ class SimpleMap extends Component {
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
-          <AnyReactComponent lat={43.787561} lng={-79.417195} text="BellaJin" />
+          <AnyReactComponent lat={43.787561} lng={-79.417195} />
         </GoogleMapReact>
       </div>
     );

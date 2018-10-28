@@ -23,7 +23,7 @@ class LandingPage extends React.Component {
             <GridContainer>
               <GridItem xs={12} sm={12} md={6}>
                 <h1 className={classes.title}>Live Your Style!</h1>
-                <h4>5941 Yonge St North York, M2N 2J2. Since 2005.</h4>
+                <h4>5931 Yonge St North York, M2M 3V7. Since 2005.</h4>
                 <br />
                 <Link to="/new-appointment">
                   <Button

@@ -25,123 +25,110 @@ class SectionLogin extends React.Component {
       <div className={classes.section}>
         <div className={classes.container}>
           <GridContainer justify="center">
-                <GridItem
-xs={12}
-                  sm={12}
-                  md={4}
-              >
-                  <Card>
+            <GridItem xs={12} sm={12} md={4}>
+              <Card>
                 <form className={classes.form}>
-                  <CardHeader className={classes.cardHeader}
-color="primary">
-                        <h4>
-Login
-                      </h4>
+                  <CardHeader className={classes.cardHeader} color="primary">
+                    <h4>Login</h4>
                     <div className={classes.socialLine}>
-                          <Button
+                      <Button
                         color="transparent"
-                          href="#pablo"
-                          justIcon
-                          onClick={e => e.preventDefault()}
-                          target="_blank"
+                        href="#pablo"
+                        justIcon
+                        onClick={e => e.preventDefault()}
+                        target="_blank"
                       >
-                            <i
-                              className={`${classes.socialIcons  } fab fa-twitter`}
-                          />
-                        </Button>
-                          <Button
+                        <i
+                          className={`${classes.socialIcons} fab fa-twitter`}
+                        />
+                      </Button>
+                      <Button
                         color="transparent"
-                          href="#pablo"
-                          justIcon
-                          onClick={e => e.preventDefault()}
-                          target="_blank"
+                        href="#pablo"
+                        justIcon
+                        onClick={e => e.preventDefault()}
+                        target="_blank"
                       >
-                            <i
-                              className={`${classes.socialIcons  } fab fa-facebook`}
-                          />
-                        </Button>
-                          <Button
+                        <i
+                          className={`${classes.socialIcons} fab fa-facebook`}
+                        />
+                      </Button>
+                      <Button
                         color="transparent"
-                          href="#pablo"
-                          justIcon
-                          onClick={e => e.preventDefault()}
-                          target="_blank"
+                        href="#pablo"
+                        justIcon
+                        onClick={e => e.preventDefault()}
+                        target="_blank"
                       >
-                            <i
-                              className={
-                            classes.socialIcons
-                          } fab fa-google-plus-g`}
-                          />
-                        </Button>
-                      </div>
-                    </CardHeader>
-                      <p className={classes.divider}>
-Or Be Classical
-                    </p>
-                      <CardBody>
+                        <i
+                          className={classes.socialIcons}
+                          fab
+                          fa-google-plus-g
+                        />
+                      </Button>
+                    </div>
+                  </CardHeader>
+                  <p className={classes.divider}>Or Be Classical</p>
+                  <CardBody>
                     <CustomInput
                       formControlProps={{
                         fullWidth: true
                       }}
-                        id="first"
-                        inputProps={{
+                      id="first"
+                      inputProps={{
                         type: "text",
                         endAdornment: (
-                            <InputAdornment position="end">
-                              <People className={classes.inputIconsColor} />
+                          <InputAdornment position="end">
+                            <People className={classes.inputIconsColor} />
                           </InputAdornment>
                         )
                       }}
-                        labelText="First Name..."
+                      labelText="First Name..."
                     />
                     <CustomInput
-                          labelText="Email..."
-                          id="email"
+                      labelText="Email..."
+                      id="email"
                       formControlProps={{
                         fullWidth: true
                       }}
-                          inputProps={{
+                      inputProps={{
                         type: "email",
                         endAdornment: (
                           <InputAdornment position="end">
                             <Email className={classes.inputIconsColor} />
-                            </InputAdornment>
+                          </InputAdornment>
                         )
                       }}
-                      />
-                        <CustomInput
+                    />
+                    <CustomInput
                       formControlProps={{
                         fullWidth: true
                       }}
-                        id="pass"
-                        inputProps={{
+                      id="pass"
+                      inputProps={{
                         type: "password",
                         endAdornment: (
-                            <InputAdornment position="end">
-                              <Icon className={classes.inputIconsColor}>
+                          <InputAdornment position="end">
+                            <Icon className={classes.inputIconsColor}>
                               lock_outline
                             </Icon>
                           </InputAdornment>
                         )
                       }}
-                        labelText="Password"
+                      labelText="Password"
                     />
-                    </CardBody>
-                      <CardFooter className={classes.cardFooter}>
-                        <Button
-simple
-                          color="primary"
-                          size="lg"
-                      >
+                  </CardBody>
+                  <CardFooter className={classes.cardFooter}>
+                    <Button simple color="primary" size="lg">
                       Get started
-                      </Button>
-                    </CardFooter>
-                  </form>
-                </Card>
-              </GridItem>
-            </GridContainer>
-          </div>
+                    </Button>
+                  </CardFooter>
+                </form>
+              </Card>
+            </GridItem>
+          </GridContainer>
         </div>
+      </div>
     );
   }
 }

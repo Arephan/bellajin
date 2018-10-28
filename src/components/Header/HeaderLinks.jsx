@@ -7,12 +7,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import headerLinksStyle from "assets/jss/material-kit-react/components/headerLinksStyle.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import React from "react";
-import { FaSignInAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { CalendarToday } from "@material-ui/icons";
-import { firebaseAuth } from "firebase/constants.js";
-import { logout } from "firebase/auth.js";
-import firebase from "firebase";
 function HeaderLinks({ ...props }) {
   const { classes } = props;
   return (
@@ -68,7 +63,7 @@ function HeaderLinks({ ...props }) {
         <ListItem className={classes.listItem}>
           <Tooltip
             id="instagram-tooltip"
-            title="Book Appointment"
+            title="Login"
             placement={window.innerWidth > 959 ? "top" : "left"}
             classes={{ tooltip: classes.tooltip }}
           >
