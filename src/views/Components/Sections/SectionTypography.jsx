@@ -5,7 +5,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 // @material-ui/icons
 
-// core components
+// Core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Small from "components/Typography/Small.jsx";
@@ -82,8 +82,8 @@ class SectionTypography extends React.Component {
               <div className={classes.typo}>
                 <div className={classes.note}>Quote</div>
                 <Quote
-                  text="I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at."
                   author=" Kanye West, Musician"
+                  text="I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at."
                 />
               </div>
               <div className={classes.typo}>
@@ -131,7 +131,8 @@ class SectionTypography extends React.Component {
               <div className={classes.typo}>
                 <div className={classes.note}>Small Tag</div>
                 <h2>
-                  Header with small subtitle<br />
+                  Header with small subtitle
+                  <br />
                   <Small>Use "Small" tag for the headers</Small>
                 </h2>
               </div>
@@ -147,45 +148,37 @@ class SectionTypography extends React.Component {
               <GridItem xs={12} sm={2}>
                 <h4>Rounded Image</h4>
                 <img
-                  src={image}
                   alt="..."
-                  className={classes.imgRounded + " " + classes.imgFluid}
+                  className={`${classes.imgRounded} ${classes.imgFluid}`}
+                  src={image}
                 />
               </GridItem>
               <GridItem xs={12} sm={2} className={classes.marginLeft}>
                 <h4>Circle Image</h4>
                 <img
-                  src={image}
                   alt="..."
-                  className={classes.imgRoundedCircle + " " + classes.imgFluid}
+                  className={`${classes.imgRoundedCircle} ${classes.imgFluid}`}
+                  src={image}
                 />
               </GridItem>
               <GridItem xs={12} sm={2} className={classes.marginLeft}>
                 <h4>Rounded Raised</h4>
                 <img
-                  src={image}
                   alt="..."
-                  className={
-                    classes.imgRaised +
-                    " " +
-                    classes.imgRounded +
-                    " " +
+                  className={`${classes.imgRaised} ${classes.imgRounded} ${
                     classes.imgFluid
-                  }
+                  }`}
+                  src={image}
                 />
               </GridItem>
-              <GridItem xs={12} sm={2} className={classes.marginLeft}>
+              <GridItem className={classes.marginLeft} sm={2} xs={12}>
                 <h4>Circle Raised</h4>
                 <img
-                  src={image}
                   alt="..."
-                  className={
-                    classes.imgRaised +
-                    " " +
-                    classes.imgRoundedCircle +
-                    " " +
-                    classes.imgFluid
-                  }
+                  className={`${classes.imgRaised} ${
+                    classes.imgRoundedCircle
+                  } ${classes.imgFluid}`}
+                  src={image}
                 />
               </GridItem>
             </GridContainer>

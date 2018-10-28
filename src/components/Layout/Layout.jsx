@@ -13,29 +13,28 @@ class Layout extends React.Component {
       this.props.history.location.pathname === "/login-page"
     ) {
       return <div>{this.props.children}</div>; // For cleaner checkout process
-    } else {
-      return (
-        <div>
-          <Header
-            fixed
-            color="danger"
-            brand={
-              <Link to="/">
-                <img src={Logo} height="50" width="100" />
-              </Link>
-            }
-            rightLinks={
-              <HeaderLinks
-                user={this.props.user}
-                handleLogout={this.props.handleLogout}
-              />
-            }
-          />
-          {this.props.children}
-          <Footer />
-        </div>
-      );
     }
+    return (
+      <div>
+        <Header
+          brand={
+            <Link to="/">
+              <img src={Logo} alt={"BellaJin"} height="50" width="100" />
+            </Link>
+          }
+          color="danger"
+          fixed
+          rightLinks={
+            <HeaderLinks
+              handleLogout={this.props.handleLogout}
+              user={this.props.user}
+            />
+          }
+        />
+        {this.props.children}
+        <Footer />
+      </div>
+    );
   }
 }
 

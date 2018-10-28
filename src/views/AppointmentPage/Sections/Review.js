@@ -1,32 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import Grid from "@material-ui/core/Grid";
-
-const products = [
-  { name: "Product 1", desc: "A nice thing", price: "$9.99" },
-  { name: "Product 2", desc: "Another thing", price: "$3.45" },
-  { name: "Product 3", desc: "Something else", price: "$6.51" },
-  { name: "Product 4", desc: "Best thing of all", price: "$14.11" },
-  { name: "Shipping", desc: "", price: "Free" }
-];
-const addresses = [
-  "1 Material-UI Drive",
-  "Reactville",
-  "Anytown",
-  "99999",
-  "USA"
-];
-const payments = [
-  { name: "Card type", detail: "Visa" },
-  { name: "Card holder", detail: "Mr John Smith" },
-  { name: "Card number", detail: "xxxx-xxxx-xxxx-1234" },
-  { name: "Expiry date", detail: "04/2024" }
-];
+import { withStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import PropTypes from "prop-types";
+import React from "react";
 
 const styles = theme => ({
   listItem: {
@@ -44,7 +23,7 @@ function Review(props) {
   const { classes } = props;
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+      <Typography gutterBottom variant="h6">
         Order summary
       </Typography>
       <List disablePadding>
@@ -62,13 +41,12 @@ function Review(props) {
           <Typography variant="subtitle1" className={classes.total}>
             $
             {props.newAppointment.serviceMenu.length === 1
-              ? props.newAppointment.serviceMenu[0].tertiary.slice(1) // cannot calculate total with dollar symbol
-              : props.newAppointment.serviceMenu.reduce(function(a, b) {
-                  return (
+              ? props.newAppointment.serviceMenu[0].tertiary.slice(1) // Cannot calculate total with dollar symbol
+              : props.newAppointment.serviceMenu.reduce(
+                  (a, b) =>
                     parseInt(a.tertiary.slice(1)) +
                     parseInt(b.tertiary.slice(1))
-                  );
-                })}
+                )}
           </Typography>
         </ListItem>
       </List>
@@ -79,8 +57,8 @@ function Review(props) {
           </Typography>
           <Typography gutterBottom>{props.newAppointment.date}</Typography>
         </Grid>
-        <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom className={classes.title}>
+        <Grid container direction="column" item sm={6} xs={12}>
+          <Typography className={classes.title} gutterBottom variant="h6">
             Time
           </Typography>
           <Grid container>

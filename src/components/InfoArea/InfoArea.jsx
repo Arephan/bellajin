@@ -1,7 +1,7 @@
 import React from "react";
-// nodejs library to set properties for components
+// Nodejs library to set properties for components
 import PropTypes from "prop-types";
-// nodejs library that concatenates classes
+// Nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -9,16 +9,16 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import infoStyle from "assets/jss/material-kit-react/components/infoStyle.jsx";
 
 function InfoArea({ ...props }) {
-  const { classes, title, description, iconColor, vertical } = props;
-  const iconWrapper = classNames({
-    [classes.iconWrapper]: true,
-    [classes[iconColor]]: true,
-    [classes.iconWrapperVertical]: vertical
-  });
-  const iconClasses = classNames({
-    [classes.icon]: true,
-    [classes.iconVertical]: vertical
-  });
+  const { classes, title, description, iconColor, vertical } = props,
+    iconWrapper = classNames({
+      [classes.iconWrapper]: true,
+      [classes[iconColor]]: true,
+      [classes.iconWrapperVertical]: vertical
+    }),
+    iconClasses = classNames({
+      [classes.icon]: true,
+      [classes.iconVertical]: vertical
+    });
   return (
     <div className={classes.infoArea}>
       <div className={iconWrapper}>{props.children}</div>
@@ -36,9 +36,8 @@ InfoArea.defaultProps = {
 
 InfoArea.propTypes = {
   classes: PropTypes.object.isRequired,
-  icon: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  icon: PropTypes.func.isRequired,
   iconColor: PropTypes.oneOf([
     "primary",
     "warning",
@@ -48,6 +47,7 @@ InfoArea.propTypes = {
     "rose",
     "gray"
   ]),
+  title: PropTypes.string.isRequired,
   vertical: PropTypes.bool
 };
 

@@ -8,7 +8,7 @@ import Dashboard from "@material-ui/icons/Dashboard";
 import Schedule from "@material-ui/icons/Schedule";
 import List from "@material-ui/icons/List";
 
-// core components
+// Core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import NavPills from "components/NavPills/NavPills.jsx";
@@ -30,7 +30,7 @@ class SectionPills extends React.Component {
               </h3>
             </div>
             <GridContainer>
-              <GridItem xs={12} sm={12} md={8} lg={6}>
+              <GridItem lg={6} md={8} sm={12} xs={12}>
                 <NavPills
                   color="primary"
                   tabs={[

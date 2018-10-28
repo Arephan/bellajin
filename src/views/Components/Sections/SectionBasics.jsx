@@ -1,5 +1,5 @@
 import React from "react";
-// react plugin that creates slider
+// React plugin that creates slider
 import Nouislider from "react-nouislider";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -13,7 +13,7 @@ import Favorite from "@material-ui/icons/Favorite";
 import People from "@material-ui/icons/People";
 import Check from "@material-ui/icons/Check";
 import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
-// core components
+// Core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
@@ -35,16 +35,19 @@ class SectionBasics extends React.Component {
     };
     this.handleChangeEnabled = this.handleChangeEnabled.bind(this);
   }
+
   handleChange = name => event => {
     this.setState({ [name]: event.target.checked });
   };
+
   handleChangeEnabled(event) {
     this.setState({ selectedEnabled: event.target.value });
   }
+
   handleToggle(value) {
-    const { checked } = this.state;
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
+    const { checked } = this.state,
+      currentIndex = checked.indexOf(value),
+      newChecked = [...checked];
 
     if (currentIndex === -1) {
       newChecked.push(value);
@@ -56,6 +59,7 @@ class SectionBasics extends React.Component {
       checked: newChecked
     });
   }
+
   render() {
     const { classes } = this.props;
     return (
@@ -73,7 +77,7 @@ class SectionBasics extends React.Component {
               </h3>
             </div>
             <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={8}>
+              <GridItem md={8} sm={12} xs={12}>
                 <Button color="primary">Default</Button>
                 <Button color="primary" round>
                   round
@@ -95,7 +99,7 @@ class SectionBasics extends React.Component {
               </h3>
             </div>
             <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={8}>
+              <GridItem md={8} sm={12} xs={12}>
                 <Button color="primary" size="sm">
                   Small
                 </Button>
@@ -111,7 +115,7 @@ class SectionBasics extends React.Component {
               </h3>
             </div>
             <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={8}>
+              <GridItem md={8} sm={12} xs={12}>
                 <Button>Default</Button>
                 <Button color="primary">Primary</Button>
                 <Button color="info">Info</Button>
@@ -128,53 +132,52 @@ class SectionBasics extends React.Component {
               <h3>Inputs</h3>
             </div>
             <GridContainer>
-              <GridItem xs={12} sm={4} md={4} lg={3}>
+              <GridItem lg={3} md={4} sm={4} xs={12}>
                 <CustomInput
+                  formControlProps={{
+                    fullWidth: true
+                  }}
                   id="regular"
                   inputProps={{
                     placeholder: "Regular"
                   }}
+                />
+              </GridItem>
+              <GridItem lg={3} md={4} sm={4} xs={12}>
+                <CustomInput
                   formControlProps={{
                     fullWidth: true
                   }}
-                />
-              </GridItem>
-              <GridItem xs={12} sm={4} md={4} lg={3}>
-                <CustomInput
-                  labelText="With floating label"
                   id="float"
-                  formControlProps={{
-                    fullWidth: true
-                  }}
+                  labelText="With floating label"
                 />
               </GridItem>
               <GridItem xs={12} sm={4} md={4} lg={3}>
                 <CustomInput
-                  labelText="Success input"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
                   id="success"
+                  labelText="Success input"
                   success
-                  formControlProps={{
-                    fullWidth: true
-                  }}
                 />
               </GridItem>
-              <GridItem xs={12} sm={4} md={4} lg={3}>
+              <GridItem lg={3} md={4} sm={4} xs={12}>
                 <CustomInput
-                  labelText="Error input"
-                  id="error"
                   error
                   formControlProps={{
                     fullWidth: true
                   }}
+                  id="error"
+                  labelText="Error input"
                 />
               </GridItem>
-              <GridItem xs={12} sm={4} md={4} lg={3}>
+              <GridItem lg={3} md={4} sm={4} xs={12}>
                 <CustomInput
-                  labelText="With material Icons"
-                  id="material"
                   formControlProps={{
                     fullWidth: true
                   }}
+                  id="material"
                   inputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -182,15 +185,15 @@ class SectionBasics extends React.Component {
                       </InputAdornment>
                     )
                   }}
+                  labelText="With material Icons"
                 />
               </GridItem>
-              <GridItem xs={12} sm={4} md={4} lg={3}>
+              <GridItem lg={3} md={4} sm={4} xs={12}>
                 <CustomInput
-                  labelText="With Font Awesome Icons"
-                  id="font-awesome"
                   formControlProps={{
                     fullWidth: true
                   }}
+                  id="font-awesome"
                   inputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -198,6 +201,7 @@ class SectionBasics extends React.Component {
                       </InputAdornment>
                     )
                   }}
+                  labelText="With Font Awesome Icons"
                 />
               </GridItem>
             </GridContainer>
@@ -205,103 +209,91 @@ class SectionBasics extends React.Component {
           <div className={classes.space70} />
           <div id="checkRadios">
             <GridContainer>
-              <GridItem xs={12} sm={6} md={4} lg={3}>
+              <GridItem lg={3} md={4} sm={6} xs={12}>
                 <div className={classes.title}>
                   <h3>Checkboxes</h3>
                 </div>
                 <div
-                  className={
-                    classes.checkboxAndRadio +
-                    " " +
+                  className={`${classes.checkboxAndRadio} ${
                     classes.checkboxAndRadioHorizontal
-                  }
+                  }`}
                 >
                   <FormControlLabel
+                    classes={{ label: classes.label }}
                     control={
                       <Checkbox
-                        tabIndex={-1}
-                        onClick={() => this.handleToggle(21)}
                         checkedIcon={<Check className={classes.checkedIcon} />}
-                        icon={<Check className={classes.uncheckedIcon} />}
                         classes={{ checked: classes.checked }}
+                        icon={<Check className={classes.uncheckedIcon} />}
+                        onClick={() => this.handleToggle(21)}
+                        tabIndex={-1}
                       />
                     }
-                    classes={{ label: classes.label }}
                     label="Unchecked"
                   />
                 </div>
                 <div
-                  className={
-                    classes.checkboxAndRadio +
-                    " " +
+                  className={`${classes.checkboxAndRadio} ${
                     classes.checkboxAndRadioHorizontal
-                  }
+                  }`}
                 >
                   <FormControlLabel
+                    classes={{ label: classes.label }}
                     control={
                       <Checkbox
-                        tabIndex={-1}
-                        onClick={() => this.handleToggle(22)}
-                        checked={
-                          this.state.checked.indexOf(22) !== -1 ? true : false
-                        }
+                        checked={this.state.checked.indexOf(22) !== -1}
                         checkedIcon={<Check className={classes.checkedIcon} />}
-                        icon={<Check className={classes.uncheckedIcon} />}
                         classes={{ checked: classes.checked }}
+                        icon={<Check className={classes.uncheckedIcon} />}
+                        onClick={() => this.handleToggle(22)}
+                        tabIndex={-1}
                       />
                     }
-                    classes={{ label: classes.label }}
                     label="Checked"
                   />
                 </div>
                 <div
-                  className={
-                    classes.checkboxAndRadio +
-                    " " +
+                  className={`${classes.checkboxAndRadio} ${
                     classes.checkboxAndRadioHorizontal
-                  }
+                  }`}
                 >
                   <FormControlLabel
-                    disabled
-                    control={
-                      <Checkbox
-                        tabIndex={-1}
-                        checkedIcon={<Check className={classes.checkedIcon} />}
-                        icon={<Check className={classes.uncheckedIcon} />}
-                        classes={{ checked: classes.checked }}
-                      />
-                    }
                     classes={{
                       label: classes.label,
                       disabled: classes.disabledCheckboxAndRadio
                     }}
+                    control={
+                      <Checkbox
+                        checkedIcon={<Check className={classes.checkedIcon} />}
+                        classes={{ checked: classes.checked }}
+                        icon={<Check className={classes.uncheckedIcon} />}
+                        tabIndex={-1}
+                      />
+                    }
+                    disabled
                     label="Disabled Unchecked"
                   />
                 </div>
                 <div
-                  className={
-                    classes.checkboxAndRadio +
-                    " " +
+                  className={`${classes.checkboxAndRadio} ${
                     classes.checkboxAndRadioHorizontal
-                  }
+                  }`}
                 >
                   <FormControlLabel
-                    disabled
-                    control={
-                      <Checkbox
-                        tabIndex={-1}
-                        checked={
-                          this.state.checked.indexOf(24) !== -1 ? true : false
-                        }
-                        checkedIcon={<Check className={classes.checkedIcon} />}
-                        icon={<Check className={classes.uncheckedIcon} />}
-                        classes={{ checked: classes.checked }}
-                      />
-                    }
                     classes={{
                       label: classes.label,
                       disabled: classes.disabledCheckboxAndRadio
                     }}
+                    control={
+                      <Checkbox
+                        checked={this.state.checked.indexOf(24) !== -1}
+                        checkedIcon={<Check className={classes.checkedIcon} />}
+                        classes={{ checked: classes.checked }}
+                        icon={<Check className={classes.uncheckedIcon} />}
+                        tabIndex={-1}
+                      />
+                    }
+                    disabled
                     label="Disabled Checked"
                   />
                 </div>
@@ -311,93 +303,82 @@ class SectionBasics extends React.Component {
                   <h3>Radio Buttons</h3>
                 </div>
                 <div
-                  className={
-                    classes.checkboxAndRadio +
-                    " " +
+                  className={`${classes.checkboxAndRadio} ${
                     classes.checkboxAndRadioHorizontal
-                  }
+                  }`}
                 >
                   <FormControlLabel
+                    classes={{
+                      label: classes.label
+                    }}
                     control={
                       <Radio
-                        checked={this.state.selectedEnabled === "a"}
-                        onChange={this.handleChangeEnabled}
-                        value="a"
-                        name="radio button enabled"
                         aria-label="A"
-                        icon={
-                          <FiberManualRecord
-                            className={classes.radioUnchecked}
-                          />
-                        }
+                        checked={this.state.selectedEnabled === "a"}
                         checkedIcon={
                           <FiberManualRecord className={classes.radioChecked} />
                         }
                         classes={{
                           checked: classes.radio
                         }}
+                        icon={
+                          <FiberManualRecord
+                            className={classes.radioUnchecked}
+                          />
+                        }
+                        name="radio button enabled"
+                        onChange={this.handleChangeEnabled}
+                        value="a"
                       />
                     }
-                    classes={{
-                      label: classes.label
-                    }}
                     label="First Radio"
                   />
                 </div>
                 <div
-                  className={
-                    classes.checkboxAndRadio +
-                    " " +
+                  className={`${classes.checkboxAndRadio} ${
                     classes.checkboxAndRadioHorizontal
-                  }
+                  }`}
                 >
                   <FormControlLabel
+                    classes={{
+                      label: classes.label
+                    }}
                     control={
                       <Radio
-                        checked={this.state.selectedEnabled === "b"}
-                        onChange={this.handleChangeEnabled}
-                        value="b"
-                        name="radio button enabled"
                         aria-label="B"
-                        icon={
-                          <FiberManualRecord
-                            className={classes.radioUnchecked}
-                          />
-                        }
+                        checked={this.state.selectedEnabled === "b"}
                         checkedIcon={
                           <FiberManualRecord className={classes.radioChecked} />
                         }
                         classes={{
                           checked: classes.radio
                         }}
+                        icon={
+                          <FiberManualRecord
+                            className={classes.radioUnchecked}
+                          />
+                        }
+                        name="radio button enabled"
+                        onChange={this.handleChangeEnabled}
+                        value="b"
                       />
                     }
-                    classes={{
-                      label: classes.label
-                    }}
                     label="Second Radio"
                   />
                 </div>
                 <div
-                  className={
-                    classes.checkboxAndRadio +
-                    " " +
+                  className={`${classes.checkboxAndRadio} ${
                     classes.checkboxAndRadioHorizontal
-                  }
+                  }`}
                 >
                   <FormControlLabel
-                    disabled
+                    classes={{
+                      label: classes.label
+                    }}
                     control={
                       <Radio
-                        checked={false}
-                        value="a"
-                        name="radio button disabled"
                         aria-label="B"
-                        icon={
-                          <FiberManualRecord
-                            className={classes.radioUnchecked}
-                          />
-                        }
+                        checked={false}
                         checkedIcon={
                           <FiberManualRecord className={classes.radioChecked} />
                         }
@@ -405,34 +386,30 @@ class SectionBasics extends React.Component {
                           checked: classes.radio,
                           disabled: classes.disabledCheckboxAndRadio
                         }}
+                        icon={
+                          <FiberManualRecord
+                            className={classes.radioUnchecked}
+                          />
+                        }
+                        name="radio button disabled"
+                        value="a"
                       />
                     }
-                    classes={{
-                      label: classes.label
-                    }}
+                    disabled
                     label="Disabled Unchecked Radio"
                   />
                 </div>
                 <div
-                  className={
-                    classes.checkboxAndRadio +
-                    " " +
+                  className={`${classes.checkboxAndRadio} ${
                     classes.checkboxAndRadioHorizontal
-                  }
+                  }`}
                 >
                   <FormControlLabel
-                    disabled
+                    classes={{ label: classes.label }}
                     control={
                       <Radio
-                        checked={true}
-                        value="b"
-                        name="radio button disabled"
                         aria-label="B"
-                        icon={
-                          <FiberManualRecord
-                            className={classes.radioUnchecked}
-                          />
-                        }
+                        checked
                         checkedIcon={
                           <FiberManualRecord className={classes.radioChecked} />
                         }
@@ -440,9 +417,16 @@ class SectionBasics extends React.Component {
                           checked: classes.radio,
                           disabled: classes.disabledCheckboxAndRadio
                         }}
+                        icon={
+                          <FiberManualRecord
+                            className={classes.radioUnchecked}
+                          />
+                        }
+                        name="radio button disabled"
+                        value="b"
                       />
                     }
-                    classes={{ label: classes.label }}
+                    disabled
                     label="Disabled Checked Radio"
                   />
                 </div>
@@ -453,11 +437,12 @@ class SectionBasics extends React.Component {
                 </div>
                 <div>
                   <FormControlLabel
+                    classes={{
+                      label: classes.label
+                    }}
                     control={
                       <Switch
                         checked={this.state.checkedA}
-                        onChange={this.handleChange("checkedA")}
-                        value="checkedA"
                         classes={{
                           switchBase: classes.switchBase,
                           checked: classes.switchChecked,
@@ -465,21 +450,21 @@ class SectionBasics extends React.Component {
                           iconChecked: classes.switchIconChecked,
                           bar: classes.switchBar
                         }}
+                        onChange={this.handleChange("checkedA")}
+                        value="checkedA"
                       />
                     }
-                    classes={{
-                      label: classes.label
-                    }}
                     label="Toggle is on"
                   />
                 </div>
                 <div>
                   <FormControlLabel
+                    classes={{
+                      label: classes.label
+                    }}
                     control={
                       <Switch
                         checked={this.state.checkedB}
-                        onChange={this.handleChange("checkedB")}
-                        value="checkedB"
                         classes={{
                           switchBase: classes.switchBase,
                           checked: classes.switchChecked,
@@ -487,11 +472,10 @@ class SectionBasics extends React.Component {
                           iconChecked: classes.switchIconChecked,
                           bar: classes.switchBar
                         }}
+                        onChange={this.handleChange("checkedB")}
+                        value="checkedB"
                       />
                     }
-                    classes={{
-                      label: classes.label
-                    }}
                     label="Toggle is off"
                   />
                 </div>
@@ -506,35 +490,35 @@ class SectionBasics extends React.Component {
                   <h3>Progress Bars</h3>
                 </div>
                 <CustomLinearProgress
-                  variant="determinate"
                   color="primary"
                   value={30}
+                  variant="determinate"
                 />
                 <CustomLinearProgress
-                  variant="determinate"
                   color="info"
                   value={60}
+                  variant="determinate"
                 />
                 <CustomLinearProgress
-                  variant="determinate"
                   color="success"
-                  value={100}
                   style={{ width: "35%", display: "inline-block" }}
-                />
-                <CustomLinearProgress
-                  variant="determinate"
-                  color="warning"
                   value={100}
-                  style={{ width: "20%", display: "inline-block" }}
+                  variant="determinate"
                 />
                 <CustomLinearProgress
+                  color="warning"
+                  style={{ width: "20%", display: "inline-block" }}
+                  value={100}
                   variant="determinate"
+                />
+                <CustomLinearProgress
                   color="danger"
-                  value={25}
                   style={{ width: "45%", display: "inline-block" }}
+                  value={25}
+                  variant="determinate"
                 />
               </GridItem>
-              <GridItem xs={12} sm={12} md={6}>
+              <GridItem md={6} sm={12} xs={12}>
                 <div className={classes.title}>
                   <h3>Pagination</h3>
                 </div>
@@ -552,6 +536,7 @@ class SectionBasics extends React.Component {
                   ]}
                 />
                 <Paginations
+                  color="info"
                   pages={[
                     { text: "PREV" },
                     { text: 1 },
@@ -561,7 +546,6 @@ class SectionBasics extends React.Component {
                     { text: 5 },
                     { text: "NEXT" }
                   ]}
-                  color="info"
                 />
               </GridItem>
             </GridContainer>
@@ -573,18 +557,18 @@ class SectionBasics extends React.Component {
                   <h3>Sliders</h3>
                 </div>
                 <Nouislider
-                  start={[40]}
                   connect={[true, false]}
-                  step={1}
                   range={{ min: 0, max: 100 }}
+                  start={[40]}
+                  step={1}
                 />
                 <br />
                 <div className="slider slider-info">
                   <Nouislider
-                    start={[20, 60]}
                     connect={[false, true, false]}
-                    step={1}
                     range={{ min: 0, max: 100 }}
+                    start={[20, 60]}
+                    step={1}
                   />
                 </div>
               </GridItem>

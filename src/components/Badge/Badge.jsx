@@ -1,5 +1,5 @@
 import React from "react";
-// nodejs library to set properties for components
+// Nodejs library to set properties for components
 import PropTypes from "prop-types";
 
 // @material-ui/core components
@@ -10,7 +10,7 @@ import badgeStyle from "assets/jss/material-kit-react/components/badgeStyle.jsx"
 function Badge({ ...props }) {
   const { classes, color, children } = props;
   return (
-    <span className={classes.badge + " " + classes[color]}>{children}</span>
+    <span className={`${classes.badge} ${classes[color]}`}>{children}</span>
   );
 }
 

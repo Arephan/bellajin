@@ -1,11 +1,11 @@
 import React from "react";
-// react components for routing our app without refresh
+// React components for routing our app without refresh
 import { Link } from "react-router-dom";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
 
-// core components
+// Core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
@@ -24,15 +24,11 @@ class SectionExamples extends React.Component {
             <GridItem xs={12} sm={12} md={6}>
               <Link to="landing-page" className={classes.link}>
                 <img
-                  src={landing}
                   alt="..."
-                  className={
-                    classes.imgRaised +
-                    " " +
-                    classes.imgRounded +
-                    " " +
+                  className={`${classes.imgRaised} ${classes.imgRounded} ${
                     classes.imgFluid
-                  }
+                  }`}
+                  src={landing}
                 />
                 <Button color="primary" size="lg" simple>
                   View landing page
@@ -40,17 +36,13 @@ class SectionExamples extends React.Component {
               </Link>
             </GridItem>
             <GridItem xs={12} sm={12} md={6}>
-              <Link to="profile-page" className={classes.link}>
+              <Link className={classes.link} to="profile-page">
                 <img
-                  src={profile}
                   alt="..."
-                  className={
-                    classes.imgRaised +
-                    " " +
-                    classes.imgRounded +
-                    " " +
+                  className={`${classes.imgRaised} ${classes.imgRounded} ${
                     classes.imgFluid
-                  }
+                  }`}
+                  src={profile}
                 />
                 <Button color="primary" size="lg" simple>
                   View profile page

@@ -1,15 +1,15 @@
 import React from "react";
-// nodejs library to set properties for components
+// Nodejs library to set properties for components
 import PropTypes from "prop-types";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-// core components
+// Core components
 import typographyStyle from "assets/jss/material-kit-react/components/typographyStyle.jsx";
 
 function Small({ ...props }) {
   const { classes, children } = props;
   return (
-    <div className={classes.defaultFontStyle + " " + classes.smallText}>
+    <div className={`${classes.defaultFontStyle} ${classes.smallText}`}>
       {children}
     </div>
   );

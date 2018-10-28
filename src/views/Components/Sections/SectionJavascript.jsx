@@ -1,5 +1,5 @@
 import React from "react";
-// react plugin for creating date-time-picker
+// React plugin for creating date-time-picker
 import Datetime from "react-datetime";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -16,7 +16,7 @@ import Popover from "@material-ui/core/Popover";
 // @material-ui/icons
 import LibraryBooks from "@material-ui/icons/LibraryBooks";
 import Close from "@material-ui/icons/Close";
-// core components
+// Core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
@@ -28,9 +28,13 @@ function Transition(props) {
 
 class SectionJavascript extends React.Component {
   anchorElLeft = null;
+
   anchorElTop = null;
+
   anchorElBottom = null;
+
   anchorElRight = null;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -41,26 +45,31 @@ class SectionJavascript extends React.Component {
       openRight: false
     };
   }
+
   handleClickOpen(modal) {
-    var x = [];
+    const x = [];
     x[modal] = true;
     this.setState(x);
   }
+
   handleClose(modal) {
-    var x = [];
+    const x = [];
     x[modal] = false;
     this.setState(x);
   }
+
   handleClosePopover(state) {
     this.setState({
       [state]: false
     });
   }
+
   handleClickButton(state) {
     this.setState({
       [state]: true
     });
   }
+
   render() {
     const { classes } = this.props;
     return (
@@ -75,36 +84,37 @@ class SectionJavascript extends React.Component {
                 <h3>Modal</h3>
               </div>
               <GridContainer>
-                <GridItem xs={12} sm={12} md={6} lg={4}>
+                <GridItem lg={4} md={6} sm={12} xs={12}>
                   <Button
-                    color="primary"
                     block
+                    color="primary"
                     onClick={() => this.handleClickOpen("classicModal")}
                   >
-                    <LibraryBooks className={classes.icon} />Classic
+                    <LibraryBooks className={classes.icon} />
+                    Classic
                   </Button>
                   <Dialog
+                    aria-describedby="classic-modal-slide-description"
+                    aria-labelledby="classic-modal-slide-title"
                     classes={{
                       root: classes.center,
                       paper: classes.modal
                     }}
-                    open={this.state.classicModal}
-                    TransitionComponent={Transition}
                     keepMounted
                     onClose={() => this.handleClose("classicModal")}
-                    aria-labelledby="classic-modal-slide-title"
-                    aria-describedby="classic-modal-slide-description"
+                    open={this.state.classicModal}
+                    TransitionComponent={Transition}
                   >
                     <DialogTitle
-                      id="classic-modal-slide-title"
-                      disableTypography
                       className={classes.modalHeader}
+                      disableTypography
+                      id="classic-modal-slide-title"
                     >
                       <IconButton
-                        className={classes.modalCloseButton}
-                        key="close"
                         aria-label="Close"
+                        className={classes.modalCloseButton}
                         color="inherit"
+                        key="close"
                         onClick={() => this.handleClose("classicModal")}
                       >
                         <Close className={classes.modalClose} />
@@ -112,8 +122,8 @@ class SectionJavascript extends React.Component {
                       <h4 className={classes.modalTitle}>Modal title</h4>
                     </DialogTitle>
                     <DialogContent
-                      id="classic-modal-slide-description"
                       className={classes.modalBody}
+                      id="classic-modal-slide-description"
                     >
                       <p>
                         Far far away, behind the word mountains, far from the
@@ -135,8 +145,8 @@ class SectionJavascript extends React.Component {
                         Nice Button
                       </Button>
                       <Button
-                        onClick={() => this.handleClose("classicModal")}
                         color="danger"
+                        onClick={() => this.handleClose("classicModal")}
                         simple
                       >
                         Close
@@ -145,7 +155,7 @@ class SectionJavascript extends React.Component {
                   </Dialog>
                 </GridItem>
               </GridContainer>
-              <GridItem xs={12} sm={12} md={12}>
+              <GridItem md={12} sm={12} xs={12}>
                 <div className={classes.title}>
                   <h3>Datetime Picker</h3>
                 </div>
@@ -164,7 +174,7 @@ class SectionJavascript extends React.Component {
                 </GridContainer>
               </GridItem>
             </GridItem>
-            <GridItem xs={12} sm={12} md={6}>
+            <GridItem md={6} sm={12} xs={12}>
               <div className={classes.title}>
                 <h3>Popovers</h3>
               </div>
@@ -177,17 +187,17 @@ class SectionJavascript extends React.Component {
                 On left
               </Button>
               <Popover
-                classes={{
-                  paper: classes.popover
-                }}
-                open={this.state.openLeft}
                 anchorEl={this.anchorElLeft}
-                anchorReference={"anchorEl"}
-                onClose={() => this.handleClosePopover("openLeft")}
                 anchorOrigin={{
                   vertical: "center",
                   horizontal: "left"
                 }}
+                anchorReference="anchorEl"
+                classes={{
+                  paper: classes.popover
+                }}
+                onClose={() => this.handleClosePopover("openLeft")}
+                open={this.state.openLeft}
                 transformOrigin={{
                   vertical: "center",
                   horizontal: "right"
@@ -208,17 +218,17 @@ class SectionJavascript extends React.Component {
                 On top
               </Button>
               <Popover
-                classes={{
-                  paper: classes.popover
-                }}
-                open={this.state.openTop}
                 anchorEl={this.anchorElTop}
-                anchorReference={"anchorEl"}
-                onClose={() => this.handleClosePopover("openTop")}
                 anchorOrigin={{
                   vertical: "top",
                   horizontal: "center"
                 }}
+                anchorReference="anchorEl"
+                classes={{
+                  paper: classes.popover
+                }}
+                onClose={() => this.handleClosePopover("openTop")}
+                open={this.state.openTop}
                 transformOrigin={{
                   vertical: "bottom",
                   horizontal: "center"
@@ -238,17 +248,17 @@ class SectionJavascript extends React.Component {
                 On bottom
               </Button>
               <Popover
-                classes={{
-                  paper: classes.popover
-                }}
-                open={this.state.openBottom}
                 anchorEl={this.anchorElBottom}
-                anchorReference={"anchorEl"}
-                onClose={() => this.handleClosePopover("openBottom")}
                 anchorOrigin={{
                   vertical: "bottom",
                   horizontal: "center"
                 }}
+                anchorReference="anchorEl"
+                classes={{
+                  paper: classes.popover
+                }}
+                onClose={() => this.handleClosePopover("openBottom")}
+                open={this.state.openBottom}
                 transformOrigin={{
                   vertical: "top",
                   horizontal: "center"
@@ -268,17 +278,17 @@ class SectionJavascript extends React.Component {
                 On right
               </Button>
               <Popover
-                classes={{
-                  paper: classes.popover
-                }}
-                open={this.state.openRight}
                 anchorEl={this.anchorElRight}
-                anchorReference={"anchorEl"}
-                onClose={() => this.handleClosePopover("openRight")}
                 anchorOrigin={{
                   vertical: "center",
                   horizontal: "right"
                 }}
+                anchorReference="anchorEl"
+                classes={{
+                  paper: classes.popover
+                }}
+                onClose={() => this.handleClosePopover("openRight")}
+                open={this.state.openRight}
                 transformOrigin={{
                   vertical: "center",
                   horizontal: "left"
@@ -295,34 +305,34 @@ class SectionJavascript extends React.Component {
                 <h3>Tooltips</h3>
               </div>
               <Tooltip
-                id="tooltip-left"
-                title="Tooltip on left"
-                placement="left"
                 classes={{ tooltip: classes.tooltip }}
+                id="tooltip-left"
+                placement="left"
+                title="Tooltip on left"
               >
                 <Button>On left</Button>
               </Tooltip>
               <Tooltip
-                id="tooltip-top"
-                title="Tooltip on top"
-                placement="top"
                 classes={{ tooltip: classes.tooltip }}
+                id="tooltip-top"
+                placement="top"
+                title="Tooltip on top"
               >
                 <Button>On top</Button>
               </Tooltip>
               <Tooltip
-                id="tooltip-bottom"
-                title="Tooltip on bottom"
-                placement="bottom"
                 classes={{ tooltip: classes.tooltip }}
+                id="tooltip-bottom"
+                placement="bottom"
+                title="Tooltip on bottom"
               >
                 <Button>On bottom</Button>
               </Tooltip>
               <Tooltip
-                id="tooltip-right"
-                title="Tooltip on right"
-                placement="right"
                 classes={{ tooltip: classes.tooltip }}
+                id="tooltip-right"
+                placement="right"
+                title="Tooltip on right"
               >
                 <Button>On right</Button>
               </Tooltip>

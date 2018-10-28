@@ -1,7 +1,7 @@
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import landingPageStyle from "assets/jss/material-kit-react/views/landingPage.jsx";
-// nodejs library that concatenates classes
+// Nodejs library that concatenates classes
 import classNames from "classnames";
 import Button from "components/CustomButtons/Button.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -28,9 +28,9 @@ class LandingPage extends React.Component {
                 <Link to="/new-appointment">
                   <Button
                     color="danger"
+                    rel="noopener noreferrer"
                     size="lg"
                     target="_blank"
-                    rel="noopener noreferrer"
                   >
                     <i className="fas fa-calendar" />
                     Book Appointment

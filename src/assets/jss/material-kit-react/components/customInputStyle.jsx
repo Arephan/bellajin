@@ -1,8 +1,8 @@
 import {
-  primaryColor,
   dangerColor,
-  successColor,
-  defaultFont
+  defaultFont,
+  primaryColor,
+  successColor
 } from "assets/jss/material-kit-react.jsx";
 
 const customInputStyle = {
@@ -50,10 +50,10 @@ const customInputStyle = {
     }
   },
   labelRootError: {
-    color: dangerColor + " !important"
+    color: `${dangerColor} !important`
   },
   labelRootSuccess: {
-    color: successColor + " !important"
+    color: `${successColor} !important`
   },
   formControl: {
     margin: "0 0 17px 0",

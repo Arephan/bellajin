@@ -27,63 +27,62 @@ import perm6 from "assets/img/perm/perm6.jpg";
 import SectionCarousel from "views/LandingPage/Sections/SectionCarousel";
 import SingleLineGridList from "components/GridList/SingleLineGridList";
 const womenCarouselData = [
-  {
-    img: women1
-  },
-  {
-    img: women2
-  },
-  {
-    img: women3
-  },
-  {
-    img: women4
-  },
-  {
-    img: women5
-  },
-  {
-    img: women6
-  }
-];
-const menCarouselData = [
-  {
-    img: men1
-  },
-  {
-    img: men2
-  },
-  {
-    img: men3
-  },
-  {
-    img: men4
-  },
-  {
-    img: men5
-  }
-
-];
-const permCarouselData = [
-  {
-    img: perm1
-  },
-  {
-    img: perm2
-  },
-  {
-    img: perm3
-  },
-  {
-    img: perm4
-  },
-  {
-    img: perm5
-  },
-  {
-    img: perm6
-  }
-];
+    {
+      img: women1
+    },
+    {
+      img: women2
+    },
+    {
+      img: women3
+    },
+    {
+      img: women4
+    },
+    {
+      img: women5
+    },
+    {
+      img: women6
+    }
+  ],
+  menCarouselData = [
+    {
+      img: men1
+    },
+    {
+      img: men2
+    },
+    {
+      img: men3
+    },
+    {
+      img: men4
+    },
+    {
+      img: men5
+    }
+  ],
+  permCarouselData = [
+    {
+      img: perm1
+    },
+    {
+      img: perm2
+    },
+    {
+      img: perm3
+    },
+    {
+      img: perm4
+    },
+    {
+      img: perm5
+    },
+    {
+      img: perm6
+    }
+  ];
 function TabContainer(props) {
   return (
     <Typography component="div" style={{ padding: 8 * 3 }}>
@@ -114,19 +113,19 @@ class ScrollableTabsButtonAuto extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
-    const { value } = this.state;
+    const { classes } = this.props,
+      { value } = this.state;
 
     return (
       <div className={classes.root}>
-        <AppBar position="static" color="default">
+        <AppBar color="default" position="static">
           <Tabs
-            value={value}
-            onChange={this.handleChange}
             indicatorColor="primary"
-            textColor="primary"
+            onChange={this.handleChange}
             scrollable
             scrollButtons="auto"
+            textColor="primary"
+            value={value}
           >
             <Tab label="Ladies" />
             <Tab label="Men" />

@@ -1,15 +1,15 @@
 import { base, ref } from "./constants";
 
 export function addAppointment(newAppointment) {
-  var immediatelyAvailableReference = base.push("Appointments", {
-    data: newAppointment,
-    then(err) {
-      if (!err) {
+  const immediatelyAvailableReference = base.push("Appointments", {
+      data: newAppointment,
+      then(err) {
+        if (!err) {
+        }
       }
-    }
-  });
-  //available immediately, you don't have to wait for the callback to be called
-  var generatedKey = immediatelyAvailableReference.key;
+    }),
+    // Available immediately, you don't have to wait for the callback to be called
+    generatedKey = immediatelyAvailableReference.key;
   return generatedKey;
 }
 
@@ -22,10 +22,10 @@ export function getUserAppointments(uid) {
     .child(`users/${uid}/appointments`)
     .once("value")
     .then(snapshot => {
-      var returnArr = [];
+      const returnArr = [];
 
-      snapshot.forEach(function(childSnapshot) {
-        let item = childSnapshot.val();
+      snapshot.forEach(childSnapshot => {
+        const item = childSnapshot.val();
         returnArr.push(item.newAppointment);
       });
       return returnArr;
@@ -34,13 +34,13 @@ export function getUserAppointments(uid) {
 
 export function getAppointmentsOnDate(date) {
   return ref
-    .child(`Appointments`)
+    .child("Appointments")
     .once("value")
     .then(snapshot => {
-      var returnArr = [];
+      const returnArr = [];
 
-      snapshot.forEach(function(childSnapshot) {
-        let item = childSnapshot.val();
+      snapshot.forEach(childSnapshot => {
+        const item = childSnapshot.val();
         if (item.date === date) {
           returnArr.push(item.timeslot[0].primary);
         }

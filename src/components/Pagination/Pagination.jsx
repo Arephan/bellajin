@@ -1,7 +1,7 @@
 import React from "react";
-// nodejs library to set properties for components
+// Nodejs library to set properties for components
 import PropTypes from "prop-types";
-// nodejs library that concatenates classes
+// Nodejs library that concatenates classes
 import classNames from "classnames";
 
 // @material-ui/core components
@@ -28,7 +28,7 @@ function Pagination({ ...props }) {
               </Button>
             ) : (
               <Button
-                onClick={() => console.log("you've clicked " + prop.text)}
+                onClick={() => console.log(`you've clicked ${prop.text}`)}
                 className={paginationLink}
               >
                 {prop.text}
@@ -47,6 +47,7 @@ Pagination.defaultProps = {
 
 Pagination.propTypes = {
   classes: PropTypes.object.isRequired,
+  color: PropTypes.oneOf(["primary", "info", "success", "warning", "danger"]),
   pages: PropTypes.arrayOf(
     PropTypes.shape({
       active: PropTypes.bool,
@@ -57,8 +58,7 @@ Pagination.propTypes = {
       ]).isRequired,
       onClick: PropTypes.func
     })
-  ).isRequired,
-  color: PropTypes.oneOf(["primary", "info", "success", "warning", "danger"])
+  ).isRequired
 };
 
 export default withStyles(paginationStyle)(Pagination);

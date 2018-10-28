@@ -7,7 +7,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Face from "@material-ui/icons/Face";
 import Chat from "@material-ui/icons/Chat";
 import Build from "@material-ui/icons/Build";
-// core components
+// Core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
@@ -22,7 +22,7 @@ class SectionTabs extends React.Component {
           <div id="nav-tabs">
             <h3>Navigation Tabs</h3>
             <GridContainer>
-              <GridItem xs={12} sm={12} md={6}>
+              <GridItem md={6} sm={12} xs={12}>
                 <h3>
                   <small>Tabs with Icons on Card</small>
                 </h3>
@@ -80,13 +80,13 @@ class SectionTabs extends React.Component {
                   ]}
                 />
               </GridItem>
-              <GridItem xs={12} sm={12} md={6}>
+              <GridItem md={6} sm={12} xs={12}>
                 <h3>
                   <small>Tabs on Plain Card</small>
                 </h3>
                 <CustomTabs
-                  plainTabs
                   headerColor="danger"
+                  plainTabs
                   tabs={[
                     {
                       tabName: "Home",

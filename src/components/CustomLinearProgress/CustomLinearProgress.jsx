@@ -1,11 +1,11 @@
 import React from "react";
-// nodejs library to set properties for components
+// Nodejs library to set properties for components
 import PropTypes from "prop-types";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import LinearProgress from "@material-ui/core/LinearProgress";
-// core components
+// Core components
 import customLinearProgressStyle from "assets/jss/material-kit-react/components/customLinearProgressStyle.jsx";
 
 function CustomLinearProgress({ ...props }) {
@@ -14,8 +14,8 @@ function CustomLinearProgress({ ...props }) {
     <LinearProgress
       {...rest}
       classes={{
-        root: classes.root + " " + classes[color + "Background"],
-        bar: classes.bar + " " + classes[color]
+        root: `${classes.root} ${classes[`${color}Background`]}`,
+        bar: `${classes.bar} ${classes[color]}`
       }}
     />
   );

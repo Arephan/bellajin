@@ -1,12 +1,12 @@
 import React from "react";
-// nodejs library that concatenates classes
+// Nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 
 // @material-ui/icons
 
-// core components
+// Core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
@@ -22,12 +22,12 @@ import team3 from "assets/img/faces/kendall.jpg";
 
 class TeamSection extends React.Component {
   render() {
-    const { classes } = this.props;
-    const imageClasses = classNames(
-      classes.imgRaised,
-      classes.imgRoundedCircle,
-      classes.imgFluid
-    );
+    const { classes } = this.props,
+      imageClasses = classNames(
+        classes.imgRaised,
+        classes.imgRoundedCircle,
+        classes.imgFluid
+      );
     return (
       <div className={classes.section}>
         <h2 className={classes.title}>Here is our team</h2>
@@ -35,8 +35,8 @@ class TeamSection extends React.Component {
           <GridContainer>
             <GridItem xs={12} sm={12} md={4}>
               <Card plain>
-                <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
-                  <img src={team1} alt="..." className={imageClasses} />
+                <GridItem className={classes.itemGrid} md={6} sm={12} xs={12}>
+                  <img alt="..." className={imageClasses} src={team1} />
                 </GridItem>
                 <h4 className={classes.cardTitle}>
                   Gigi Hadid
@@ -53,32 +53,32 @@ class TeamSection extends React.Component {
                 </CardBody>
                 <CardFooter className={classes.justifyCenter}>
                   <Button
-                    justIcon
-                    color="transparent"
                     className={classes.margin5}
+                    color="transparent"
+                    justIcon
                   >
-                    <i className={classes.socials + " fab fa-twitter"} />
+                    <i className={`${classes.socials} fab fa-twitter`} />
                   </Button>
                   <Button
-                    justIcon
-                    color="transparent"
                     className={classes.margin5}
+                    color="transparent"
+                    justIcon
                   >
-                    <i className={classes.socials + " fab fa-instagram"} />
+                    <i className={`${classes.socials} fab fa-instagram`} />
                   </Button>
                   <Button
-                    justIcon
-                    color="transparent"
                     className={classes.margin5}
+                    color="transparent"
+                    justIcon
                   >
-                    <i className={classes.socials + " fab fa-facebook"} />
+                    <i className={`${classes.socials} fab fa-facebook`} />
                   </Button>
                 </CardFooter>
               </Card>
             </GridItem>
-            <GridItem xs={12} sm={12} md={4}>
+            <GridItem md={4} sm={12} xs={12}>
               <Card plain>
-                <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
+                <GridItem className={classes.itemGrid} md={6} sm={12} xs={12}>
                   <img src={team2} alt="..." className={imageClasses} />
                 </GridItem>
                 <h4 className={classes.cardTitle}>
@@ -96,25 +96,25 @@ class TeamSection extends React.Component {
                 </CardBody>
                 <CardFooter className={classes.justifyCenter}>
                   <Button
-                    justIcon
-                    color="transparent"
                     className={classes.margin5}
+                    color="transparent"
+                    justIcon
                   >
-                    <i className={classes.socials + " fab fa-twitter"} />
+                    <i className={`${classes.socials} fab fa-twitter`} />
                   </Button>
                   <Button
-                    justIcon
-                    color="transparent"
                     className={classes.margin5}
+                    color="transparent"
+                    justIcon
                   >
-                    <i className={classes.socials + " fab fa-linkedin"} />
+                    <i className={`${classes.socials} fab fa-linkedin`} />
                   </Button>
                 </CardFooter>
               </Card>
             </GridItem>
             <GridItem xs={12} sm={12} md={4}>
               <Card plain>
-                <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
+                <GridItem className={classes.itemGrid} md={6} sm={12} xs={12}>
                   <img src={team3} alt="..." className={imageClasses} />
                 </GridItem>
                 <h4 className={classes.cardTitle}>
@@ -132,25 +132,25 @@ class TeamSection extends React.Component {
                 </CardBody>
                 <CardFooter className={classes.justifyCenter}>
                   <Button
-                    justIcon
-                    color="transparent"
                     className={classes.margin5}
+                    color="transparent"
+                    justIcon
                   >
-                    <i className={classes.socials + " fab fa-twitter"} />
+                    <i className={`${classes.socials} fab fa-twitter`} />
                   </Button>
                   <Button
-                    justIcon
-                    color="transparent"
                     className={classes.margin5}
+                    color="transparent"
+                    justIcon
                   >
-                    <i className={classes.socials + " fab fa-instagram"} />
+                    <i className={`${classes.socials} fab fa-instagram`} />
                   </Button>
                   <Button
-                    justIcon
-                    color="transparent"
                     className={classes.margin5}
+                    color="transparent"
+                    justIcon
                   >
-                    <i className={classes.socials + " fab fa-facebook"} />
+                    <i className={`${classes.socials} fab fa-facebook`} />
                   </Button>
                 </CardFooter>
               </Card>

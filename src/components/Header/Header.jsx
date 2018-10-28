@@ -1,7 +1,7 @@
 import React from "react";
-// nodejs library that concatenates classes
+// Nodejs library that concatenates classes
 import classNames from "classnames";
-// nodejs library to set properties for components
+// Nodejs library to set properties for components
 import PropTypes from "prop-types";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -13,7 +13,7 @@ import Hidden from "@material-ui/core/Hidden";
 import Drawer from "@material-ui/core/Drawer";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
-// core components
+// Core components
 import headerStyle from "assets/jss/material-kit-react/components/headerStyle.jsx";
 
 class Header extends React.Component {
@@ -25,17 +25,20 @@ class Header extends React.Component {
     this.handleDrawerToggle = this.handleDrawerToggle.bind(this);
     this.headerColorChange = this.headerColorChange.bind(this);
   }
+
   handleDrawerToggle() {
     this.setState({ mobileOpen: !this.state.mobileOpen });
   }
+
   componentDidMount() {
     if (this.props.changeColorOnScroll) {
       window.addEventListener("scroll", this.headerColorChange);
     }
   }
+
   headerColorChange() {
-    const { classes, color, changeColorOnScroll } = this.props;
-    const windowsScrollTop = window.pageYOffset;
+    const { classes, color, changeColorOnScroll } = this.props,
+      windowsScrollTop = window.pageYOffset;
     if (windowsScrollTop > changeColorOnScroll.height) {
       document.body
         .getElementsByTagName("header")[0]
@@ -52,30 +55,32 @@ class Header extends React.Component {
         .classList.remove(classes[changeColorOnScroll.color]);
     }
   }
+
   componentWillUnmount() {
     if (this.props.changeColorOnScroll) {
       window.removeEventListener("scroll", this.headerColorChange);
     }
   }
+
   render() {
     const {
-      classes,
-      color,
-      rightLinks,
-      leftLinks,
-      brand,
-      fixed,
-      absolute,
-      relative
-    } = this.props;
-    const appBarClasses = classNames({
-      [classes.appBar]: true,
-      [classes[color]]: color,
-      [classes.absolute]: absolute,
-      [classes.fixed]: fixed,
-      [classes.relative]: relative
-    });
-    const brandComponent = <Button className={classes.title}>{brand}</Button>;
+        classes,
+        color,
+        rightLinks,
+        leftLinks,
+        brand,
+        fixed,
+        absolute,
+        relative
+      } = this.props,
+      appBarClasses = classNames({
+        [classes.appBar]: true,
+        [classes[color]]: color,
+        [classes.absolute]: absolute,
+        [classes.fixed]: fixed,
+        [classes.relative]: relative
+      }),
+      brandComponent = <Button className={classes.title}>{brand}</Button>;
     return (
       <AppBar className={appBarClasses}>
         <Toolbar className={classes.container}>
@@ -94,8 +99,8 @@ class Header extends React.Component {
           </Hidden>
           <Hidden mdUp>
             <IconButton
-              color="inherit"
               aria-label="open drawer"
+              color="inherit"
               onClick={this.handleDrawerToggle}
             >
               <Menu />
@@ -104,13 +109,13 @@ class Header extends React.Component {
         </Toolbar>
         <Hidden mdUp implementation="css">
           <Drawer
-            variant="temporary"
-            anchor={"right"}
-            open={this.state.mobileOpen}
+            anchor="right"
             classes={{
               paper: classes.drawerPaper
             }}
             onClose={this.handleDrawerToggle}
+            open={this.state.mobileOpen}
+            variant="temporary"
           >
             <div className={classes.appResponsive}>
               {leftLinks}
@@ -128,30 +133,8 @@ Header.defaultProp = {
 };
 
 Header.propTypes = {
-  classes: PropTypes.object.isRequired,
-  color: PropTypes.oneOf([
-    "primary",
-    "info",
-    "success",
-    "warning",
-    "danger",
-    "transparent",
-    "white",
-    "rose",
-    "dark"
-  ]),
-  rightLinks: PropTypes.node,
-  leftLinks: PropTypes.node,
-  brand: PropTypes.string,
-  fixed: PropTypes.bool,
   absolute: PropTypes.bool,
-  relative: PropTypes.bool,
-  // this will cause the sidebar to change the color from
-  // this.props.color (see above) to changeColorOnScroll.color
-  // when the window.pageYOffset is heigher or equal to
-  // changeColorOnScroll.height and then when it is smaller than
-  // changeColorOnScroll.height change it back to
-  // this.props.color (see above)
+  brand: PropTypes.string,
   changeColorOnScroll: PropTypes.shape({
     height: PropTypes.number.isRequired,
     color: PropTypes.oneOf([
@@ -165,7 +148,31 @@ Header.propTypes = {
       "rose",
       "dark"
     ]).isRequired
-  })
+  }),
+  classes: PropTypes.object.isRequired,
+  color: PropTypes.oneOf([
+    "primary",
+    "info",
+    "success",
+    "warning",
+    "danger",
+    "transparent",
+    "white",
+    "rose",
+    "dark"
+  ]),
+  fixed: PropTypes.bool,
+  leftLinks: PropTypes.node,
+  relative: PropTypes.bool,
+  /*
+   * This will cause the sidebar to change the color from
+   * this.props.color (see above) to changeColorOnScroll.color
+   * when the window.pageYOffset is heigher or equal to
+   * changeColorOnScroll.height and then when it is smaller than
+   * changeColorOnScroll.height change it back to
+   * this.props.color (see above)
+   */
+  rightLinks: PropTypes.node
 };
 
 export default withStyles(headerStyle)(Header);

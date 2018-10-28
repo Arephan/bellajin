@@ -1,21 +1,21 @@
 import React from "react";
-// nodejs library that concatenates classes
+// Nodejs library that concatenates classes
 import classNames from "classnames";
-// nodejs library to set properties for components
+// Nodejs library to set properties for components
 import PropTypes from "prop-types";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
 
-// core components
+// Core components
 import cardFooterStyle from "assets/jss/material-kit-react/components/cardFooterStyle.jsx";
 
 function CardFooter({ ...props }) {
-  const { classes, className, children, ...rest } = props;
-  const cardFooterClasses = classNames({
-    [classes.cardFooter]: true,
-    [className]: className !== undefined
-  });
+  const { classes, className, children, ...rest } = props,
+    cardFooterClasses = classNames({
+      [classes.cardFooter]: true,
+      [className]: className !== undefined
+    });
   return (
     <div className={cardFooterClasses} {...rest}>
       {children}
@@ -24,8 +24,8 @@ function CardFooter({ ...props }) {
 }
 
 CardFooter.propTypes = {
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(cardFooterStyle)(CardFooter);

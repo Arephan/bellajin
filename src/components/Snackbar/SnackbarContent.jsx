@@ -1,5 +1,5 @@
 import React from "react";
-// nodejs library to set properties for components
+// Nodejs library to set properties for components
 import PropTypes from "prop-types";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -16,14 +16,14 @@ class SnackbarContent extends React.Component {
     super(props);
     this.closeAlert = this.closeAlert.bind(this);
     const { classes, message, color, close, icon } = props;
-    var action = [];
+    let action = [];
     if (close !== undefined) {
       action = [
         <IconButton
-          className={classes.iconButton}
-          key="close"
           aria-label="Close"
+          className={classes.iconButton}
           color="inherit"
+          key="close"
           onClick={this.closeAlert}
         >
           <Close className={classes.close} />
@@ -47,6 +47,10 @@ class SnackbarContent extends React.Component {
     this.state = {
       alert: (
         <Snack
+          classes={{
+            root: `${classes.root} ${classes[color]}`,
+            message: `${classes.message} ${classes.container}`
+          }}
           message={
             <div>
               {snackIcon}
@@ -54,17 +58,15 @@ class SnackbarContent extends React.Component {
               {close !== undefined ? action : null}
             </div>
           }
-          classes={{
-            root: classes.root + " " + classes[color],
-            message: classes.message + " " + classes.container
-          }}
         />
       )
     };
   }
+
   closeAlert() {
     this.setState({ alert: null });
   }
+
   render() {
     return this.state.alert;
   }
@@ -72,10 +74,10 @@ class SnackbarContent extends React.Component {
 
 SnackbarContent.propTypes = {
   classes: PropTypes.object.isRequired,
-  message: PropTypes.node.isRequired,
-  color: PropTypes.oneOf(["info", "success", "warning", "danger", "primary"]),
   close: PropTypes.bool,
-  icon: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+  color: PropTypes.oneOf(["info", "success", "warning", "danger", "primary"]),
+  icon: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  message: PropTypes.node.isRequired
 };
 
 export default withStyles(snackbarContentStyle)(SnackbarContent);

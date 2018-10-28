@@ -45,9 +45,9 @@ class CheckboxList extends React.Component {
   }
 
   handleToggle = value => () => {
-    const { checked, data } = this.state;
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
+    const { checked, data } = this.state,
+      currentIndex = checked.indexOf(value),
+      newChecked = [...checked];
 
     if (currentIndex === -1) {
       newChecked.push(value);
@@ -72,22 +72,22 @@ class CheckboxList extends React.Component {
         <List>
           {this.state.data.map(value => (
             <li
-              key={`${value.serviceCategory}`}
               className={classes.listSection}
+              key={`${value.serviceCategory}`}
             >
               <ul className={classes.ul}>
                 <ListItem
-                  key={value}
-                  role={undefined}
-                  dense
                   button
-                  onClick={this.handleToggle(value)}
                   className={classes.listItem}
+                  dense
+                  key={value}
+                  onClick={this.handleToggle(value)}
+                  role={undefined}
                 >
                   <Checkbox
                     checked={this.state.checked.indexOf(value) !== -1}
-                    tabIndex={-1}
                     disableRipple
+                    tabIndex={-1}
                   />
                   <ListItemText
                     primary={`${value.primary}`}

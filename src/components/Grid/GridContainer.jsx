@@ -1,5 +1,5 @@
 import React from "react";
-// nodejs library to set properties for components
+// Nodejs library to set properties for components
 import PropTypes from "prop-types";
 
 // @material-ui/core components
@@ -17,7 +17,7 @@ const style = {
 function GridContainer({ ...props }) {
   const { classes, children, className, ...rest } = props;
   return (
-    <Grid container {...rest} className={classes.grid + " " + className}>
+    <Grid container {...rest} className={`${classes.grid} ${className}`}>
       {children}
     </Grid>
   );
@@ -28,9 +28,9 @@ GridContainer.defaultProps = {
 };
 
 GridContainer.propTypes = {
-  classes: PropTypes.object.isRequired,
   children: PropTypes.node,
-  className: PropTypes.string
+  className: PropTypes.string,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(style)(GridContainer);

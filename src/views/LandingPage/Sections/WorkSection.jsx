@@ -1,17 +1,13 @@
-import React from "react";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-
-// @material-ui/icons
-
-// core components
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-import CustomInput from "components/CustomInput/CustomInput.jsx";
-import Button from "components/CustomButtons/Button.jsx";
-
 import workStyle from "assets/jss/material-kit-react/views/landingPageSections/workStyle.jsx";
 import SimpleMap from "components/GoogleMaps/SimpleMap.jsx";
+// @material-ui/icons
+// Core components
+import GridContainer from "components/Grid/GridContainer.jsx";
+import GridItem from "components/Grid/GridItem.jsx";
+import React from "react";
+
 class WorkSection extends React.Component {
   render() {
     const { classes } = this.props;
@@ -26,7 +22,7 @@ class WorkSection extends React.Component {
             </h4>
             <form>
               <GridContainer>
-                <GridItem xs={12} sm={12} md={12}>
+                <GridItem md={12} sm={12} xs={12}>
                   <SimpleMap />
                 </GridItem>
               </GridContainer>

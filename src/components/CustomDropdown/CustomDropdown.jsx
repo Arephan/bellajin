@@ -1,7 +1,7 @@
 import React from "react";
-// nodejs library that concatenates classes
+// Nodejs library that concatenates classes
 import classNames from "classnames";
-// nodejs library to set properties for components
+// Nodejs library to set properties for components
 import PropTypes from "prop-types";
 
 // @material-ui/core components
@@ -15,7 +15,7 @@ import Divider from "@material-ui/core/Divider";
 import Icon from "@material-ui/core/Icon";
 import Popper from "@material-ui/core/Popper";
 
-// core components
+// Core components
 import Button from "components/CustomButtons/Button.jsx";
 
 import customDropdownStyle from "assets/jss/material-kit-react/components/customDropdownStyle.jsx";
@@ -29,39 +29,42 @@ class CustomDropdown extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
+
   handleClick() {
     this.setState({ open: true });
   }
+
   handleClose() {
     this.setState({ open: false });
   }
+
   render() {
-    const { open } = this.state;
-    const {
-      classes,
-      buttonText,
-      buttonIcon,
-      dropdownList,
-      buttonProps,
-      dropup,
-      dropdownHeader,
-      caret,
-      hoverColor,
-      left,
-      rtlActive,
-      noLiPadding
-    } = this.props;
-    const caretClasses = classNames({
-      [classes.caret]: true,
-      [classes.caretActive]: open,
-      [classes.caretRTL]: rtlActive
-    });
-    const dropdownItem = classNames({
-      [classes.dropdownItem]: true,
-      [classes[hoverColor + "Hover"]]: true,
-      [classes.noLiPadding]: noLiPadding,
-      [classes.dropdownItemRTL]: rtlActive
-    });
+    const { open } = this.state,
+      {
+        classes,
+        buttonText,
+        buttonIcon,
+        dropdownList,
+        buttonProps,
+        dropup,
+        dropdownHeader,
+        caret,
+        hoverColor,
+        left,
+        rtlActive,
+        noLiPadding
+      } = this.props,
+      caretClasses = classNames({
+        [classes.caret]: true,
+        [classes.caretActive]: open,
+        [classes.caretRTL]: rtlActive
+      }),
+      dropdownItem = classNames({
+        [classes.dropdownItem]: true,
+        [classes[`${hoverColor}Hover`]]: true,
+        [classes.noLiPadding]: noLiPadding,
+        [classes.dropdownItemRTL]: rtlActive
+      });
     let icon = null;
     switch (typeof buttonIcon) {
       case "function":
@@ -80,9 +83,9 @@ class CustomDropdown extends React.Component {
       <div>
         <div>
           <Button
+            aria-haspopup="true"
             aria-label="Notifications"
             aria-owns={open ? "menu-list" : null}
-            aria-haspopup="true"
             {...buttonProps}
             buttonRef={node => {
               this.anchorEl = node;
@@ -95,24 +98,28 @@ class CustomDropdown extends React.Component {
           </Button>
         </div>
         <Popper
-          open={open}
           anchorEl={this.anchorEl}
-          transition
-          disablePortal
-          placement={
-            dropup
-              ? left ? "top-start" : "top"
-              : left ? "bottom-start" : "bottom"
-          }
           className={classNames({
             [classes.popperClose]: !open,
             [classes.pooperResponsive]: true
           })}
+          disablePortal
+          open={open}
+          placement={
+            dropup
+              ? left
+                ? "top-start"
+                : "top"
+              : left
+                ? "bottom-start"
+                : "bottom"
+          }
+          transition
         >
           {({ TransitionProps, placement }) => (
             <Grow
-              in={open}
               id="menu-list"
+              in={open}
               style={
                 dropup
                   ? { transformOrigin: "0 100% 0" }
@@ -124,8 +131,8 @@ class CustomDropdown extends React.Component {
                   <MenuList role="menu" className={classes.menuList}>
                     {dropdownHeader !== undefined ? (
                       <MenuItem
-                        onClick={this.handleClose}
                         className={classes.dropdownHeader}
+                        onClick={this.handleClose}
                       >
                         {dropdownHeader}
                       </MenuItem>
@@ -134,17 +141,17 @@ class CustomDropdown extends React.Component {
                       if (prop.divider) {
                         return (
                           <Divider
+                            className={classes.dropdownDividerItem}
                             key={key}
                             onClick={this.handleClose}
-                            className={classes.dropdownDividerItem}
                           />
                         );
                       }
                       return (
                         <MenuItem
+                          className={dropdownItem}
                           key={key}
                           onClick={this.handleClose}
-                          className={dropdownItem}
                         >
                           {prop}
                         </MenuItem>
@@ -167,7 +174,14 @@ CustomDropdown.defaultProps = {
 };
 
 CustomDropdown.propTypes = {
+  buttonIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  buttonProps: PropTypes.object,
+  buttonText: PropTypes.node,
+  caret: PropTypes.bool,
   classes: PropTypes.object.isRequired,
+  dropdownHeader: PropTypes.node,
+  dropdownList: PropTypes.array,
+  dropup: PropTypes.bool,
   hoverColor: PropTypes.oneOf([
     "black",
     "primary",
@@ -177,16 +191,9 @@ CustomDropdown.propTypes = {
     "danger",
     "rose"
   ]),
-  buttonText: PropTypes.node,
-  buttonIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  dropdownList: PropTypes.array,
-  buttonProps: PropTypes.object,
-  dropup: PropTypes.bool,
-  dropdownHeader: PropTypes.node,
-  rtlActive: PropTypes.bool,
-  caret: PropTypes.bool,
   left: PropTypes.bool,
-  noLiPadding: PropTypes.bool
+  noLiPadding: PropTypes.bool,
+  rtlActive: PropTypes.bool
 };
 
 export default withStyles(customDropdownStyle)(CustomDropdown);

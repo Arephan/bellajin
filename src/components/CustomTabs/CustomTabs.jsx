@@ -1,15 +1,15 @@
 import React from "react";
-// nodejs library that concatenates classes
+// Nodejs library that concatenates classes
 import classNames from "classnames";
-// nodejs library to set properties for components
+// Nodejs library to set properties for components
 import PropTypes from "prop-types";
 
-// material-ui components
+// Material-ui components
 import withStyles from "@material-ui/core/styles/withStyles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Icon from "@material-ui/core/Icon";
-// core components
+// Core components
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
@@ -27,17 +27,17 @@ class CustomTabs extends React.Component {
 
   render() {
     const {
-      classes,
-      headerColor,
-      plainTabs,
-      tabs,
-      title,
-      rtlActive
-    } = this.props;
-    const cardTitle = classNames({
-      [classes.cardTitle]: true,
-      [classes.cardTitleRTL]: rtlActive
-    });
+        classes,
+        headerColor,
+        plainTabs,
+        tabs,
+        title,
+        rtlActive
+      } = this.props,
+      cardTitle = classNames({
+        [classes.cardTitle]: true,
+        [classes.cardTitleRTL]: rtlActive
+      });
     return (
       <Card plain={plainTabs}>
         <CardHeader color={headerColor} plain={plainTabs}>
@@ -45,15 +45,15 @@ class CustomTabs extends React.Component {
             <div className={cardTitle}>{title}</div>
           ) : null}
           <Tabs
-            value={this.state.value}
-            onChange={this.handleChange}
             classes={{
               root: classes.tabsRoot,
               indicator: classes.displayNone
             }}
+            onChange={this.handleChange}
+            value={this.state.value}
           >
             {tabs.map((prop, key) => {
-              var icon = {};
+              let icon = {};
               if (prop.tabIcon) {
                 icon = {
                   icon:
@@ -104,7 +104,8 @@ CustomTabs.propTypes = {
     "primary",
     "rose"
   ]),
-  title: PropTypes.string,
+  plainTabs: PropTypes.bool,
+  rtlActive: PropTypes.bool,
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
       tabName: PropTypes.string.isRequired,
@@ -112,8 +113,7 @@ CustomTabs.propTypes = {
       tabContent: PropTypes.node.isRequired
     })
   ),
-  rtlActive: PropTypes.bool,
-  plainTabs: PropTypes.bool
+  title: PropTypes.string
 };
 
 export default withStyles(customTabsStyle)(CustomTabs);

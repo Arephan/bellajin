@@ -10,22 +10,18 @@ import CardFooter from "components/Card/CardFooter.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
+import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearProgress.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import {
-  login,
-  signUpWithEmailAndPass,
-  sendPasswordReset
-} from "firebase/auth.js";
+import { login, sendPasswordReset, signUpWithEmailAndPass } from "firebase/auth.js";
 import { firebaseAuth } from "firebase/constants";
+import { addAppointment, addAppointmentToUser } from "firebase/db";
 import React from "react";
-import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearProgress.jsx";
-import { addAppointmentToUser, addAppointment } from "firebase/db";
 
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
-    // we use this to make the card to appear after the page has been rendered
+    // We use this to make the card to appear after the page has been rendered
     this.state = {
       cardAnimaton: "cardHidden",
       email: null,
@@ -39,15 +35,13 @@ class LoginPage extends React.Component {
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
   }
+
   componentDidMount() {
-    // we add a hidden class to the card and after 700 ms we delete it and the transition appears
-    setTimeout(
-      function() {
-        this.setState({ cardAnimaton: "" });
-      }.bind(this),
-      700
-    );
-    let locationState = this.props.history.location.state;
+    // We add a hidden class to the card and after 700 ms we delete it and the transition appears
+    setTimeout(() => {
+      this.setState({ cardAnimaton: "" });
+    }, 700);
+    const locationState = this.props.history.location.state;
     if (locationState) {
       if (locationState.from === "/new-appointment") {
         this.setState({
@@ -57,9 +51,10 @@ class LoginPage extends React.Component {
       }
     }
   }
+
   handleChange(event) {
-    let rJSON = {};
-    let id = event.target.id;
+    const rJSON = {},
+      id = event.target.id;
     rJSON[id] = event.target.value;
     this.setState(rJSON);
   }
@@ -70,7 +65,7 @@ class LoginPage extends React.Component {
   }
 
   async handleSignUp() {
-    let resp = await signUpWithEmailAndPass();
+    const resp = await signUpWithEmailAndPass();
     this.setState({ loading: true });
 
     if (resp) {
@@ -91,7 +86,7 @@ class LoginPage extends React.Component {
       <div
         className={classes.pageHeader}
         style={{
-          backgroundImage: "url(" + image + ")",
+          backgroundImage: `url(${image})`,
           backgroundSize: "cover",
           backgroundPosition: "top center"
         }}
@@ -106,19 +101,18 @@ class LoginPage extends React.Component {
                   </CardHeader>
                   {this.state.loading ? (
                     <CustomLinearProgress
-                      variant="indeterminate"
                       color="info"
+                      variant="indeterminate"
                     />
                   ) : null}
 
                   <CardBody>
                     {this.state.isSignUp ? (
                       <CustomInput
-                        labelText="Name"
-                        id="name"
                         formControlProps={{
                           fullWidth: true
                         }}
+                        id="name"
                         inputProps={{
                           type: "name",
                           onChange: this.handleChange,
@@ -130,14 +124,14 @@ class LoginPage extends React.Component {
                             </InputAdornment>
                           )
                         }}
+                        labelText="Name"
                       />
                     ) : null}
                     <CustomInput
-                      labelText="Email"
-                      id="email"
                       formControlProps={{
                         fullWidth: true
                       }}
+                      id="email"
                       inputProps={{
                         type: "email",
 
@@ -150,13 +144,13 @@ class LoginPage extends React.Component {
                           </InputAdornment>
                         )
                       }}
+                      labelText="Email"
                     />
                     <CustomInput
-                      labelText="Password"
-                      id="password"
                       formControlProps={{
                         fullWidth: true
                       }}
+                      id="password"
                       inputProps={{
                         type: "password",
                         onChange: this.handleChange,
@@ -168,37 +162,38 @@ class LoginPage extends React.Component {
                           </InputAdornment>
                         )
                       }}
+                      labelText="Password"
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
                     {this.state.isSignUp ? (
                       <Button
-                        simple
                         color="danger"
-                        size="lg"
                         onClick={() => this.setState({ isSignUp: false })}
+                        simple
+                        size="lg"
                       >
                         Login
                       </Button>
                     ) : (
                       <Button
-                        simple
                         color="danger"
-                        size="lg"
                         onClick={() => this.setState({ isSignUp: true })}
+                        simple
+                        size="lg"
                       >
                         Sign Up
                       </Button>
                     )}
                     <Button
-                      simple
                       color="info"
-                      size="lg"
                       onClick={
                         this.state.isSignUp
                           ? this.handleSignUp
                           : this.handleLogin
                       }
+                      simple
+                      size="lg"
                     >
                       Submit
                     </Button>
@@ -206,10 +201,10 @@ class LoginPage extends React.Component {
                   <CardFooter className={classes.cardFooter}>
                     {this.state.isSignUp ? null : (
                       <Button
-                        simple
                         color="danger"
-                        size="sm"
                         onClick={sendPasswordReset}
+                        simple
+                        size="sm"
                       >
                         Change Password
                       </Button>

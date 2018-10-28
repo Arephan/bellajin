@@ -23,15 +23,15 @@ function createData(date, timeslot, serviceType, cost) {
 }
 
 function SimpleTable(props) {
-  const { classes } = props;
-  let data = props.data.map(x => {
-    return createData(
-      x.date,
-      x.timeslot[0].primary,
-      x.serviceMenu[0].primary,
-      x.serviceMenu[0].tertiary
+  const { classes } = props,
+    data = props.data.map(x =>
+      createData(
+        x.date,
+        x.timeslot[0].primary,
+        x.serviceMenu[0].primary,
+        x.serviceMenu[0].tertiary
+      )
     );
-  });
 
   return (
     <Paper className={classes.root}>
@@ -45,18 +45,16 @@ function SimpleTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map(row => {
-            return (
-              <TableRow key={row.id}>
-                <TableCell component="th" scope="row">
-                  {row.date}
-                </TableCell>
-                <TableCell numeric>{row.timeslot}</TableCell>
-                <TableCell numeric>{row.serviceType}</TableCell>
-                <TableCell numeric>{row.cost}</TableCell>
-              </TableRow>
-            );
-          })}
+          {data.map(row => (
+            <TableRow key={row.id}>
+              <TableCell component="th" scope="row">
+                {row.date}
+              </TableCell>
+              <TableCell numeric>{row.timeslot}</TableCell>
+              <TableCell numeric>{row.serviceType}</TableCell>
+              <TableCell numeric>{row.cost}</TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </Paper>

@@ -28,18 +28,16 @@ class PaymentForm extends React.Component {
 
     if (e.target.id === "date") {
       // Reset user's selected timeslot
-      this.props.handleStepperContentValueChange("timeslot", new Array());
+      this.props.handleStepperContentValueChange("timeslot", []);
       this.handleOccupiedTimeSlotChange(e.target.value);
     }
   }
 
   handleOccupiedTimeSlotChange(date) {
     getAppointmentsOnDate(date).then(x => {
-      let timeslot = new TimeSlot();
+      const timeslot = new TimeSlot();
       x.forEach(x => {
-        let i = timeslot.findIndex(function(element) {
-          return element.primary === x;
-        });
+        const i = timeslot.findIndex(element => element.primary === x);
         timeslot.splice(i, 1);
       });
       this.setState({ data: timeslot });
@@ -50,27 +48,27 @@ class PaymentForm extends React.Component {
     return (
       <React.Fragment>
         <Grid container spacing={24}>
-          <Grid item xs={12} md={12}>
+          <Grid item md={12} xs={12}>
             <TextField
-              id="date"
-              value={this.state.newAppointment.date}
-              required
               fullWidth
-              onChange={this.handleChange}
-              label="Appointment Date"
-              type="date"
+              id="date"
               InputLabelProps={{
                 shrink: true
               }}
+              label="Appointment Date"
+              onChange={this.handleChange}
+              required
+              type="date"
+              value={this.state.newAppointment.date}
             />
           </Grid>
           <Grid item xs={12} md={12}>
             <CheckBoxList
               data={this.state.data}
-              userData={this.props.newAppointment.timeslot}
               handleStepperContentValueChange={
                 this.props.handleStepperContentValueChange
               }
+              userData={this.props.newAppointment.timeslot}
             />
           </Grid>
         </Grid>
