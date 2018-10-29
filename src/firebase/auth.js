@@ -24,26 +24,19 @@ export function saveUser(email, name, uid) {
   });
 }
 
-export function signUpWithEmailAndPass() {
+export function signUpWithEmailAndPass(name, email, password = "123123123123") {
   /*
    * Sign in with email and pass.
    * [START createwithemail]
    */
   return firebaseAuth()
-    .createUserWithEmailAndPassword(
-      document.getElementById("email").value,
-      document.getElementById("password").value
-    )
+    .createUserWithEmailAndPassword(email, password)
     .then(userCredential => {
       // Save to realtime db for reference
       userCredential.user.updateProfile({
-        displayName: document.getElementById("name").value
+        displayName: name
       });
-      saveUser(
-        userCredential.user.email,
-        document.getElementById("name").value,
-        userCredential.user.uid
-      );
+      saveUser(userCredential.user.email, name, userCredential.user.uid);
       // [END createwithemail]
       sendEmailVerification();
       return true;

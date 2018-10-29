@@ -13,9 +13,11 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearProgress.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import { login, sendPasswordReset, signUpWithEmailAndPass } from "firebase/auth.js";
-import { firebaseAuth } from "firebase/constants";
-import { addAppointment, addAppointmentToUser } from "firebase/db";
+import {
+  login,
+  sendPasswordReset,
+  signUpWithEmailAndPass
+} from "firebase/auth.js";
 import React from "react";
 
 class LoginPage extends React.Component {
@@ -25,10 +27,10 @@ class LoginPage extends React.Component {
     this.state = {
       cardAnimaton: "cardHidden",
       email: null,
+      name: null,
       password: null,
       isSignUp: false,
-      loading: false,
-      newAppointment: null
+      loading: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -41,15 +43,6 @@ class LoginPage extends React.Component {
     setTimeout(() => {
       this.setState({ cardAnimaton: "" });
     }, 700);
-    const locationState = this.props.history.location.state;
-    if (locationState) {
-      if (locationState.from === "/new-appointment") {
-        this.setState({
-          isSignUp: true,
-          newAppointment: locationState.newAppointment
-        });
-      }
-    }
   }
 
   handleChange(event) {
@@ -65,17 +58,19 @@ class LoginPage extends React.Component {
   }
 
   async handleSignUp() {
-    const resp = await signUpWithEmailAndPass();
+    if (!this.state.email || !this.state.password || !this.state.name) {
+      alert("Please complete form");
+      return;
+    }
+    const resp = await signUpWithEmailAndPass(
+      this.state.name,
+      this.state.email,
+      this.state.password
+    );
     this.setState({ loading: true });
 
     if (resp) {
-      if (this.state.newAppointment) {
-        addAppointment(this.state.newAppointment);
-        addAppointmentToUser(
-          this.state.newAppointment,
-          firebaseAuth().currentUser.uid
-        );
-      }
+      this.setState({ loading: false });
       this.props.history.push("/profile-page");
     }
   }

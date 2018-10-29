@@ -4,6 +4,7 @@ import TimeSlot from "assets/constants/TimeSlot";
 import CheckBoxList from "components/CheckBoxList/CheckBoxList";
 import React from "react";
 import { getAppointmentsOnDate } from "firebase/db";
+import { firebaseAuth } from "firebase/constants";
 class PaymentForm extends React.Component {
   constructor(props) {
     super(props);
@@ -48,6 +49,38 @@ class PaymentForm extends React.Component {
     return (
       <React.Fragment>
         <Grid container spacing={24}>
+          {firebaseAuth().currentUser ? null : (
+            <Grid container>
+              <Grid item md={12} xs={12}>
+                <TextField
+                  fullWidth
+                  id="name"
+                  InputLabelProps={{
+                    shrink: true
+                  }}
+                  label="Name"
+                  onChange={this.handleChange}
+                  required
+                  type="fname"
+                  value={this.state.newAppointment.name}
+                />
+              </Grid>
+              <Grid item md={12} xs={12}>
+                <TextField
+                  fullWidth
+                  id="email"
+                  InputLabelProps={{
+                    shrink: true
+                  }}
+                  label="Email"
+                  onChange={this.handleChange}
+                  required
+                  type="email"
+                  value={this.state.newAppointment.email}
+                />
+              </Grid>
+            </Grid>
+          )}
           <Grid item md={12} xs={12}>
             <TextField
               fullWidth

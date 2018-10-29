@@ -14,8 +14,9 @@ import Logo from "../../assets/img/logo.jpg";
 import AddressForm from "./Sections/AddressForm";
 import PaymentForm from "./Sections/PaymentForm";
 import Review from "./Sections/Review";
-import { addAppointment } from "firebase/db";
-import { addAppointmentToUser } from "firebase/db";
+import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearProgress.jsx";
+import { addAppointment, addAppointmentToUser } from "firebase/db";
+import { signUpWithEmailAndPass } from "firebase/auth.js";
 import { Link } from "react-router-dom";
 const styles = theme => ({
     appBar: {
@@ -86,6 +87,8 @@ class Checkout extends React.Component {
       newAppointment: {
         serviceMenu: [],
         timeslot: [],
+        name: null,
+        email: null,
         date: null
       }
     };
@@ -117,13 +120,33 @@ class Checkout extends React.Component {
         }
         break;
       case 1:
-        if (
-          !this.state.newAppointment.date ||
-          !this.state.newAppointment.timeslot[0]
-        ) {
-          alert("Please Complete All Fields!");
-          return false;
+        if (this.props.user) {
+          if (
+            !this.state.newAppointment.date ||
+            !this.state.newAppointment.timeslot[0]
+          ) {
+            alert("Please Complete All Fields!");
+            return false;
+          }
+        } else {
+          if (
+            !this.state.newAppointment.name ||
+            !this.state.newAppointment.email
+          ) {
+            alert("Please Complete All Fields!");
+            return false;
+          } else {
+            signUpWithEmailAndPass(
+              this.state.newAppointment.name,
+              this.state.newAppointment.email
+            ).then(result => {
+              console.log(result);
+            });
+            return true;
+          }
         }
+
+        break;
     }
     return true;
   };
@@ -168,6 +191,7 @@ class Checkout extends React.Component {
             <Typography component="h2" variant="h4" align="center">
               New Appointment
             </Typography>
+
             <Stepper activeStep={activeStep} className={classes.stepper}>
               {steps.map(label => (
                 <Step key={label}>
@@ -175,21 +199,15 @@ class Checkout extends React.Component {
                 </Step>
               ))}
             </Stepper>
+
             <React.Fragment>
               {activeStep === steps.length ? (
-                this.props.user ? (
-                  (addAppointment(this.state.newAppointment),
-                  addAppointmentToUser(
-                    this.state.newAppointment,
-                    this.props.user.uid
-                  ),
-                  this.props.history.push("/profile-page"))
-                ) : (
-                  this.props.history.push("/login-page", {
-                    from: "/new-appointment",
-                    newAppointment: this.state.newAppointment
-                  })
-                )
+                (addAppointmentToUser(
+                  this.state.newAppointment,
+                  this.props.user.uid
+                ),
+                addAppointment(this.state.newAppointment),
+                this.props.history.push("/profile-page"))
               ) : (
                 <React.Fragment>
                   {getStepContent(
