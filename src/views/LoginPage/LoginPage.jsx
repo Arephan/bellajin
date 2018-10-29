@@ -30,7 +30,8 @@ class LoginPage extends React.Component {
       name: null,
       password: null,
       isSignUp: false,
-      loading: false
+      loading: false,
+      newAppointment: null
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -43,6 +44,13 @@ class LoginPage extends React.Component {
     setTimeout(() => {
       this.setState({ cardAnimaton: "" });
     }, 700);
+
+    if (this.props.history.location.from === "/new-appointment") {
+      this.setState({
+        newAppointment: this.props.history.location.state.newAppointment,
+        email: this.props.history.location.state.newAppointment.email
+      });
+    }
   }
 
   handleChange(event) {
@@ -53,8 +61,22 @@ class LoginPage extends React.Component {
   }
 
   handleLogin() {
-    login(this.state.email, this.state.password);
-    this.props.history.push("/profile-page");
+    if (!this.state.email || !this.state.password) {
+      alert("Please fill all fields");
+      return;
+    } else {
+      login(this.state.email, this.state.password).then(() => {
+        if (this.props.history.location.from === "/new-appointment") {
+          this.props.history.push({
+            pathname: "/new-appointment",
+            from: "/login-page",
+            state: { newAppointment: this.state.newAppointment }
+          });
+        } else {
+          this.props.history.push("/profile-page");
+        }
+      });
+    }
   }
 
   async handleSignUp() {

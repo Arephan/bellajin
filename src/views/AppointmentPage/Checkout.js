@@ -90,11 +90,22 @@ class Checkout extends React.Component {
         name: null,
         email: null,
         date: null
-      }
+      },
+      loading: false
     };
     this.handleStepperContentValueChange = this.handleStepperContentValueChange.bind(
       this
     );
+  }
+
+  componentDidMount() {
+    if (this.props.history.location.from === "/login-page") {
+      this.setState({
+        newAppointment: this.props.history.location.state.newAppointment,
+        activeStep: 2,
+        loading: false
+      });
+    }
   }
 
   handleStepperContentValueChange(key, value) {
@@ -102,9 +113,10 @@ class Checkout extends React.Component {
       state.newAppointment[key] = value;
     });
   }
+  s;
 
   handleNext = () => {
-    if (this.handleFormCheck()) {
+    if (this.state.loading === false && this.handleFormCheck()) {
       this.setState(state => ({
         activeStep: state.activeStep + 1
       }));
@@ -136,13 +148,23 @@ class Checkout extends React.Component {
             alert("Please Complete All Fields!");
             return false;
           } else {
+            this.setState({ loading: true });
             signUpWithEmailAndPass(
               this.state.newAppointment.name,
               this.state.newAppointment.email
             ).then(result => {
               console.log(result);
+              if (result === "auth/email-already-in-use") {
+                this.props.history.push({
+                  pathname: "/login-page",
+                  from: "/new-appointment",
+                  state: { newAppointment: this.state.newAppointment }
+                });
+                return false;
+              } else if (result === true) {
+                return true;
+              }
             });
-            return true;
           }
         }
 
@@ -186,6 +208,9 @@ class Checkout extends React.Component {
             </Link>
           </Toolbar>
         </AppBar>
+        {this.state.loading ? (
+          <CustomLinearProgress color="info" variant="indeterminate" />
+        ) : null}
         <main className={classes.layout}>
           <Paper className={classes.paper}>
             <Typography component="h2" variant="h4" align="center">

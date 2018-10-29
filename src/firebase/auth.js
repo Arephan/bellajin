@@ -49,10 +49,10 @@ export function signUpWithEmailAndPass(name, email, password = "123123123123") {
       if (errorCode === "auth/weak-password") {
         alert("The password is too weak.");
       } else {
-        alert(errorMessage);
+        console.log(errorMessage);
       }
       // [END_EXCLUDE]
-      return false;
+      return error.code;
     });
 }
 
