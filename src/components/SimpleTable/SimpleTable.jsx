@@ -1,12 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import Paper from "@material-ui/core/Paper";
 import { withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+import AddToCalendarButton from "components/AddToCalendarButton/AddToCalendarButton.jsx";
+import PropTypes from "prop-types";
+import React from "react";
 
 const styles = theme => ({
   root: {
@@ -17,9 +18,20 @@ const styles = theme => ({
 });
 
 let id = 0;
-function createData(date, timeslot, serviceType, cost) {
+function createData(date, timeslot, startTime, endTime, serviceType, cost) {
   id += 1;
-  return { id, date, timeslot, serviceType, cost };
+
+  let addToCalButton = (
+    <AddToCalendarButton
+      title="BellaJin Hair Appointment"
+      description={serviceType + " " + cost}
+      location="5931 Yonge St, North York, M2M 3V7"
+      date={date}
+      startTime={startTime}
+      endTime={endTime}
+    />
+  );
+  return { id, date, timeslot, serviceType, cost, addToCalButton };
 }
 
 function SimpleTable(props) {
@@ -28,6 +40,8 @@ function SimpleTable(props) {
       createData(
         x.date,
         x.timeslot[0].primary,
+        x.timeslot[0].startTime,
+        x.timeslot[0].endTime,
         x.serviceMenu[0].primary,
         x.serviceMenu[0].tertiary
       )
@@ -42,6 +56,7 @@ function SimpleTable(props) {
             <TableCell>Time</TableCell>
             <TableCell>Service</TableCell>
             <TableCell>Cost</TableCell>
+            <TableCell>Add to Calendar</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -53,6 +68,7 @@ function SimpleTable(props) {
               <TableCell numeric>{row.timeslot}</TableCell>
               <TableCell numeric>{row.serviceType}</TableCell>
               <TableCell numeric>{row.cost}</TableCell>
+              <TableCell>{row.addToCalButton}</TableCell>
             </TableRow>
           ))}
         </TableBody>

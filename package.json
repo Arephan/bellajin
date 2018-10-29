@@ -25,6 +25,8 @@
     "rc-time-picker": "^3.4.0",
     "re-base": "^4.0.0",
     "react": "16.4.2",
+    "react-add-to-calendar": "^0.1.5",
+    "react-add-to-calendar-hoc": "^1.0.7",
     "react-bootstrap-wizard": "0.0.5",
     "react-datetime": "2.15.0",
     "react-dom": "16.4.2",

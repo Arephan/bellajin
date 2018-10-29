@@ -91,7 +91,7 @@ class CheckboxList extends React.Component {
                   />
                   <ListItemText
                     primary={`${value.primary}`}
-                    secondary={`${value.secondary}`}
+                    secondary={value.secondary ? `${value.secondary}` : null}
                   />
                   <ListItemSecondaryAction>
                     {value.tertiary}
