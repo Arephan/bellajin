@@ -33,3 +33,17 @@ messaging.setBackgroundMessageHandler(function(payload) {
     notificationOptions
   );
 });
+
+/*
+To Send Via Curl: 
+
+curl -X POST -H "Authorization: key=AAAAGrCFpcY:APA91bHqtnNHD4j8QW0jRWOdwRL_YxWouY_8r8AmJ_aX3KNi9mkE-2v8rVvelgBlb44NPRot90Pj6k8T4a9TuqsVwEaaKg9Ezq-kXRkAExNirklAFYPf4gVvrOt5H-47RbmNpH8Qt772" -H "Content-Type: application/json" -d '{
+  "notification": {
+    "title": "Portugal vs. Denmark",
+    "body": "5 to 1",
+    "icon": "firebase-logo.png",
+    "click_action": "http://localhost:8081"
+  },
+  "to": "eR8Iw61rP10:APA91bG2Le_mdY34mbVnJum-hNze7nrQlnuyRQpiG6kPPGZfIQmh7LsVj6laK3JDnLgOJPjusa4WrnpQAR7jbeS9H8kNYHN59bFKtTbjJMmlmlZDHV0uXgAWvdXqlY2UkMc8dpwmCWSf"
+}' "https://fcm.googleapis.com/fcm/send"
+  */
