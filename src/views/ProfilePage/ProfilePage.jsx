@@ -12,7 +12,6 @@ import SimpleTable from "components/SimpleTable/SimpleTable";
 import { firebaseAuth } from "firebase/constants";
 import { getUserAppointments } from "firebase/db";
 import React from "react";
-import { getTokenAndSaveToUser } from "firebase/messaging.js";
 
 class ProfilePage extends React.Component {
   constructor(props) {
@@ -33,7 +32,6 @@ class ProfilePage extends React.Component {
 
   componentDidMount() {
     this.getAppointments();
-    getTokenAndSaveToUser();
   }
 
   render() {
