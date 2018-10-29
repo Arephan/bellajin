@@ -16,6 +16,20 @@ export function addAppointment(newAppointment) {
 export function addAppointmentToUser(newAppointment, uid) {
   return ref.child(`users/${uid}/appointments`).push({ newAppointment });
 }
+export function addMsgTokenToUser(msgToken, uid) {
+  ref.child(`users/${uid}`).update(
+    {
+      msgToken: msgToken
+    },
+    function(error) {
+      if (error) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  );
+}
 
 export function getUserAppointments(uid) {
   return ref

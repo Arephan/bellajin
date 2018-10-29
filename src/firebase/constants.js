@@ -11,7 +11,7 @@ const database = require("firebase/database"),
   },
   app = firebase.initializeApp(config),
   db = firebase.database(app);
-
+export var messaging = app.messaging();
 export var base = Rebase.createClass(db);
 export const ref = firebase.database().ref();
 export const firebaseAuth = firebase.auth;
