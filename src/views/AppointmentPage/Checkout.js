@@ -154,6 +154,7 @@ class Checkout extends React.Component {
               this.state.newAppointment.name,
               this.state.newAppointment.email
             ).then(result => {
+              this.setState({ loading: false });
               console.log(result);
               if (result === "auth/email-already-in-use") {
                 this.props.history.push({
