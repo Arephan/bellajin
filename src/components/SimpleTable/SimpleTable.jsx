@@ -7,10 +7,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import PropTypes from "prop-types";
 import React from "react";
-import Rating from "react-rating";
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-
+import AppointmentRatings from "components/Ratings/AppointmentRatings.jsx";
+import { firebaseAuth } from "firebase/constants.js";
 const styles = theme => ({
   root: {
     width: "100%",
@@ -23,10 +21,16 @@ const styles = theme => ({
 });
 
 let id = 0;
-function createData(date, timeslot, serviceType, cost) {
+function createData(date, timeslot, serviceType, cost, rating, appointmentID) {
   id += 1;
-  let rating = <Rating initialRating={0} />;
-  return { id, date, timeslot, serviceType, cost, rating };
+  let appointmentRatings = (
+    <AppointmentRatings
+      rating={rating}
+      appointmentID={appointmentID}
+      uid={firebaseAuth().currentUser.uid}
+    />
+  );
+  return { id, date, timeslot, serviceType, cost, appointmentRatings };
 }
 
 function SimpleTable(props) {
@@ -36,7 +40,9 @@ function SimpleTable(props) {
         x.date,
         x.timeslot[0].primary,
         x.serviceMenu[0].primary,
-        x.serviceMenu[0].tertiary
+        x.serviceMenu[0].tertiary,
+        x.rating || 0,
+        x.key
       )
     );
 
@@ -59,7 +65,7 @@ function SimpleTable(props) {
               <TableCell>{row.timeslot}</TableCell>
               <TableCell>{row.serviceType}</TableCell>
               <TableCell>{row.cost}</TableCell>
-              <TableCell>{row.rating}</TableCell>
+              <TableCell>{row.appointmentRatings}</TableCell>
             </TableRow>
           ))}
         </TableBody>

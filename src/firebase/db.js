@@ -31,6 +31,23 @@ export function addMsgTokenToUser(msgToken, uid) {
   );
 }
 
+export function changeUserAppointmentRating(uid, appointmentID, rating) {
+  return ref
+    .child(`users/${uid}/appointments/${appointmentID}/newAppointment`)
+    .update(
+      {
+        rating: rating
+      },
+      function(error) {
+        if (error) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    );
+}
+
 export function getUserAppointments(uid) {
   return ref
     .child(`users/${uid}/appointments`)
@@ -40,6 +57,7 @@ export function getUserAppointments(uid) {
 
       snapshot.forEach(childSnapshot => {
         const item = childSnapshot.val();
+        item.newAppointment.key = childSnapshot.key;
         returnArr.push(item.newAppointment);
       });
       return returnArr;
