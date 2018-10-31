@@ -27,3 +27,4 @@ yarn-error.log*
 # compiled css
 *.css
 /functions/node_modules
+.firebase
