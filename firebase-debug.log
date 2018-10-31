@@ -1,0 +1,28 @@
+[debug] [2018-10-31T04:40:12.930Z] ----------------------------------------------------------------------
+[debug] [2018-10-31T04:40:12.933Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve --only functions
+[debug] [2018-10-31T04:40:12.933Z] CLI Version:   6.0.0
+[debug] [2018-10-31T04:40:12.933Z] Platform:      darwin
+[debug] [2018-10-31T04:40:12.933Z] Node Version:  v10.0.0
+[debug] [2018-10-31T04:40:12.934Z] Time:          Wed Oct 31 2018 00:40:12 GMT-0400 (EDT)
+[debug] [2018-10-31T04:40:12.934Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-10-31T04:40:12.954Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-10-31T04:40:12.955Z] > authorizing via signed-in user
+[debug] [2018-10-31T04:40:12.955Z] [iam] checking project bellajin-c8de8 for permissions ["firebase.projects.get"]
+[debug] [2018-10-31T04:40:12.957Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/bellajin-c8de8:testIamPermissions  
+
+[debug] [2018-10-31T04:40:13.303Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-31T04:40:13.305Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/bellajin-c8de8  
+ 
+[debug] [2018-10-31T04:40:13.581Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/stalin/Documents/Dev/projects/bellaJin'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-10-31T04:40:15.129Z] Fetching environment
+[debug] [2018-10-31T04:40:15.132Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/114630698438:getServerAppConfig  
+ 
+[debug] [2018-10-31T04:40:15.314Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-31T04:40:15.314Z] Starting @google-cloud/functions-emulator
+[debug] [2018-10-31T04:40:17.401Z] Parsing function triggers
+[info] ✔  functions: addToGoogleCal: http://localhost:5000/bellajin-c8de8/us-central1/addToGoogleCal

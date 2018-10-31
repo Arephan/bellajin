@@ -4,6 +4,13 @@
         {
             "type": "chrome",
             "request": "launch",
+            "name": "Launch Chrome",
+            "url": "http://localhost:5000/bellajin-c8de8/us-central1/addToGoogleCal?startTime="2018-10-30T14:00:00-04:00"&endTime="2018-10-30T16:00:00-04:00"&summary="yoyoyo"",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
             "name": "Chrome 3000",
             "url": "http://localhost:3000",
             "webRoot": "${workspaceFolder}"
