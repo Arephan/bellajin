@@ -18,6 +18,7 @@ import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearPr
 import { addAppointment, addAppointmentToUser } from "firebase/db";
 import { signUpWithEmailAndPass } from "firebase/auth.js";
 import { Link } from "react-router-dom";
+import { addToGoogleCal } from "firebase/googleCal.js";
 const styles = theme => ({
     appBar: {
       position: "relative"
@@ -227,7 +228,11 @@ class Checkout extends React.Component {
 
             <React.Fragment>
               {activeStep === steps.length ? (
-                (addAppointmentToUser(
+                (addToGoogleCal(
+                  this.state.newAppointment,
+                  this.props.user.displayName
+                ),
+                addAppointmentToUser(
                   this.state.newAppointment,
                   this.props.user.uid
                 ),
