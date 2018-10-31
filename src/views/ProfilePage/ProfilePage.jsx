@@ -38,7 +38,7 @@ class ProfilePage extends React.Component {
     this.setState({ avatar: filename, progress: 100, isUploading: false });
     firebase
       .storage()
-      .ref("images/" + this.state.currentUser.uid)
+      .ref("images")
       .child(filename)
       .getDownloadURL()
       .then(url => {
@@ -85,7 +85,7 @@ class ProfilePage extends React.Component {
                 <CustomLinearProgress color="info" variant="indeterminate" />
               )}
               <GridContainer justify="center">
-                <GridItem md={6} sm={12} xs={12}>
+                <GridItem md={12} sm={12} xs={12}>
                   <div className={classes.profile}>
                     <div>
                       <label>

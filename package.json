@@ -36,6 +36,7 @@
     "react-kronos": "^1.7.1",
     "react-nouislider": "2.0.1",
     "react-photo-gallery": "^6.2.1",
+    "react-rating": "^1.4.1",
     "react-router-dom": "4.3.1",
     "react-scripts": "1.1.4",
     "react-slick": "0.23.1",
