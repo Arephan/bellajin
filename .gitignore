@@ -28,3 +28,4 @@ yarn-error.log*
 *.css
 /functions/node_modules
 .firebase/*
+firebase-debug.log

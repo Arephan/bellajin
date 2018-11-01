@@ -48,6 +48,23 @@ export function changeUserAppointmentRating(uid, appointmentID, rating) {
     );
 }
 
+export function addAppointmentReview(uid, appointmentID, review) {
+  return ref
+    .child(`users/${uid}/appointments/${appointmentID}/newAppointment`)
+    .update(
+      {
+        review: review
+      },
+      function(error) {
+        if (error) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    );
+}
+
 export function getUserAppointments(uid) {
   return ref
     .child(`users/${uid}/appointments`)

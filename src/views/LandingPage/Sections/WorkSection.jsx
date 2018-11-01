@@ -14,7 +14,7 @@ class WorkSection extends React.Component {
     return (
       <div className={classes.section}>
         <GridContainer justify="center">
-          <GridItem cs={12} sm={12} md={8}>
+          <GridItem cs={12} sm={12} md={12}>
             <h2 className={classes.title}>Contact us</h2>
             <h4 className={classes.description}>
               Address: 5931 Yonge St, Toronto, M2M 3V7 <br /> Phone:

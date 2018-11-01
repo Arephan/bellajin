@@ -14,7 +14,8 @@ import { getUserAppointments } from "firebase/db";
 import FileUploader from "react-firebase-file-uploader";
 import React from "react";
 import firebase from "firebase";
-
+import FormDialog from "components/FormDialog/FormDialog.jsx";
+import { addAppointmentReview } from "firebase/db.js";
 class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
@@ -24,9 +25,26 @@ class ProfilePage extends React.Component {
       loading: true,
       isUploading: false,
       progress: 0,
-      photoURL: firebaseAuth().currentUser.photoURL || profile
+      open: false,
+      photoURL: firebaseAuth().currentUser.photoURL || profile,
+      reviewAppointmentID: null
     };
   }
+
+  handleClickOpen = appointmentID => {
+    this.setState({ open: true, reviewAppointmentID: appointmentID });
+  };
+
+  handleClose = appointmentReview => {
+    this.setState({
+      open: false
+    });
+    addAppointmentReview(
+      this.state.currentUser.uid,
+      this.state.reviewAppointmentID,
+      appointmentReview
+    );
+  };
 
   handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
   handleProgress = progress => this.setState({ progress });
@@ -97,6 +115,8 @@ class ProfilePage extends React.Component {
                           onUploadError={this.handleUploadError}
                           onUploadSuccess={this.handleUploadSuccess}
                           onProgress={this.handleProgress}
+                          maxWidth={400}
+                          maxHeight={400}
                         />
                         <img
                           src={this.state.photoURL}
@@ -117,9 +137,24 @@ class ProfilePage extends React.Component {
                         variant="indeterminate"
                       />
                     ) : (
-                      <SimpleTable data={this.state.userAppointments} />
+                      <SimpleTable
+                        data={this.state.userAppointments}
+                        handleClickOpen={this.handleClickOpen}
+                      />
                     )}
                   </div>
+                  <FormDialog
+                    handleClickOpen={this.handleClickOpen}
+                    handleClose={this.handleClose}
+                    open={this.state.open}
+                    reviewAppointment={this.state.userAppointments.find(
+                      appointment => {
+                        return (
+                          appointment.key === this.state.reviewAppointmentID
+                        );
+                      }
+                    )}
+                  />
                 </GridItem>
               </GridContainer>
             </div>

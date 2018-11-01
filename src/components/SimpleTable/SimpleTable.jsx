@@ -21,13 +21,22 @@ const styles = theme => ({
 });
 
 let id = 0;
-function createData(date, timeslot, serviceType, cost, rating, appointmentID) {
+function createData(
+  date,
+  timeslot,
+  serviceType,
+  cost,
+  rating,
+  appointmentID,
+  handleClickOpen
+) {
   id += 1;
   let appointmentRatings = (
     <AppointmentRatings
       rating={rating}
       appointmentID={appointmentID}
       uid={firebaseAuth().currentUser.uid}
+      handleClickOpen={handleClickOpen}
     />
   );
   return { id, date, timeslot, serviceType, cost, appointmentRatings };
@@ -42,7 +51,8 @@ function SimpleTable(props) {
         x.serviceMenu[0].primary,
         x.serviceMenu[0].tertiary,
         x.rating || 0,
-        x.key
+        x.key,
+        props.handleClickOpen
       )
     );
 
