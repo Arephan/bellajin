@@ -24,7 +24,6 @@ import InfoArea from "components/InfoArea/InfoArea.jsx";
 import React from "react";
 import SectionCarousel from "views/LandingPage/Sections/SectionCarousel";
 
-
 const womenCarouselData = [
     {
       img: women1
@@ -96,21 +95,17 @@ class ProductSection extends React.Component {
         <div>
           <GridContainer>
             <GridItem xs={12} sm={12} md={4}>
-              <InfoArea description="$20 and up" title="Women" vertical>
+              <InfoArea title="Women" vertical>
                 <SectionCarousel images={womenCarouselData} />
               </InfoArea>
             </GridItem>
             <GridItem md={4} sm={12} xs={12}>
-              <InfoArea title="Men" description="$15 and up" vertical>
+              <InfoArea title="Men" vertical>
                 <SectionCarousel images={menCarouselData} />
               </InfoArea>
             </GridItem>
             <GridItem xs={12} sm={12} md={4}>
-              <InfoArea
-                description="Perms, colors, straigtening and more"
-                title="Specialized"
-                vertical
-              >
+              <InfoArea title="Specialized" vertical>
                 <SectionCarousel images={permCarouselData} />
               </InfoArea>
             </GridItem>

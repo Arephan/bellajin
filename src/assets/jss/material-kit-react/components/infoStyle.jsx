@@ -17,7 +17,7 @@ const infoStyle = {
   },
   iconWrapper: {
     float: "left",
-    marginTop: "24px",
+    marginTop: "10px",
     marginRight: "10px"
   },
   primary: {

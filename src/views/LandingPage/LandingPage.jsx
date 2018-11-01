@@ -10,7 +10,6 @@ import Parallax from "components/Parallax/Parallax.jsx";
 import React from "react";
 import { Link } from "react-router-dom";
 import ProductSection from "./Sections/ProductSection.jsx";
-import TeamSection from "./Sections/TeamSection.jsx";
 import WorkSection from "./Sections/WorkSection.jsx";
 
 class LandingPage extends React.Component {
