@@ -29,9 +29,22 @@ class ProfilePage extends React.Component {
       photoURL: firebaseAuth().currentUser.photoURL || profile,
       reviewAppointmentID: null
     };
+
+    this.handleClickOpen = this.handleClickOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
-  handleClickOpen = appointmentID => {
+  handleClickOpen = (appointmentID, newRating) => {
+    // update rating state as it flows down to ratings component
+    let appointmentIndex = this.state.userAppointments.findIndex(element => {
+      return element.key === appointmentID;
+    });
+    const userAppointments = this.state.userAppointments;
+    userAppointments[appointmentIndex].rating = newRating;
+
+    // re-render
+    this.forceUpdate();
+
     this.setState({ open: true, reviewAppointmentID: appointmentID });
   };
 

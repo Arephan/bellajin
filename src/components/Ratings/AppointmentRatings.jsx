@@ -19,8 +19,7 @@ export default class AppointmentRatings extends Rating {
             this.props.appointmentID,
             value
           ).then(() => {
-            this.setState({ rating: value });
-            this.props.handleClickOpen(this.props.appointmentID);
+            this.props.handleClickOpen(this.props.appointmentID, value);
           });
         }}
       />
