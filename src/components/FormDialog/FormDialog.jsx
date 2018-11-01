@@ -11,13 +11,18 @@ export default class FormDialog extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviewText: props.reviewAppointment && props.reviewAppointment.review
+      reviewText: null
     };
     this.handleFormClose = this.handleFormClose.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    this.setState({ reviewText: nextProps.reviewText });
+  }
+
   handleFormClose() {
-    this.props.handleClose(this.state.reviewText);
+    this.props.handleClose({ appointmentReview: this.state.reviewText });
   }
 
   handleChange(event) {

@@ -27,7 +27,7 @@ class ProfilePage extends React.Component {
       progress: 0,
       open: false,
       photoURL: firebaseAuth().currentUser.photoURL || profile,
-      reviewAppointmentID: null
+      reviewText: null
     };
 
     this.handleClickOpen = this.handleClickOpen.bind(this);
@@ -41,22 +41,32 @@ class ProfilePage extends React.Component {
     });
     const userAppointments = this.state.userAppointments;
     userAppointments[appointmentIndex].rating = newRating;
+    let reviewAppointment = this.state.userAppointments.find(appointment => {
+      return appointment.key === appointmentID;
+    });
+
+    this.setState({ open: true, reviewText: reviewAppointment.review });
 
     // re-render
     this.forceUpdate();
-
-    this.setState({ open: true, reviewAppointmentID: appointmentID });
   };
 
-  handleClose = appointmentReview => {
+  handleClose = resp => {
+    const { appointmentReview } = resp;
+    if (
+      appointmentReview &&
+      this.state.currentUser &&
+      this.state.reviewAppointmentID
+    ) {
+      addAppointmentReview(
+        this.state.currentUser.uid,
+        this.state.reviewAppointmentID,
+        appointmentReview
+      );
+    }
     this.setState({
       open: false
     });
-    addAppointmentReview(
-      this.state.currentUser.uid,
-      this.state.reviewAppointmentID,
-      appointmentReview
-    );
   };
 
   handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
@@ -160,13 +170,7 @@ class ProfilePage extends React.Component {
                     handleClickOpen={this.handleClickOpen}
                     handleClose={this.handleClose}
                     open={this.state.open}
-                    reviewAppointment={this.state.userAppointments.find(
-                      appointment => {
-                        return (
-                          appointment.key === this.state.reviewAppointmentID
-                        );
-                      }
-                    )}
+                    reviewText={this.state.reviewText}
                   />
                 </GridItem>
               </GridContainer>
