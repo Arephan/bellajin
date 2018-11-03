@@ -63,6 +63,7 @@ class ProfilePage extends React.Component {
         this.state.reviewAppointmentID,
         appointmentReview
       );
+      //TODO: update state arr item review property
     }
     this.setState({
       open: false
@@ -75,6 +76,7 @@ class ProfilePage extends React.Component {
     this.setState({ isUploading: false });
     console.error(error);
   };
+  //TODO: Rotate photo 90degrees to right
   handleUploadSuccess = filename => {
     this.setState({ avatar: filename, progress: 100, isUploading: false });
     firebase

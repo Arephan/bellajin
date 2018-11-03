@@ -1,9 +1,6 @@
-# Features
-- [ ] Ability to add profile photos
-- [ ] Carousel should have basic menu underneath
-- [ ] User is notified of their appointment 2 hr before their appointment
-    - [ ] Get Token saved under user tree in db
-    - [ ] S
+# Cleanup
+- [ ] Use firebase re-base library instead of normal firebase library
+- [ ] Build Unit Tests
 
 # Security 
 - [ ] Only authorized users should be able to access data under realtime branch
