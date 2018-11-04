@@ -10,19 +10,9 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 export default class FormDialog extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      reviewText: null
-    };
-    this.handleFormClose = this.handleFormClose.bind(this);
+    this.state = { reviewText: this.props.reviewText };
     this.handleChange = this.handleChange.bind(this);
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    this.setState({ reviewText: nextProps.reviewText });
-  }
-
-  handleFormClose() {
-    this.props.handleClose({ appointmentReview: this.state.reviewText });
+    this.handleClose = this.handleClose.bind(this);
   }
 
   handleChange(event) {
@@ -30,6 +20,10 @@ export default class FormDialog extends React.Component {
       id = event.target.id;
     rJSON[id] = event.target.value;
     this.setState(rJSON);
+  }
+
+  handleClose() {
+    this.props.handleClose(this.state.reviewText);
   }
 
   render() {
@@ -55,14 +49,14 @@ export default class FormDialog extends React.Component {
               label="Description"
               type="text"
               fullWidth
-              onChange={this.handleChange}
+              onChange={e => this.handleChange(e)}
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleFormClose} color="primary">
+            <Button onClick={this.handleClose} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleFormClose} color="primary">
+            <Button onClick={this.handleClose} color="primary">
               Submit
             </Button>
           </DialogActions>

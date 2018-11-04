@@ -10,7 +10,7 @@ import Checkout from "views/AppointmentPage/Checkout.js";
 import LandingPage from "views/LandingPage/LandingPage.jsx";
 import LoginPage from "views/LoginPage/LoginPage.jsx";
 import ProfilePage from "views/ProfilePage/ProfilePage.jsx";
-
+import { UserContext } from "contexts/UserContext.jsx";
 const history = createBrowserHistory();
 class App extends React.Component {
   constructor(props) {

@@ -1,28 +1,20 @@
-import { changeUserAppointmentRating } from "firebase/db.js";
 import React from "react";
 import Rating from "react-rating";
 
-export default class AppointmentRatings extends Rating {
-  constructor(props) {
-    super(props);
-    this.state = {
-      rating: props.rating || 0
-    };
-  }
+class AppointmentRatings extends Rating {
   render() {
+    const { appointmentID, rating, handleClickOpen } = this.props;
     return (
       <Rating
-        initialRating={this.state.rating}
+        initialRating={rating}
         onClick={value => {
-          changeUserAppointmentRating(
-            this.props.uid,
-            this.props.appointmentID,
-            value
-          ).then(() => {
-            this.props.handleClickOpen(this.props.appointmentID, value);
+          this.props.updateAppointmentRating(appointmentID, value).then(() => {
+            handleClickOpen(appointmentID);
           });
         }}
       />
     );
   }
 }
+
+export default AppointmentRatings;
