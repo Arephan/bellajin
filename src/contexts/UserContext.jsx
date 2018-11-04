@@ -1,6 +1,8 @@
 import firebase from "firebase";
 import { base } from "firebase/constants.js";
 import React, { Component } from "react";
+import { logout } from "firebase/auth.js";
+import { createBrowserHistory } from "history";
 // first we will make a new context
 export const UserContext = React.createContext();
 
@@ -16,9 +18,11 @@ export class UserProvider extends Component {
       open: false,
       loading: true,
       selectedAppointmentID: null, // For rating clicks and reviews
-      selectedAppointmentReviewText: null // So that it reminds user of past edit on dialog load
+      selectedAppointmentReviewText: null,
+      history: createBrowserHistory() // So that it reminds user of past edit on dialog load
     };
 
+    this.handleLogout = this.handleLogout.bind(this);
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.updateAppointmentRating = this.updateAppointmentRating.bind(this);
@@ -47,9 +51,14 @@ export class UserProvider extends Component {
     this.setState({ open: false });
   };
 
+  handleLogout() {
+    logout();
+    this.setState({ user: null });
+  }
+
   componentDidMount() {
+    this.setState({ loading: true });
     firebase.auth().onAuthStateChanged(user => {
-      this.setState({ loading: true });
       if (user) {
         this.setState({ currentUser: user });
         base.syncState(`users/${user.uid}/appointments`, {
@@ -58,11 +67,8 @@ export class UserProvider extends Component {
           asArray: true
         });
       }
-
       this.setState({ loading: false });
     });
-
-    this.setState({ loading: false });
   }
 
   updateAppointmentRating(appointmentID, newRating) {
@@ -136,7 +142,8 @@ export class UserProvider extends Component {
           handleProgress: this.handleProgress,
           handleClickOpen: this.handleClickOpen,
           handleClose: this.handleClose,
-          handleChange: this.handleChange
+          handleChange: this.handleChange,
+          handleLogout: this.handleLogout
         }}
       >
         {children}
@@ -154,7 +161,7 @@ export function withContext(WrappedComponent, context) {
 				<UserContext.Consumer>
 					{userContext => {
 						console.log(this, arguments, userContext);
-						return <WrappedComponent userContext={{ ...userContext }} />;
+						return <WrappedComponent {...this.props} userContext={{ ...userContext }} />;
 					}}
 				</UserContext.Consumer>
 			);

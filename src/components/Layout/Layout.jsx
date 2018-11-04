@@ -4,13 +4,14 @@ import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo.jpg";
+import { withContext, UserContext } from "contexts/UserContext.jsx";
 
 class Layout extends React.Component {
   render() {
-    const { classes, ...rest } = this.props;
+    const { userContext } = this.props;
     if (
-      this.props.history.location.pathname === "/new-appointment" ||
-      this.props.history.location.pathname === "/login-page"
+      userContext.state.history.location.pathname === "/new-appointment" ||
+      userContext.state.history.location.pathname === "/login-page"
     ) {
       return <div>{this.props.children}</div>; // For cleaner checkout process
     }
@@ -26,8 +27,8 @@ class Layout extends React.Component {
           fixed
           rightLinks={
             <HeaderLinks
-              handleLogout={this.props.handleLogout}
-              user={this.props.user}
+              handleLogout={userContext.handleLogout}
+              user={userContext.state.currentUser}
             />
           }
         />
@@ -38,4 +39,4 @@ class Layout extends React.Component {
   }
 }
 
-export default Layout;
+export default withContext(Layout, UserContext);

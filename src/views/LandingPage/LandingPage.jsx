@@ -14,7 +14,7 @@ import WorkSection from "./Sections/WorkSection.jsx";
 
 class LandingPage extends React.Component {
   render() {
-    const { classes, ...rest } = this.props;
+    const { classes } = this.props;
     return (
       <div>
         <Parallax filter image={require("assets/img/landing-bg.jpg")}>

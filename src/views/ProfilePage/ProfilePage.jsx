@@ -22,8 +22,7 @@ class ProfilePage extends React.Component {
         classes.imgRaised,
         classes.imgRoundedCircle,
         classes.imgFluid
-      ),
-      navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
+      );
     return (
       <div>
         <Parallax small filter image={require("assets/img/profile-bg.jpg")} />
