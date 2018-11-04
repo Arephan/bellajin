@@ -73,11 +73,7 @@ class ProfilePage extends React.Component {
                       <SimpleTable />
                     )}
                   </div>
-                  <FormDialog
-                    handleClickOpen={userContext.handleClickOpen}
-                    handleClose={userContext.handleClose}
-                    open={userContext.state.open}
-                  />
+                  <FormDialog />
                 </GridItem>
               </GridContainer>
             </div>

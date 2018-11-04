@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { base, firebaseAuth } from "firebase/constants.js";
 import firebase from "firebase";
+import { base } from "firebase/constants.js";
+import React, { Component } from "react";
 // first we will make a new context
 export const UserContext = React.createContext();
 
@@ -15,18 +15,26 @@ export class UserProvider extends Component {
       progress: null,
       open: false,
       loading: true,
-      selectedAppointmentID: null // For rating clicks and reviews
+      selectedAppointmentID: null, // For rating clicks and reviews
+      selectedAppointmentReviewText: null // So that it reminds user of past edit on dialog load
     };
 
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.updateAppointmentRating = this.updateAppointmentRating.bind(this);
     this.updateAppointmentReview = this.updateAppointmentReview.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleClickOpen = appointmentID => {
-    this.setState({ open: true });
-    this.setState({ selectedAppointmentID: appointmentID });
+    let selectedAppointment = this.state.userAppointments.find(appointment => {
+      return appointment.key === appointmentID;
+    });
+    this.setState({
+      selectedAppointmentID: appointmentID,
+      selectedAppointmentReviewText: selectedAppointment.review,
+      open: true
+    });
   };
 
   handleClose = (reviewText = null) => {
@@ -67,15 +75,20 @@ export class UserProvider extends Component {
       }
     );
   }
+  handleChange(event) {
+    const rJSON = {},
+      id = event.target.id;
+    rJSON[id] = event.target.value;
+    this.setState(rJSON);
+  }
 
-  updateAppointmentReview(appointmentID, newReview) {
+  updateAppointmentReview() {
     return base.update(
-      `users/${this.state.currentUser.uid}/appointments/${appointmentID}`,
+      `users/${this.state.currentUser.uid}/appointments/${
+        this.state.selectedAppointmentID
+      }`,
       {
-        data: { review: newReview },
-        then(err) {
-          console.log(err);
-        }
+        data: { review: this.state.selectedAppointmentReviewText }
       }
     );
   }
@@ -122,7 +135,8 @@ export class UserProvider extends Component {
           handleUploadError: this.handleUploadError,
           handleProgress: this.handleProgress,
           handleClickOpen: this.handleClickOpen,
-          handleClose: this.handleClose
+          handleClose: this.handleClose,
+          handleChange: this.handleChange
         }}
       >
         {children}

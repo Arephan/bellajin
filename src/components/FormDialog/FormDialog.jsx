@@ -6,32 +6,16 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import { withContext, UserContext } from "contexts/UserContext.jsx";
 
-export default class FormDialog extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { reviewText: this.props.reviewText };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-  }
-
-  handleChange(event) {
-    const rJSON = {},
-      id = event.target.id;
-    rJSON[id] = event.target.value;
-    this.setState(rJSON);
-  }
-
-  handleClose() {
-    this.props.handleClose(this.state.reviewText);
-  }
-
+class FormDialog extends React.Component {
   render() {
+    const { userContext } = this.props;
     return (
       <div>
         <Dialog
-          open={this.props.open}
-          onClose={this.props.handleClose}
+          open={userContext.state.open}
+          onClose={userContext.handleClose}
           aria-labelledby="form-dialog-title"
         >
           <DialogTitle id="form-dialog-title">
@@ -44,19 +28,19 @@ export default class FormDialog extends React.Component {
             <TextField
               autoFocus
               margin="dense"
-              id="reviewText"
-              value={this.state.reviewText}
+              id="selectedAppointmentReviewText"
+              value={userContext.state.selectedAppointmentReviewText}
               label="Description"
               type="text"
               fullWidth
-              onChange={e => this.handleChange(e)}
+              onChange={userContext.handleChange}
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={userContext.handleClose} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={userContext.handleClose} color="primary">
               Submit
             </Button>
           </DialogActions>
@@ -65,3 +49,5 @@ export default class FormDialog extends React.Component {
     );
   }
 }
+
+export default withContext(FormDialog, UserContext);
