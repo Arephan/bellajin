@@ -4,11 +4,11 @@ import Layout from "components/Layout/Layout.jsx";
 import { UserContext, withContext } from "contexts/UserContext.jsx";
 import React from "react";
 import { Route, Router, Switch } from "react-router-dom";
-import indexRoutes from "routes/index.jsx";
-
+import { indexRoutes, ProtectedRoute } from "routes/index.jsx";
 class App extends React.Component {
   render() {
     const { userContext } = this.props;
+
     return userContext.state.loading === true ? (
       <LinearProgress />
     ) : (
@@ -16,7 +16,14 @@ class App extends React.Component {
         <Layout>
           <Switch>
             {indexRoutes.map((prop, key) => {
-              return (
+              return prop.path === "/profile-page" ? (
+                <ProtectedRoute
+                  path={prop.path}
+                  key={key}
+                  component={prop.component}
+                  userContext={userContext}
+                />
+              ) : (
                 <Route
                   exact
                   path={prop.path}
@@ -25,6 +32,7 @@ class App extends React.Component {
                 />
               );
             })}
+            )
           </Switch>
         </Layout>
       </Router>
