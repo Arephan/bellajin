@@ -1,7 +1,8 @@
 import firebase from "firebase";
 import { base } from "firebase/constants.js";
 import React, { Component } from "react";
-import { logout } from "firebase/auth.js";
+import { login, logout } from "firebase/auth.js";
+import { signUpWithEmailAndPass, sendPasswordReset } from "firebase/auth.js";
 import { createBrowserHistory } from "history";
 // first we will make a new context
 export const UserContext = React.createContext();
@@ -19,17 +20,69 @@ export class UserProvider extends Component {
       loading: true,
       selectedAppointmentID: null, // For rating clicks and reviews
       selectedAppointmentReviewText: null,
-      history: createBrowserHistory() // So that it reminds user of past edit on dialog load
+      history: createBrowserHistory(), // So that it reminds user of past edit on dialog load
+      email: null,
+      name: null,
+      password: null,
+      isSignUp: false,
+      newAppointment: null
     };
 
+    this.toggleSignUpState = this.toggleSignUpState.bind(this);
+    this.sendPasswordReset = sendPasswordReset.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.updateAppointmentRating = this.updateAppointmentRating.bind(this);
     this.updateAppointmentReview = this.updateAppointmentReview.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
+  toggleSignUpState() {
+    this.state.isSignUp
+      ? this.setState({ isSignUp: false })
+      : this.setState({ isSignUp: true });
+  }
+
+  async handleSignUp() {
+    if (!this.state.email || !this.state.password || !this.state.name) {
+      alert("Please complete form");
+      return;
+    }
+
+    this.setState({ loading: true });
+    const resp = await signUpWithEmailAndPass(
+      this.state.name,
+      this.state.email,
+      this.state.password
+    );
+
+    if (resp) {
+      this.setState({ loading: false });
+      this.props.history.push("/profile-page");
+    }
+  }
+  handleLogin() {
+    if (!this.state.email || !this.state.password) {
+      alert("Please fill all fields");
+      return;
+    } else {
+      login(this.state.email, this.state.password).then(() => {
+        if (this.state.history.location.from === "/new-appointment") {
+          this.state.history.push({
+            pathname: "/new-appointment",
+            from: "/login-page",
+            state: { newAppointment: this.state.newAppointment }
+          });
+        } else {
+          this.state.history.push("/profile-page");
+        }
+      });
+    }
+  }
   handleClickOpen = appointmentID => {
     let selectedAppointment = this.state.userAppointments.find(appointment => {
       return appointment.key === appointmentID;
@@ -143,7 +196,11 @@ export class UserProvider extends Component {
           handleClickOpen: this.handleClickOpen,
           handleClose: this.handleClose,
           handleChange: this.handleChange,
-          handleLogout: this.handleLogout
+          handleLogout: this.handleLogout,
+          handleSignUp: this.handleSignUp,
+          handleLogin: this.handleLogin,
+          sendPasswordReset: this.sendPasswordReset,
+          toggleSignUpState: this.toggleSignUpState
         }}
       >
         {children}

@@ -13,92 +13,25 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearProgress.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import {
-  login,
-  sendPasswordReset,
-  signUpWithEmailAndPass
-} from "firebase/auth.js";
+import { sendPasswordReset } from "firebase/auth.js";
 import React from "react";
+import { withContext, UserContext } from "contexts/UserContext.jsx";
 
 class LoginPage extends React.Component {
-  constructor(props) {
-    super(props);
-    // We use this to make the card to appear after the page has been rendered
-    this.state = {
-      cardAnimaton: "cardHidden",
-      email: null,
-      name: null,
-      password: null,
-      isSignUp: false,
-      loading: false,
-      newAppointment: null
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSignUp = this.handleSignUp.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
-  }
+  // We use this to make the card to appear after the page has been rendered
+  state = {
+    cardAnimaton: "cardHidden"
+  };
 
   componentDidMount() {
     // We add a hidden class to the card and after 700 ms we delete it and the transition appears
     setTimeout(() => {
       this.setState({ cardAnimaton: "" });
     }, 700);
-
-    if (this.props.history.location.from === "/new-appointment") {
-      this.setState({
-        newAppointment: this.props.history.location.state.newAppointment,
-        email: this.props.history.location.state.newAppointment.email
-      });
-    }
-  }
-
-  handleChange(event) {
-    const rJSON = {},
-      id = event.target.id;
-    rJSON[id] = event.target.value;
-    this.setState(rJSON);
-  }
-
-  handleLogin() {
-    if (!this.state.email || !this.state.password) {
-      alert("Please fill all fields");
-      return;
-    } else {
-      login(this.state.email, this.state.password).then(() => {
-        if (this.props.history.location.from === "/new-appointment") {
-          this.props.history.push({
-            pathname: "/new-appointment",
-            from: "/login-page",
-            state: { newAppointment: this.state.newAppointment }
-          });
-        } else {
-          this.props.history.push("/profile-page");
-        }
-      });
-    }
-  }
-
-  async handleSignUp() {
-    if (!this.state.email || !this.state.password || !this.state.name) {
-      alert("Please complete form");
-      return;
-    }
-    const resp = await signUpWithEmailAndPass(
-      this.state.name,
-      this.state.email,
-      this.state.password
-    );
-    this.setState({ loading: true });
-
-    if (resp) {
-      this.setState({ loading: false });
-      this.props.history.push("/profile-page");
-    }
   }
 
   render() {
-    const { classes, ...rest } = this.props;
+    const { classes, userContext, ...rest } = this.props;
     return (
       <div
         className={classes.pageHeader}
@@ -114,9 +47,9 @@ class LoginPage extends React.Component {
               <Card className={classes[this.state.cardAnimaton]}>
                 <form className={classes.form}>
                   <CardHeader color="danger" className={classes.cardHeader}>
-                    <h4>{this.state.isSignUp ? "Sign Up" : "Login"}</h4>
+                    <h4>{userContext.state.isSignUp ? "Sign Up" : "Login"}</h4>
                   </CardHeader>
-                  {this.state.loading ? (
+                  {userContext.state.loading ? (
                     <CustomLinearProgress
                       color="info"
                       variant="indeterminate"
@@ -124,7 +57,7 @@ class LoginPage extends React.Component {
                   ) : null}
 
                   <CardBody>
-                    {this.state.isSignUp ? (
+                    {userContext.state.isSignUp ? (
                       <CustomInput
                         formControlProps={{
                           fullWidth: true
@@ -132,7 +65,7 @@ class LoginPage extends React.Component {
                         id="name"
                         inputProps={{
                           type: "name",
-                          onChange: this.handleChange,
+                          onChange: userContext.handleChange,
                           endAdornment: (
                             <InputAdornment position="end">
                               <Icon className={classes.inputIconsColor}>
@@ -152,7 +85,7 @@ class LoginPage extends React.Component {
                       inputProps={{
                         type: "email",
 
-                        onChange: this.handleChange,
+                        onChange: userContext.handleChange,
                         endAdornment: (
                           <InputAdornment position="end">
                             <Icon className={classes.inputIconsColor}>
@@ -170,7 +103,7 @@ class LoginPage extends React.Component {
                       id="password"
                       inputProps={{
                         type: "password",
-                        onChange: this.handleChange,
+                        onChange: userContext.handleChange,
                         endAdornment: (
                           <InputAdornment position="end">
                             <Icon className={classes.inputIconsColor}>
@@ -183,10 +116,10 @@ class LoginPage extends React.Component {
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
-                    {this.state.isSignUp ? (
+                    {userContext.state.isSignUp ? (
                       <Button
                         color="danger"
-                        onClick={() => this.setState({ isSignUp: false })}
+                        onClick={userContext.toggleSignUpState}
                         simple
                         size="lg"
                       >
@@ -195,7 +128,7 @@ class LoginPage extends React.Component {
                     ) : (
                       <Button
                         color="danger"
-                        onClick={() => this.setState({ isSignUp: true })}
+                        onClick={userContext.toggleSignUpState}
                         simple
                         size="lg"
                       >
@@ -205,9 +138,9 @@ class LoginPage extends React.Component {
                     <Button
                       color="info"
                       onClick={
-                        this.state.isSignUp
-                          ? this.handleSignUp
-                          : this.handleLogin
+                        userContext.state.isSignUp
+                          ? userContext.handleSignUp
+                          : userContext.handleLogin
                       }
                       simple
                       size="lg"
@@ -216,10 +149,10 @@ class LoginPage extends React.Component {
                     </Button>
                   </CardFooter>
                   <CardFooter className={classes.cardFooter}>
-                    {this.state.isSignUp ? null : (
+                    {userContext.state.isSignUp ? null : (
                       <Button
                         color="danger"
-                        onClick={sendPasswordReset}
+                        onClick={userContext.sendPasswordReset}
                         simple
                         size="sm"
                       >
@@ -237,4 +170,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default withStyles(loginPageStyle)(LoginPage);
+export default withContext(withStyles(loginPageStyle)(LoginPage), UserContext);
