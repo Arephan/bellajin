@@ -15,7 +15,7 @@ module.exports = {
   rules: {
     "react/prop-types": 0
   },
-  plugins: ["react"],
+  plugins: ["prettier"],
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",

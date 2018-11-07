@@ -1,11 +1,10 @@
 import LinearProgress from "@material-ui/core/LinearProgress";
-import "assets/scss/material-kit-react.css?v=1.2.0";
 import Layout from "components/Layout/Layout.jsx";
 import { UserContext, withContext } from "contexts/UserContext.jsx";
 import React from "react";
 import { Route, Router, Switch } from "react-router-dom";
 import ProfilePage from "views/ProfilePage/ProfilePage.jsx";
-import Checkout from "views/AppointmentPage/Checkout.js";
+import Checkout from "views/AppointmentPage/Checkout.jsx";
 import LandingPage from "views/LandingPage/LandingPage.jsx";
 import LoginPage from "views/LoginPage/LoginPage.jsx";
 class App extends React.Component {
