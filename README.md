@@ -2,6 +2,13 @@
 
 Beauty salon customer management web app built using React.js, Node.js, and Google's Firebase.
 
+## Screenshots
+
+![Home](./screenshots/home.png?raw=true)
+![Profile Page](./screenshots/profile.png?raw=true)
+![Appointment Making](./screenshots/booking.png?raw=true)
+![Appointment Rating](./screenshots/rating.png?raw=true)
+
 ## Getting Started
 
 ### Prerequisites
