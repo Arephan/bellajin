@@ -3,12 +3,12 @@ import { addMsgTokenToUser } from "firebase/db";
 const database = require("firebase/database"),
   Rebase = require("re-base"),
   config = {
-    apiKey: "AIzaSyB8FQ40Fc14Af618qaKApJDJo0dkWNhWbo",
-    authDomain: "bellajin-c8de8.firebaseapp.com",
-    databaseURL: "https://bellajin-c8de8.firebaseio.com",
-    projectId: "bellajin-c8de8",
-    storageBucket: "bellajin-c8de8.appspot.com",
-    messagingSenderId: "114630698438"
+    apiKey: "AIzaSyB5QasfKiM-k2ACilJLaT3E-i1lrnhQPz0",
+    authDomain: "bellajin-c8d7e.firebaseapp.com",
+    databaseURL: "https://bellajin-c8d7e.firebaseio.com",
+    projectId: "bellajin-c8d7e",
+    storageBucket: "bellajin-c8d7e.appspot.com",
+    messagingSenderId: "573386202389"
   },
   app = firebase.initializeApp(config),
   db = firebase.database(app);
