@@ -4,9 +4,13 @@ Beauty salon customer management web app built using React.js, Node.js, and Goog
 
 ## Screenshots
 
+#### Home
 ![Home](./screenshots/home.png?raw=true)
+#### Profile
 ![Profile Page](./screenshots/profile.png?raw=true)
+#### Booking
 ![Appointment Making](./screenshots/booking.png?raw=true)
+#### Rating
 ![Appointment Rating](./screenshots/rating.png?raw=true)
 
 ## Getting Started
